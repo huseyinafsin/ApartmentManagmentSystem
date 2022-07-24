@@ -5,12 +5,15 @@ namespace Entity.Concrete
 {
     public class Flat : BaseEntity, IEntity
     {
-        public int UserId { get; set; }
+        public int ResidentId { get; set; }
+        public int FlatTypeId { get; set; }
         public string Block { get; set; }
         public int Floor { get; set; }
         public int Number { get; set; }
-        public int TypeId { get; set; }
         public bool IsInUse { get; set; }
+
+        public virtual Resident Resident { get; set; }
+        public virtual FlatType FlatType { get; set; }
 
     }
 }
