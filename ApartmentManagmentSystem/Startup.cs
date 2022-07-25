@@ -1,3 +1,10 @@
+using Bussiness.Abstracts;
+using Bussiness.Concrete;
+using Bussiness.Configuration.Mapper;
+using Core.Repository;
+using Core.Service;
+using Core.Service.Concrete;
+using Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +39,18 @@ namespace ApartmentManagmentSystem
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApartmentManagmentSystem", Version = "v1" });
             });
+
+           services.AddScoped<IAuthService, AuthService>();
+                    services.AddScoped<ITokenHelper, JwtHelper>();
+                    services.AddAutoMapper(config =>
+                    {
+                        config.AddProfile(new MappingProfile());
+                    });
+            services.AddScoped(typeof(IRepository<>), typeof(EfGenericRepository<>));
+            services.AddScoped(typeof(IService<>), typeof(Service<>));
+
+         
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

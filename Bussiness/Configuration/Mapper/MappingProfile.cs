@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Core.Entity.Concrete;
+using Entity.Concrete;
 using Entity.Concrete.Dtos;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,9 @@ namespace Bussiness.Configuration.Mapper
         public MappingProfile()
         {
             CreateMap<User,ManagerForRegister>();
+            CreateMap<Manager,ManagerForRegister>();
             CreateMap<User,ResidentForRegister>();
+            CreateMap<Resident,ResidentForRegister>();
         }
     }
 }
