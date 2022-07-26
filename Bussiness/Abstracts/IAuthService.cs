@@ -1,7 +1,6 @@
 ﻿using Core.Utilities.Results;
 using Core.Utilities.Security.JWT;
 using Entity.Concrete.Dtos;
-using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 

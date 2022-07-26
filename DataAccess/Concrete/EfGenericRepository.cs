@@ -1,23 +1,23 @@
-﻿using Core.Abstract;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
+using Core.Abstract;
+using Core.Repository;
+using DataAccess.Contexts;
+using Microsoft.EntityFrameworkCore;
 
-namespace Core.Repository.Entityframework
+namespace DataAccess.Concrete
 {
-    public class EfGenericRepository<TEntity, TContext> : IRepository<TEntity>
+    public class EfGenericRepository<TEntity> : IRepository<TEntity>
         where TEntity : class, IEntity, new()
-        where TContext : DbContext, new()
     {
         private readonly DbSet<TEntity> _dbSet;
-        protected readonly TContext _context;
-        public EfGenericRepository( TContext _context)
+        public readonly ApartmentContext _context;
+        public EfGenericRepository( ApartmentContext context)
         {
-            _context = _context;
+            _context = context;
             _dbSet = _context.Set<TEntity>();
         }
 

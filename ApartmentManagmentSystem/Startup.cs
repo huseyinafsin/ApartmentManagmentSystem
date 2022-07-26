@@ -3,7 +3,6 @@ using Bussiness.Concrete;
 using Bussiness.Configuration.Mapper;
 using Core.Repository;
 using Core.Service;
-using Core.Service.Concrete;
 using Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,6 +17,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bussiness.Configuration.Interceptors;
+using Core.Utilities.Security.Encryption;
+using DataAccess.Concrete;
+using DataAccess.Contexts;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ApartmentManagmentSystem
 {
@@ -39,17 +44,35 @@ namespace ApartmentManagmentSystem
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApartmentManagmentSystem", Version = "v1" });
             });
-
-           services.AddScoped<IAuthService, AuthService>();
-                    services.AddScoped<ITokenHelper, JwtHelper>();
-                    services.AddAutoMapper(config =>
+            var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
                     {
-                        config.AddProfile(new MappingProfile());
-                    });
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidIssuer = tokenOptions.Issuer,
+                        ValidAudience = tokenOptions.Audience,
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
+                    };
+                });
+            services.AddDbContext<ApartmentContext>();
+
+            services.AddAutoMapper(config =>
+            {
+                config.AddProfile(new MappingProfile());
+            });
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ITokenHelper, JwtHelper>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IOperationClaimService, OperationClaimService>();
             services.AddScoped(typeof(IRepository<>), typeof(EfGenericRepository<>));
             services.AddScoped(typeof(IService<>), typeof(Service<>));
+            services.AddScoped<TransactionInterceptor>();
 
-         
 
         }
 
@@ -66,7 +89,7 @@ namespace ApartmentManagmentSystem
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

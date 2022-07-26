@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApartmentManagmentSystem.Controllers
 {
@@ -24,6 +25,7 @@ namespace ApartmentManagmentSystem.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Manager")]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();

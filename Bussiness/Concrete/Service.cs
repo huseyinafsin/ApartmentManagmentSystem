@@ -1,21 +1,21 @@
-﻿using Core.Abstract;
-using Core.Constants;
-using Core.Exceptions;
-using Core.Repository;
-using Core.Utilities.Results;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
+using Core.Abstract;
+using Core.Constants;
+using Core.Exceptions;
+using Core.Repository;
+using Core.Service;
+using Core.Utilities.Results;
+using Microsoft.EntityFrameworkCore;
 
-namespace Core.Service.Concrete
+namespace Bussiness.Concrete
 {
     public class Service<TEntity> : IService<TEntity> where TEntity : class, IEntity, new()
     {
-        private readonly IRepository<TEntity> _repository;
+        public readonly IRepository<TEntity> _repository;
 
         public Service(IRepository<TEntity> repository)
         {

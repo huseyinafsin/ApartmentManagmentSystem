@@ -23,5 +23,17 @@ namespace ApartmentManagmentSystem.Controllers
             var result =await _authService.ManagerRegister(managerForRegister);
             return Ok(result);
         }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Login(UserForLogin userForLogin)
+        {
+            var result =await _authService.Login(userForLogin);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
     }
 }
