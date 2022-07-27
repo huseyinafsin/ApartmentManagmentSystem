@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApartmentManagmentSystem", "ApartmentManagmentSystem\ApartmentManagmentSystem.csproj", "{E3B03390-EF07-4ED0-996C-248F6837D25F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApartmentManagmentSystem", "ApartmentManagmentSystem\ApartmentManagmentSystem.csproj", "{E3B03390-EF07-4ED0-996C-248F6837D25F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity", "Entity\Entity.csproj", "{65EFB88A-4401-4AE6-B0C1-993A63D979EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entity", "Entity\Entity.csproj", "{65EFB88A-4401-4AE6-B0C1-993A63D979EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{83FCF906-76DD-471C-B09D-B385DF2D9FA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{83FCF906-76DD-471C-B09D-B385DF2D9FA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bussiness", "Bussiness\Bussiness.csproj", "{567D3B1B-5AA4-4B2C-8D11-E7AA0B18FE21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bussiness", "Bussiness\Bussiness.csproj", "{567D3B1B-5AA4-4B2C-8D11-E7AA0B18FE21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentService", "PaymentService\PaymentService.csproj", "{6AB4DE75-D36D-446A-A19B-8E9FC635F794}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentService", "PaymentService\PaymentService.csproj", "{6AB4DE75-D36D-446A-A19B-8E9FC635F794}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{9D40E129-2B43-411F-AE87-EC5AFF3CC633}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{9D40E129-2B43-411F-AE87-EC5AFF3CC633}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "ui", "ui\ui.esproj", "{42AA67DB-FB56-46AC-A1E6-598DA15740FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,12 @@ Global
 		{9D40E129-2B43-411F-AE87-EC5AFF3CC633}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D40E129-2B43-411F-AE87-EC5AFF3CC633}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D40E129-2B43-411F-AE87-EC5AFF3CC633}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42AA67DB-FB56-46AC-A1E6-598DA15740FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42AA67DB-FB56-46AC-A1E6-598DA15740FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42AA67DB-FB56-46AC-A1E6-598DA15740FF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{42AA67DB-FB56-46AC-A1E6-598DA15740FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42AA67DB-FB56-46AC-A1E6-598DA15740FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42AA67DB-FB56-46AC-A1E6-598DA15740FF}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

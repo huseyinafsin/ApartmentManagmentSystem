@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/0.5.26-alpha">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>42aa67db-fb56-46ac-a1e6-598da15740ff</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupCommand>set BROWSER=none&amp;&amp;npm start</StartupCommand>
+    <JavaScriptTestRoot>src\</JavaScriptTestRoot>
+    <JavaScriptTestFramework>Jest</JavaScriptTestFramework>
+  </PropertyGroup>
+</Project>

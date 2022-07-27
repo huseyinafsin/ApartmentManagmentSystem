@@ -1,6 +1,8 @@
-﻿namespace Entity.Concrete.Dtos
+﻿using Core.Abstract;
+
+namespace Entity.Concrete.Dtos
 {
-    public class ResidentForRegister
+    public class ResidentForRegister : IDto
     {
         public string Firstname { get; set; }
         public string Lastname { get; set; }
