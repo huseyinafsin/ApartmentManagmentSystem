@@ -6,4 +6,3 @@ namespace Entity.Concrete.Dtos.Resident
     {
     }
 }
-}s

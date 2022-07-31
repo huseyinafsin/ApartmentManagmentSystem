@@ -21,17 +21,19 @@ namespace Bussiness.Concrete
         private readonly IUserService _userService;
         private readonly IOperationClaimService _operationClaimService;
         private readonly IService<Manager> _managerService;
+        private readonly IService<Resident> _residentService;
         private readonly IMapper _mapper;
         private readonly ITokenHelper _tokenHelper;
 
 
-        public AuthService(IMapper mapper, ITokenHelper tokenHelper, IUserService userService, IService<Manager> managerService, IOperationClaimService operationClaimService )
+        public AuthService(IMapper mapper, ITokenHelper tokenHelper, IUserService userService, IService<Manager> managerService, IOperationClaimService operationClaimService, IService<Resident> residentService)
         {
             _mapper = mapper;
             _userService = userService;
             _tokenHelper = tokenHelper;
             _managerService = managerService;
             _operationClaimService = operationClaimService;
+            _residentService = residentService;
         }
 
         public async Task<IDataResult<AccessToken>> Login(UserForLogin userForLogin)
@@ -75,9 +77,33 @@ namespace Bussiness.Concrete
             return new SuccessDataResult<AccessToken> { Data = accessToken };
         }
 
-        public Task<IDataResult<AccessToken>> ResidentRegister(ResidentForRegister residentForRegister)
+        public async Task<IDataResult<AccessToken>> ResidentRegister(ResidentForRegister residentForRegister)
         {
-            throw new NotImplementedException();
+            byte[] passwordHash, passwordSalt;
+            HashingHelper.CreatePasswordHash(residentForRegister.Password, out passwordHash, out passwordSalt);
+            var user = new User
+            {
+                Email = residentForRegister.Email,
+                Firstname = residentForRegister.Firstname,
+                Lastname = residentForRegister.Lastname,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt,
+                Status = true
+            };
+            var operationClaims = _operationClaimService.Where(w => w.Id == 2).ToList();
+
+             _userService.AddAsync(user);
+            var resident = new Resident()
+            {
+                User = user,
+                IdentityNumber = residentForRegister.IdentityNumber,
+                HasACar = residentForRegister.HasACar,
+                Phone = residentForRegister.Phone,
+                Plate = residentForRegister.Plate,
+            };
+            _residentService.AddAsync(resident);
+            var accessToken = _tokenHelper.CreateToken(user, operationClaims);
+            return new SuccessDataResult<AccessToken> { Data = accessToken };
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Bussiness.Concrete
 
         public async Task<IDataResult<TEntity>> GetByIdAsync(int id)
         {
-            var result = await _repository.GetByIdAsync(id);
+            var result = await _repository.GetAsync(x=>x.Id==id);
 
             if (result == null)
             {
@@ -42,7 +42,7 @@ namespace Bussiness.Concrete
 
         public async Task<IDataResult<IEnumerable<TEntity>>> GetAllAsync()
         {
-            var result = await _repository.GetAll().ToListAsync();
+            var result = await _repository.GetAll();
             return new SuccessDataResult<IEnumerable<TEntity>>(result, typeof(TEntity).Name + " " + Messages.EntityListed);
 
         }
@@ -76,8 +76,9 @@ namespace Bussiness.Concrete
             return new SuccessResult(typeof(TEntity).Name + " " + Messages.EntityUpdated);
         }
 
-        public async Task<IResult> RemoveAsync(TEntity entity)
+        public async Task<IResult> RemoveAsync(int id)
         {
+            var entity =await _repository.GetAsync(x=>x.Id==id);
             _repository.Remove(entity);
             return new SuccessResult(typeof(TEntity).Name + " " + Messages.EntityDeleted);
         }

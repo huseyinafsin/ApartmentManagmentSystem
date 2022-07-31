@@ -1,0 +1,107 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\assets\bootstrap\css\bootstrap.min.css" />
+    <Content Remove="wwwroot\assets\bootstrap\js\bootstrap.min.js" />
+    <Content Remove="wwwroot\assets\css\Nunito.css" />
+    <Content Remove="wwwroot\assets\css\Sidebar-Menu-sidebar.css" />
+    <Content Remove="wwwroot\assets\css\Sidebar-Menu.css" />
+    <Content Remove="wwwroot\assets\fonts\fa-brands-400.eot" />
+    <Content Remove="wwwroot\assets\fonts\fa-brands-400.svg" />
+    <Content Remove="wwwroot\assets\fonts\fa-brands-400.ttf" />
+    <Content Remove="wwwroot\assets\fonts\fa-brands-400.woff" />
+    <Content Remove="wwwroot\assets\fonts\fa-brands-400.woff2" />
+    <Content Remove="wwwroot\assets\fonts\fa-regular-400.eot" />
+    <Content Remove="wwwroot\assets\fonts\fa-regular-400.svg" />
+    <Content Remove="wwwroot\assets\fonts\fa-regular-400.ttf" />
+    <Content Remove="wwwroot\assets\fonts\fa-regular-400.woff" />
+    <Content Remove="wwwroot\assets\fonts\fa-regular-400.woff2" />
+    <Content Remove="wwwroot\assets\fonts\fa-solid-900.eot" />
+    <Content Remove="wwwroot\assets\fonts\fa-solid-900.svg" />
+    <Content Remove="wwwroot\assets\fonts\fa-solid-900.ttf" />
+    <Content Remove="wwwroot\assets\fonts\fa-solid-900.woff" />
+    <Content Remove="wwwroot\assets\fonts\fa-solid-900.woff2" />
+    <Content Remove="wwwroot\assets\fonts\fontawesome-all.min.css" />
+    <Content Remove="wwwroot\assets\fonts\s\nunito\v25\XRXV3I6Li01BKofIMeaBXso.woff2" />
+    <Content Remove="wwwroot\assets\fonts\s\nunito\v25\XRXV3I6Li01BKofINeaB.woff2" />
+    <Content Remove="wwwroot\assets\fonts\s\nunito\v25\XRXV3I6Li01BKofIO-aBXso.woff2" />
+    <Content Remove="wwwroot\assets\fonts\s\nunito\v25\XRXV3I6Li01BKofIOOaBXso.woff2" />
+    <Content Remove="wwwroot\assets\fonts\s\nunito\v25\XRXV3I6Li01BKofIOuaBXso.woff2" />
+    <Content Remove="wwwroot\assets\fonts\s\nunito\v25\XRXX3I6Li01BKofIMNaDRs4.woff2" />
+    <Content Remove="wwwroot\assets\fonts\s\nunito\v25\XRXX3I6Li01BKofIMNaHRs71cA.woff2" />
+    <Content Remove="wwwroot\assets\fonts\s\nunito\v25\XRXX3I6Li01BKofIMNaMRs71cA.woff2" />
+    <Content Remove="wwwroot\assets\fonts\s\nunito\v25\XRXX3I6Li01BKofIMNaNRs71cA.woff2" />
+    <Content Remove="wwwroot\assets\fonts\s\nunito\v25\XRXX3I6Li01BKofIMNaORs71cA.woff2" />
+    <Content Remove="wwwroot\assets\img\avatars\avatar1.jpeg" />
+    <Content Remove="wwwroot\assets\img\avatars\avatar2.jpeg" />
+    <Content Remove="wwwroot\assets\img\avatars\avatar3.jpeg" />
+    <Content Remove="wwwroot\assets\img\avatars\avatar4.jpeg" />
+    <Content Remove="wwwroot\assets\img\avatars\avatar5.jpeg" />
+    <Content Remove="wwwroot\assets\img\dogs\image1.jpeg" />
+    <Content Remove="wwwroot\assets\img\dogs\image2.jpeg" />
+    <Content Remove="wwwroot\assets\img\dogs\image3.jpeg" />
+    <Content Remove="wwwroot\assets\js\bs-init.js" />
+    <Content Remove="wwwroot\assets\js\chart.min.js" />
+    <Content Remove="wwwroot\assets\js\Sidebar-Menu.js" />
+    <Content Remove="wwwroot\assets\js\theme.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\bootstrap\css\bootstrap.min.css" />
+    <None Include="wwwroot\assets\bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\assets\css\Nunito.css" />
+    <None Include="wwwroot\assets\css\Sidebar-Menu-sidebar.css" />
+    <None Include="wwwroot\assets\css\Sidebar-Menu.css" />
+    <None Include="wwwroot\assets\fonts\fa-brands-400.eot" />
+    <None Include="wwwroot\assets\fonts\fa-brands-400.svg" />
+    <None Include="wwwroot\assets\fonts\fa-brands-400.ttf" />
+    <None Include="wwwroot\assets\fonts\fa-brands-400.woff" />
+    <None Include="wwwroot\assets\fonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\assets\fonts\fa-regular-400.eot" />
+    <None Include="wwwroot\assets\fonts\fa-regular-400.svg" />
+    <None Include="wwwroot\assets\fonts\fa-regular-400.ttf" />
+    <None Include="wwwroot\assets\fonts\fa-regular-400.woff" />
+    <None Include="wwwroot\assets\fonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\assets\fonts\fa-solid-900.eot" />
+    <None Include="wwwroot\assets\fonts\fa-solid-900.svg" />
+    <None Include="wwwroot\assets\fonts\fa-solid-900.ttf" />
+    <None Include="wwwroot\assets\fonts\fa-solid-900.woff" />
+    <None Include="wwwroot\assets\fonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\assets\fonts\fontawesome-all.min.css" />
+    <None Include="wwwroot\assets\fonts\s\nunito\v25\XRXV3I6Li01BKofIMeaBXso.woff2" />
+    <None Include="wwwroot\assets\fonts\s\nunito\v25\XRXV3I6Li01BKofINeaB.woff2" />
+    <None Include="wwwroot\assets\fonts\s\nunito\v25\XRXV3I6Li01BKofIO-aBXso.woff2" />
+    <None Include="wwwroot\assets\fonts\s\nunito\v25\XRXV3I6Li01BKofIOOaBXso.woff2" />
+    <None Include="wwwroot\assets\fonts\s\nunito\v25\XRXV3I6Li01BKofIOuaBXso.woff2" />
+    <None Include="wwwroot\assets\fonts\s\nunito\v25\XRXX3I6Li01BKofIMNaDRs4.woff2" />
+    <None Include="wwwroot\assets\fonts\s\nunito\v25\XRXX3I6Li01BKofIMNaHRs71cA.woff2" />
+    <None Include="wwwroot\assets\fonts\s\nunito\v25\XRXX3I6Li01BKofIMNaMRs71cA.woff2" />
+    <None Include="wwwroot\assets\fonts\s\nunito\v25\XRXX3I6Li01BKofIMNaNRs71cA.woff2" />
+    <None Include="wwwroot\assets\fonts\s\nunito\v25\XRXX3I6Li01BKofIMNaORs71cA.woff2" />
+    <None Include="wwwroot\assets\img\avatars\avatar1.jpeg" />
+    <None Include="wwwroot\assets\img\avatars\avatar2.jpeg" />
+    <None Include="wwwroot\assets\img\avatars\avatar3.jpeg" />
+    <None Include="wwwroot\assets\img\avatars\avatar4.jpeg" />
+    <None Include="wwwroot\assets\img\avatars\avatar5.jpeg" />
+    <None Include="wwwroot\assets\img\dogs\image1.jpeg" />
+    <None Include="wwwroot\assets\img\dogs\image2.jpeg" />
+    <None Include="wwwroot\assets\img\dogs\image3.jpeg" />
+    <None Include="wwwroot\assets\js\bs-init.js" />
+    <None Include="wwwroot\assets\js\chart.min.js" />
+    <None Include="wwwroot\assets\js\Sidebar-Menu.js" />
+    <None Include="wwwroot\assets\js\theme.js" />
+  </ItemGroup>
+
+</Project>

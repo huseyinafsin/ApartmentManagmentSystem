@@ -44,17 +44,17 @@ namespace DataAccess.Concrete
 
         public async Task<List<TEntity>> GetAll(Expression<Func<TEntity, bool>> expression = null)
         {
-            return await _dbSet.Where(expression).ToListAsync();
+            if (expression!=null)
+            {
+                return await _dbSet.Where(expression).ToListAsync();
+            }
+            return await _dbSet.ToListAsync();
+
         }
 
-        public IQueryable<TEntity> GetAll()
+        public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> expression)
         {
-            return _dbSet.AsNoTracking().AsQueryable();
-        }
-
-        public async Task<TEntity> GetByIdAsync(int id)
-        {
-            return await _dbSet.FindAsync(id);
+            return await _dbSet.FirstOrDefaultAsync(expression);
         }
 
         public async void Remove(TEntity entity)

@@ -11,4 +11,4 @@ namespace Entity.Concrete.Dtos
         public string Password { get; set; }
     } 
 }
-}
+

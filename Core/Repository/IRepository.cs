@@ -10,10 +10,9 @@ namespace Core.Repository
 {
     public interface IRepository<TEntity> where TEntity : class, IEntity, new()
     {
-        Task<TEntity> GetByIdAsync(int id);
+        Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> expression);
         IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> expression);
         Task<List<TEntity>> GetAll(Expression<Func<TEntity, bool>> expression = null);
-        IQueryable<TEntity> GetAll();
         Task<bool> AnyAsync(Expression<Func<TEntity, bool>> expression);
         Task<TEntity> AddAsync(TEntity entity);
         Task<IEnumerable<TEntity>> AddRangeAsync(IEnumerable<TEntity> entities);

@@ -61,6 +61,7 @@ namespace ApartmentManagmentSystem
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ITokenHelper, JwtHelper>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IResidentService, ResidentService>();
             services.AddScoped<IOperationClaimService, OperationClaimService>();
             services.AddScoped(typeof(IRepository<>), typeof(EfGenericRepository<>));
             services.AddScoped(typeof(IService<>), typeof(Service<>));

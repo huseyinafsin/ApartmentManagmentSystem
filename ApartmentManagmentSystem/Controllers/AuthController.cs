@@ -25,6 +25,13 @@ namespace ApartmentManagmentSystem.Controllers
         }
 
         [HttpPost("[action]")]
+        public async Task<IActionResult> ResidentRegister(ResidentForRegister residentForRegister)
+        {
+            var result =await _authService.ResidentRegister(residentForRegister);
+            return Ok(result);
+        }
+
+        [HttpPost("[action]")]
         public async Task<IActionResult> Login(UserForLogin userForLogin)
         {
             var result =await _authService.Login(userForLogin);

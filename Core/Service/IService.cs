@@ -18,7 +18,7 @@ namespace Core.Service
         Task<IDataResult<TEntity>> AddAsync(TEntity entity);
         Task<IDataResult<IEnumerable<TEntity>>> AddRangeAsync(IEnumerable<TEntity> entities);
         Task<IResult> UpdateAsync(TEntity entity);
-        Task<IResult> RemoveAsync(TEntity entity);
+        Task<IResult> RemoveAsync(int id);
         Task<IResult> RemoveRangeAsync(IEnumerable<TEntity> entities);
     }
 }
