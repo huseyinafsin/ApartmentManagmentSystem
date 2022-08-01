@@ -4,8 +4,6 @@ using Core.Entity.Concrete;
 using Core.Service;
 using Core.Utilities.Results;
 using Core.Utilities.Security.JWT;
-using Entity.Concrete;
-using Entity.Concrete.Dtos;
 using System;
 using System.Linq;
 using System.Security.AccessControl;
@@ -13,6 +11,8 @@ using System.Threading.Tasks;
 using Autofac.Core.Activators.Reflection;
 using Bussiness.Configuration.Interceptors;
 using Core.Utilities.Security.Hashing;
+using Dto.Concrete.User;
+using Entity.Concrete;
 
 namespace Bussiness.Concrete
 {
@@ -21,12 +21,12 @@ namespace Bussiness.Concrete
         private readonly IUserService _userService;
         private readonly IOperationClaimService _operationClaimService;
         private readonly IService<Manager> _managerService;
-        private readonly IService<Resident> _residentService;
+        private readonly IService<Tenant> _residentService;
         private readonly IMapper _mapper;
         private readonly ITokenHelper _tokenHelper;
 
 
-        public AuthService(IMapper mapper, ITokenHelper tokenHelper, IUserService userService, IService<Manager> managerService, IOperationClaimService operationClaimService, IService<Resident> residentService)
+        public AuthService(IMapper mapper, ITokenHelper tokenHelper, IUserService userService, IService<Manager> managerService, IOperationClaimService operationClaimService, IService<Tenant> residentService)
         {
             _mapper = mapper;
             _userService = userService;
@@ -77,7 +77,7 @@ namespace Bussiness.Concrete
             return new SuccessDataResult<AccessToken> { Data = accessToken };
         }
 
-        public async Task<IDataResult<AccessToken>> ResidentRegister(ResidentForRegister residentForRegister)
+        public async Task<IDataResult<AccessToken>> TenantRegister(TenantForRegister residentForRegister)
         {
             byte[] passwordHash, passwordSalt;
             HashingHelper.CreatePasswordHash(residentForRegister.Password, out passwordHash, out passwordSalt);
@@ -92,8 +92,7 @@ namespace Bussiness.Concrete
             };
             var operationClaims = _operationClaimService.Where(w => w.Id == 2).ToList();
 
-             _userService.AddAsync(user);
-            var resident = new Resident()
+             var resident = new Tenant()
             {
                 User = user,
                 IdentityNumber = residentForRegister.IdentityNumber,

@@ -41,7 +41,7 @@ namespace DataAccess.Contexts
         public virtual DbSet<FlatType>  FlatTypes { get; set; }
         public virtual DbSet<Manager>  Managers { get; set; }
         public virtual DbSet<PaymentType>  PaymentTypes { get; set; }
-        public virtual DbSet<Resident>  Residents { get; set; }
+        public virtual DbSet<Tenant> Tenants { get; set; }
         public virtual DbSet<User>  Users { get; set; }
         public virtual DbSet<Message>  Messages { get; set; }
         public virtual DbSet<UserMessage>   UserMessages { get; set; }

@@ -104,4 +104,8 @@
     <None Include="wwwroot\assets\js\theme.js" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Dto\Dto.csproj" />
+  </ItemGroup>
+
 </Project>

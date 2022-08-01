@@ -11,7 +11,7 @@ namespace Core.Repository
     public interface IRepository<TEntity> where TEntity : class, IEntity, new()
     {
         Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> expression);
-        IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> expression);
+        IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> expression = null);
         Task<List<TEntity>> GetAll(Expression<Func<TEntity, bool>> expression = null);
         Task<bool> AnyAsync(Expression<Func<TEntity, bool>> expression);
         Task<TEntity> AddAsync(TEntity entity);

@@ -78,8 +78,12 @@ namespace DataAccess.Concrete
 
         }
 
-        public IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> expression)
+        public IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> expression = null)
         {
+            if (expression== null)
+            {
+                return _dbSet.AsQueryable();
+            }
             return _dbSet.Where(expression).AsQueryable();
         }
     }

@@ -1,8 +1,8 @@
 ﻿using Bussiness.Abstracts;
-using Entity.Concrete.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Dto.Concrete.User;
 
 namespace ApartmentManagmentSystem.Controllers
 {
@@ -25,9 +25,9 @@ namespace ApartmentManagmentSystem.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> ResidentRegister(ResidentForRegister residentForRegister)
+        public async Task<IActionResult> TenantRegister(TenantForRegister residentForRegister)
         {
-            var result =await _authService.ResidentRegister(residentForRegister);
+            var result =await _authService.TenantRegister(residentForRegister);
             return Ok(result);
         }
 

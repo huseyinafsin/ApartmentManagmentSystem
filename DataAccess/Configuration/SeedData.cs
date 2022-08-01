@@ -83,10 +83,10 @@ namespace DataAccess.Configuration
 
         public static void SeedResident(this ModelBuilder modelBuilder)
         {
-            Faker<Resident> faker = new Faker<Resident>()
+            Faker<Tenant> faker = new Faker<Tenant>()
                 .RuleFor(r => r.Id, f => Ids++);
-            List<Resident> data = faker.Generate(100);
-            modelBuilder.Entity<Resident>().HasData(data);
+            List<Tenant> data = faker.Generate(100);
+            modelBuilder.Entity<Tenant>().HasData(data);
         }
 
         public static void SeedUser(this ModelBuilder modelBuilder)

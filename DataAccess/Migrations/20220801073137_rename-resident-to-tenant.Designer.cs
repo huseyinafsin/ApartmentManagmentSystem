@@ -4,14 +4,16 @@ using DataAccess.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApartmentContext))]
-    partial class ApartmentContextModelSnapshot : ModelSnapshot
+    [Migration("20220801073137_rename-resident-to-tenant")]
+    partial class renameresidenttotenant
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,16 +127,13 @@ namespace DataAccess.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("BillTypeId");
 
                     b.HasIndex("PaymentTypeId");
 
-                    b.HasIndex("TenantId");
+                    b.HasIndex("ResidentId");
 
                     b.ToTable("Bills");
                 });
@@ -182,23 +181,20 @@ namespace DataAccess.Migrations
                     b.Property<bool>("IsInUse")
                         .HasColumnType("bit");
 
-                    b.Property<double>("MonthlyPrice")
-                        .HasColumnType("float");
-
                     b.Property<int>("Number")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ResidentId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<int>("TenantId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("FlatTypeId");
 
-                    b.HasIndex("TenantId");
+                    b.HasIndex("ResidentId");
 
                     b.ToTable("Flats");
                 });
@@ -327,7 +323,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Tenants");
+                    b.ToTable("Residents");
                 });
 
             modelBuilder.Entity("Entity.Concrete.UserMessage", b =>
@@ -366,15 +362,17 @@ namespace DataAccess.Migrations
                         .WithMany()
                         .HasForeignKey("PaymentTypeId");
 
-                    b.HasOne("Entity.Concrete.Tenant", "Tenant")
+                    b.HasOne("Entity.Concrete.Tenant", "Resident")
                         .WithMany("Bills")
-                        .HasForeignKey("TenantId");
+                        .HasForeignKey("ResidentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("BillType");
 
                     b.Navigation("PaymentType");
 
-                    b.Navigation("Tenant");
+                    b.Navigation("Resident");
                 });
 
             modelBuilder.Entity("Entity.Concrete.Flat", b =>
@@ -385,15 +383,15 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entity.Concrete.Tenant", "Tenant")
+                    b.HasOne("Entity.Concrete.Tenant", "Resident")
                         .WithMany()
-                        .HasForeignKey("TenantId")
+                        .HasForeignKey("ResidentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("FlatType");
 
-                    b.Navigation("Tenant");
+                    b.Navigation("Resident");
                 });
 
             modelBuilder.Entity("Entity.Concrete.Manager", b =>
