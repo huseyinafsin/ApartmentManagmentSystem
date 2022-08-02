@@ -23,10 +23,10 @@ namespace ApartmentManagmentSystem.Controllers
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAll()
         {
-            var result = await _tenantService.GetResidents();
+            var result = await _tenantService.GetTenants();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
 
             return NotFound();

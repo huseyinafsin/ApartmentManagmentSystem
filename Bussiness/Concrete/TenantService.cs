@@ -22,12 +22,13 @@ namespace Bussiness.Concrete
             _mapper = mapper;
         }
 
-        public async Task<IDataResult<List<TenantModelDto>>> GetResidents()
+        public async Task<IDataResult<List<TenantModelDto>>> GetTenants()
         {
             var residents = await _residentRepository.GetAll();
 
             var mappedResidents = _mapper.Map<List<TenantModelDto>>(residents);
             return new SuccessDataResult<List<TenantModelDto>>(){Data = mappedResidents};
         }
+
     }
 }

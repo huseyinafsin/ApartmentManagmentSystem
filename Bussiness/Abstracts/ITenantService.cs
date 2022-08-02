@@ -12,7 +12,7 @@ namespace Bussiness.Abstracts
 {
     public interface ITenantService : IService<Tenant>
     {
-        Task<IDataResult<List<TenantModelDto>>> GetResidents();
+        Task<IDataResult<List<TenantModelDto>>> GetTenants();
     }
 }
 
