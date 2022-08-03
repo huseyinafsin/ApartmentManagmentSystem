@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.Repository
 {
-    public interface IRepository<TEntity> where TEntity : class, IEntity, new()
+    public interface IRepository<TEntity> where TEntity : class,  new()
     {
         Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> expression);
         IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> expression = null);

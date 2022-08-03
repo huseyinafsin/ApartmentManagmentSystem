@@ -3,7 +3,7 @@ using Core.Entity.Concrete;
 
 namespace Entity.Concrete
 {
-    public class Flat : BaseEntity, IEntity
+    public class Flat : BaseEntity
     {
         public int TenantId { get; set; }
         public int FlatTypeId { get; set; }

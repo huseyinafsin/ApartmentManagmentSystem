@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PaymentService.Repository.Abstract;
 
 namespace PaymentService.Controllers
 {
@@ -11,29 +12,60 @@ namespace PaymentService.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private readonly IWeatherForecastDal weatherForecastDal;
 
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(IWeatherForecastDal weatherForecastDal)
         {
-            _logger = logger;
+            this.weatherForecastDal = weatherForecastDal;
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public IActionResult GetAll()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            var result = weatherForecastDal.Get();
+            if (result == null)
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+                return BadRequest("Not found");
+            }
+
+            return Ok(result.ToList());
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetById(string id)
+        {
+            var result = weatherForecastDal.GetByIdAsync(id);
+            if (result == null)
+            {
+                return BadRequest("Not found");
+            }
+
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public IActionResult Create([FromBody] WeatherForecast data)
+        {
+            var result = weatherForecastDal.AddAsync(data).Result;
+            return Ok(result);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateAsync(string id, [FromBody] WeatherForecast data)
+        { 
+            weatherForecastDal.Update(data);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async IActionResult Delete(string id)
+        {
+
+            var result =await weatherForecastDal.GetByIdAsync(id);
+            weatherForecastDal.Remove(result);
+            
+            return NoContent();
         }
     }
 }

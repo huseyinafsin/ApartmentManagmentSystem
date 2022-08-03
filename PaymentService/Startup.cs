@@ -11,6 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Extensions;
+using PaymentService.Repository.Abstract;
+using PaymentService.Repository.Concrete;
 
 namespace PaymentService
 {
@@ -32,6 +35,8 @@ namespace PaymentService
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PaymentService", Version = "v1" });
             });
+            services.AddMongoDbSettings(Configuration);
+            services.AddSingleton<IWeatherForecastDal, WeatherForecastMongoDbDal>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

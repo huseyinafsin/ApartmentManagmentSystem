@@ -8,6 +8,11 @@ namespace Core.Abstract
 {
     public interface IEntity
     {
-        public int Id { get; set; }
-    }   
+    }
+
+    public interface IEntity<out TKey> : IEntity
+    {
+        public TKey Id { get; }
+        DateTime CreatedAt { get; set; }
+    }
 }
