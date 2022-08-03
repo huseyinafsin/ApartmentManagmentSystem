@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bussiness.Concrete
 {
-    public class Service<TEntity> : IService<TEntity> where TEntity : class, IEntity<int>, new()
+    public class Service<TEntity> : IService<TEntity> where TEntity : class, IEntity, new()
     {
         public readonly IRepository<TEntity> _repository;
 

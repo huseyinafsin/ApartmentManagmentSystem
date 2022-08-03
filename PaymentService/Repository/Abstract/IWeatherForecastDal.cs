@@ -3,7 +3,7 @@ using Core.Repository;
 
 namespace PaymentService.Repository.Abstract
 {
-    public interface IWeatherForecastDal : IRepository<WeatherForecast>
+    public interface IWeatherForecastDal : IMongoDbRepository<WeatherForecast>
     {
         Task<WeatherForecast> GetByIdAsync(string id);
     }

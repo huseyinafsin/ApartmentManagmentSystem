@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.Entity.Concrete
 {
-    public class User : BaseEntity, IEntity, IEntity<int>
+    public class User : BaseEntity, IEntity
     {
         public string Firstname { get; set; }
         public string Lastname { get; set; }

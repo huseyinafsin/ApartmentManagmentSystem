@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Entity.Concrete
 {
-    public class Tenant : BaseEntity, IEntity, IEntity<int>
+    public class Tenant : BaseEntity, IEntity
     {
         public int UserId { get; set; }
 

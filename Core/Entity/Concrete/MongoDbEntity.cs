@@ -5,9 +5,8 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Core.Entity.Concrete
 {
-    public abstract class MongoDbEntity : IEntity<string>
+    public abstract class MongoDbEntity : IMongoEntity<string>
     {
-
         [BsonRepresentation(BsonType.ObjectId)]
         [BsonId]
         [BsonElement(Order = 0)]
@@ -17,7 +16,5 @@ namespace Core.Entity.Concrete
         [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
         [BsonElement(Order = 101)]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-
-
     }
 }

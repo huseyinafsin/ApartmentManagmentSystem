@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Extensions;
+using Core.Repository;
+using DataAccess.Concrete;
 using PaymentService.Repository.Abstract;
 using PaymentService.Repository.Concrete;
 
@@ -37,6 +39,7 @@ namespace PaymentService
             });
             services.AddMongoDbSettings(Configuration);
             services.AddSingleton<IWeatherForecastDal, WeatherForecastMongoDbDal>();
+            services.AddScoped(typeof(IMongoDbRepository<>), typeof(MongoDbRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

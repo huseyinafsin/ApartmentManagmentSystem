@@ -20,9 +20,9 @@ namespace PaymentService.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var result = weatherForecastDal.Get();
+            var result = await weatherForecastDal.GetAll();
             if (result == null)
             {
                 return BadRequest("Not found");
@@ -45,25 +45,24 @@ namespace PaymentService.Controllers
 
         [HttpPost]
         public IActionResult Create([FromBody] WeatherForecast data)
-        {
-            var result = weatherForecastDal.AddAsync(data).Result;
+        {var result = weatherForecastDal.AddAsync(data).Result;
             return Ok(result);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAsync(string id, [FromBody] WeatherForecast data)
         { 
-            weatherForecastDal.Update(data);
+           await weatherForecastDal.UpdateAsync(data,x=>x.Id==id);
 
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public async IActionResult Delete(string id)
+        public async Task<IActionResult> Delete(string id)
         {
 
             var result =await weatherForecastDal.GetByIdAsync(id);
-            weatherForecastDal.Remove(result);
+            weatherForecastDal.DeleteAsync(result);
             
             return NoContent();
         }
