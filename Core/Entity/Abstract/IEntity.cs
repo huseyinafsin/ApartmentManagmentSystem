@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Core.Abstract
 {
-    public interface IEntity
+    public interface IEntity<out TKey> where TKey : IEquatable<TKey>
     {
-        public int Id { get; }
+        public TKey Id { get; }
     }
 
 }

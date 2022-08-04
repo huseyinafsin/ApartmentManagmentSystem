@@ -3,12 +3,15 @@ using Autofac;
 using Autofac.Extras.DynamicProxy;
 using AutoMapper;
 using Bussiness.Abstracts;
+using Bussiness.Abstracts.Apartment;
 using Bussiness.Concrete;
+using Bussiness.Concrete.Apartment;
 using Bussiness.Configuration.Mapper;
 using Castle.DynamicProxy;
 using Core.Entity.Concrete;
 using Core.Repository;
-using Core.Service;
+using Core.Service.Abstract;
+using Core.Service.Concretye;
 using Core.Utilities.Security.JWT;
 using DataAccess.Concrete;
 using DataAccess.Contexts;
@@ -28,8 +31,8 @@ namespace Bussiness.DependencyResolver
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
             builder.RegisterType<AuthService>().As<IAuthService>();
 
-            builder.RegisterGeneric(typeof(IRepository<>)).As(typeof(EfGenericRepository<>)).InstancePerLifetimeScope();
-            builder.RegisterGeneric(typeof(Concrete.Service<>)).As(typeof(IService<>)).InstancePerLifetimeScope();
+            builder.RegisterGeneric(typeof(IRepository<>)).As(typeof(EfGenericRepository<,>)).InstancePerLifetimeScope();
+            builder.RegisterGeneric(typeof(Service<,>)).As(typeof(IService<,>)).InstancePerLifetimeScope();
 
             builder.RegisterAssemblyTypes(apiAssembly, repoAssembly, serviceAssembly)
                 .Where(x => x.Name.EndsWith("Repository")).AsImplementedInterfaces().InstancePerLifetimeScope();

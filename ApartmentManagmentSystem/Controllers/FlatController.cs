@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Bussiness.Abstracts;
+using Bussiness.Abstracts.Apartment;
 using Core.Service;
 using Dto.Concrete.Dtos.Flat;
 using Entity.Concrete;

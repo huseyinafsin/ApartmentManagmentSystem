@@ -3,7 +3,7 @@ using Core.Entity.Concrete;
 
 namespace Entity.Concrete.MsSql
 {
-    public class UserMessage : BaseEntity, IEntity
+    public class UserMessage : BaseEntity
     {
         public int SenderId { get; set; }
 

@@ -3,7 +3,7 @@ using Core.Entity.Concrete;
 
 namespace Entity.Concrete.MsSql
 {
-    public class Bill : BaseEntity, IEntity
+    public class Bill : BaseEntity
     {
         public int ResidentId { get; set; }
         public int BillTypeId { get; set; }

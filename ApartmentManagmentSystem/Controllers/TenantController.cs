@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Bussiness.Abstracts;
+using Bussiness.Abstracts.Apartment;
 using Core.Service;
 using Dto.Concrete.Dtos.Tenant;
 using Entity.Concrete;

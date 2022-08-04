@@ -5,7 +5,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Core.Entity.Concrete
 {
-    public abstract class MongoDbEntity : IMongoEntity
+    public abstract class MongoDbEntity : IEntity<string>
     {
         [BsonRepresentation(BsonType.ObjectId)]
         [BsonId]

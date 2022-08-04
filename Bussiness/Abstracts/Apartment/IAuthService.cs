@@ -1,10 +1,9 @@
-﻿using Core.Utilities.Results;
+﻿using System.Threading.Tasks;
+using Core.Utilities.Results;
 using Core.Utilities.Security.JWT;
-using System.Text;
-using System.Threading.Tasks;
 using Dto.Concrete.User;
 
-namespace Bussiness.Abstracts
+namespace Bussiness.Abstracts.Apartment
 {
     public interface IAuthService
     {

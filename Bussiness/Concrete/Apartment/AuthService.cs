@@ -1,32 +1,29 @@
-﻿using AutoMapper;
-using Bussiness.Abstracts;
-using Core.Entity.Concrete;
-using Core.Service;
-using Core.Utilities.Results;
-using Core.Utilities.Security.JWT;
-using System;
-using System.Linq;
-using System.Security.AccessControl;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using Autofac.Core.Activators.Reflection;
-using Bussiness.Configuration.Interceptors;
+using AutoMapper;
+using Bussiness.Abstracts;
+using Bussiness.Abstracts.Apartment;
+using Core.Entity.Concrete;
+using Core.Service.Abstract;
+using Core.Utilities.Results;
 using Core.Utilities.Security.Hashing;
+using Core.Utilities.Security.JWT;
 using Dto.Concrete.User;
 using Entity.Concrete.MsSql;
 
-namespace Bussiness.Concrete
+namespace Bussiness.Concrete.Apartment
 {
     public class AuthService : IAuthService
     {
         private readonly IUserService _userService;
         private readonly IOperationClaimService _operationClaimService;
-        private readonly IService<Manager> _managerService;
-        private readonly IService<Tenant> _residentService;
+        private readonly IService<Manager, int> _managerService;
+        private readonly IService<Tenant,int> _residentService;
         private readonly IMapper _mapper;
         private readonly ITokenHelper _tokenHelper;
 
 
-        public AuthService(IMapper mapper, ITokenHelper tokenHelper, IUserService userService, IService<Manager> managerService, IOperationClaimService operationClaimService, IService<Tenant> residentService)
+        public AuthService(IMapper mapper, ITokenHelper tokenHelper, IUserService userService, IService<Manager, int> managerService, IOperationClaimService operationClaimService, IService<Tenant, int> residentService)
         {
             _mapper = mapper;
             _userService = userService;

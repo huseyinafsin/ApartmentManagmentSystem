@@ -13,6 +13,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.Extensions;
 using Core.Repository;
+using Core.Service.Abstract;
+using Core.Service.Concretye;
 using DataAccess.Concrete;
 
 namespace PaymmentService
@@ -37,6 +39,7 @@ namespace PaymmentService
             });
             services.AddMongoDbSettings(Configuration);
             services.AddScoped(typeof(IRepository<>), typeof(MongoDbRepository<>));
+            services.AddScoped(typeof(IService<,>), typeof(Service<,>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

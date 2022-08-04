@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Bussiness.Abstracts;
+using Bussiness.Abstracts.Apartment;
 using Core.Repository;
+using Core.Service.Concretye;
 using Core.Utilities.Results;
 using Dto.Concrete.Dtos.Tenant;
 using Entity.Concrete.MsSql;
 
-namespace Bussiness.Concrete
+namespace Bussiness.Concrete.Apartment
 {
-    public class TenantService : Service<Tenant>, ITenantService
+    public class TenantService : Service<Tenant, int>, ITenantService
     {
         private readonly IRepository<Tenant> _residentRepository;
         private readonly IMapper _mapper;

@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Core.Service;
+using Core.Service.Abstract;
 using Core.Utilities.Results;
 using Dto.Concrete.Dtos.Flat;
 using Entity.Concrete.MsSql;
 
-namespace Bussiness.Abstracts
+namespace Bussiness.Abstracts.Apartment
 {
-    public interface IFlatService : IService<Flat>
+    public interface IFlatService : IService<Flat,int>
     {
         public  Task<IDataResult<List<FlatDetailModelDto>>> GetAllWithDetails();
     }

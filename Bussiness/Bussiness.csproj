@@ -21,4 +21,11 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Abstracts\Apartment\" />
+    <Folder Include="Abstracts\Payment\" />
+    <Folder Include="Concrete\Apartment\" />
+    <Folder Include="Concrete\Payment\" />
+  </ItemGroup>
+
 </Project>

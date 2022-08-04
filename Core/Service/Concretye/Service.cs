@@ -7,13 +7,12 @@ using Core.Abstract;
 using Core.Constants;
 using Core.Exceptions;
 using Core.Repository;
-using Core.Service;
+using Core.Service.Abstract;
 using Core.Utilities.Results;
-using Microsoft.EntityFrameworkCore;
 
-namespace Bussiness.Concrete
+namespace Core.Service.Concretye
 {
-    public class Service<TEntity> : IService<TEntity> where TEntity : class, IEntity, new()
+    public class Service<TEntity,TKey> : IService<TEntity,TKey> where TEntity : class, IEntity<TKey>, new() where TKey : IEquatable<TKey>
     {
         public readonly IRepository<TEntity> _repository;
 
@@ -23,9 +22,9 @@ namespace Bussiness.Concrete
         }
 
 
-        public async Task<IDataResult<TEntity>> GetByIdAsync(int id)
+        public async Task<IDataResult<TEntity>> GetByIdAsync(TKey id)
         {
-            var result = await _repository.GetAsync(x=>x.Id==id);
+            var result = await _repository.GetAsync(x => x.Id.Equals(id));
 
             if (result == null)
             {
@@ -34,6 +33,7 @@ namespace Bussiness.Concrete
 
             return new SuccessDataResult<TEntity>(result, typeof(TEntity).Name + " " + Messages.EntityFetched);
         }
+
 
         public IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> expression)
         {
@@ -60,7 +60,7 @@ namespace Bussiness.Concrete
         public async Task<IDataResult<TEntity>> AddAsync(TEntity entity)
         {
             await _repository.AddAsync(entity);
-           
+
             return new SuccessDataResult<TEntity>(entity, typeof(TEntity).Name + " " + Messages.EntityAdded);
         }
 
@@ -78,7 +78,7 @@ namespace Bussiness.Concrete
 
         public async Task<IResult> RemoveAsync(int id)
         {
-            var entity =await _repository.GetAsync(x=>x.Id==id);
+            var entity = await _repository.GetAsync(x => x.Id.Equals(id));
             _repository.Remove(entity);
             return new SuccessResult(typeof(TEntity).Name + " " + Messages.EntityDeleted);
         }

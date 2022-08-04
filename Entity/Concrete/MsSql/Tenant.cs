@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Entity.Concrete.MsSql
 {
-    public class Tenant : BaseEntity, IEntity
+    public class Tenant : BaseEntity
     {
         public int UserId { get; set; }
 

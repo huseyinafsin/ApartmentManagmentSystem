@@ -1,8 +1,9 @@
 using Bussiness.Abstracts;
+using Bussiness.Abstracts.Apartment;
 using Bussiness.Concrete;
+using Bussiness.Concrete.Apartment;
 using Bussiness.Configuration.Mapper;
 using Core.Repository;
-using Core.Service;
 using Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -16,6 +17,8 @@ using DataAccess.Concrete;
 using DataAccess.Contexts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Core.Service.Abstract;
+using Core.Service.Concretye;
 
 namespace ApartmentManagmentSystem
 {
@@ -64,8 +67,8 @@ namespace ApartmentManagmentSystem
             services.AddScoped<ITenantService, TenantService>();
             services.AddScoped<IFlatService, FlatService>();
             services.AddScoped<IOperationClaimService, OperationClaimService>();
-            services.AddScoped(typeof(IRepository<>), typeof(EfGenericRepository<>));
-            services.AddScoped(typeof(IService<>), typeof(Service<>));
+            services.AddScoped(typeof(IRepository<>), typeof(EfGenericRepository<,>));
+            services.AddScoped(typeof(IService<,>), typeof(Service<,>));
             services.AddScoped<TransactionInterceptor>();
 
 

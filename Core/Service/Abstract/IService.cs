@@ -6,12 +6,12 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Service
+namespace Core.Service.Abstract
 {
 
-    public interface IService<TEntity> where TEntity : class
+    public interface IService<TEntity,TKey> where TEntity : class where TKey : IEquatable<TKey>
     {
-        Task<IDataResult<TEntity>> GetByIdAsync(int id);
+        Task<IDataResult<TEntity>> GetByIdAsync(TKey id);
         IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> expression);
         Task<IDataResult<IEnumerable<TEntity>>> GetAllAsync();
         Task<IResult> AnyAsync(Expression<Func<TEntity, bool>> expression);

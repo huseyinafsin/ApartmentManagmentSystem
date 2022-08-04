@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Bussiness.Abstracts.Apartment;
 using Dto.Concrete.User;
 
 namespace ApartmentManagmentSystem.Controllers

@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Bussiness.Abstracts;
+using Bussiness.Abstracts.Apartment;
 using Core.Entity.Concrete;
 using Core.Repository;
-using Core.Service;
+using Core.Service.Concretye;
 using Core.Utilities.Results;
 using DataAccess.Contexts;
-using Microsoft.EntityFrameworkCore;
 
-namespace Bussiness.Concrete
+namespace Bussiness.Concrete.Apartment
 {
-    public class OperationClaimService : Service<OperationClaim>, IOperationClaimService
+    public class OperationClaimService : Service<OperationClaim, int>, IOperationClaimService
     {
         private readonly ApartmentContext _context;
         public OperationClaimService(IRepository<OperationClaim> repository, ApartmentContext context) : base(repository)
