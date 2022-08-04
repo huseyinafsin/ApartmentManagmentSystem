@@ -2,7 +2,7 @@
 using Core.Entity.Concrete;
 using System.Collections.Generic;
 
-namespace Entity.Concrete
+namespace Entity.Concrete.MsSql
 {
     public class Tenant : BaseEntity, IEntity
     {

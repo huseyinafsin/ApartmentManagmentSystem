@@ -14,10 +14,8 @@ using System.Threading.Tasks;
 using Core.Extensions;
 using Core.Repository;
 using DataAccess.Concrete;
-using PaymentService.Repository.Abstract;
-using PaymentService.Repository.Concrete;
 
-namespace PaymentService
+namespace PaymmentService
 {
     public class Startup
     {
@@ -35,11 +33,10 @@ namespace PaymentService
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "PaymentService", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "PaymmentService", Version = "v1" });
             });
             services.AddMongoDbSettings(Configuration);
-            services.AddSingleton<IWeatherForecastDal, WeatherForecastMongoDbDal>();
-            services.AddScoped(typeof(IMongoDbRepository<>), typeof(MongoDbRepository<>));
+            services.AddScoped(typeof(IRepository<>), typeof(MongoDbRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,7 +46,7 @@ namespace PaymentService
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PaymentService v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PaymmentService v1"));
             }
 
             app.UseHttpsRedirection();

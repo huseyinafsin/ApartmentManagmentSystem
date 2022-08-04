@@ -12,7 +12,7 @@ using Autofac.Core.Activators.Reflection;
 using Bussiness.Configuration.Interceptors;
 using Core.Utilities.Security.Hashing;
 using Dto.Concrete.User;
-using Entity.Concrete;
+using Entity.Concrete.MsSql;
 
 namespace Bussiness.Concrete
 {

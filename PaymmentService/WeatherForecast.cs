@@ -1,7 +1,7 @@
 using System;
 using Core.Entity.Concrete;
 
-namespace PaymentService
+namespace PaymmentService
 {
     public class WeatherForecast : MongoDbEntity
     {

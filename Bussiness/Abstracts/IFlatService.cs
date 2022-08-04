@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Core.Service;
 using Core.Utilities.Results;
 using Dto.Concrete.Dtos.Flat;
-using Entity.Concrete;
+using Entity.Concrete.MsSql;
 
 namespace Bussiness.Abstracts
 {

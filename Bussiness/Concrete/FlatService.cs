@@ -9,7 +9,7 @@ using Core.Repository;
 using Core.Service;
 using Core.Utilities.Results;
 using Dto.Concrete.Dtos.Flat;
-using Entity.Concrete;
+using Entity.Concrete.MsSql;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bussiness.Concrete

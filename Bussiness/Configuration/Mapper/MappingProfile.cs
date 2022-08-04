@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Dto.Concrete.Dtos.Flat;
 using Dto.Concrete.Dtos.Tenant;
 using Dto.Concrete.User;
-using Entity.Concrete;
+using Entity.Concrete.MsSql;
 
 namespace Bussiness.Configuration.Mapper
 {

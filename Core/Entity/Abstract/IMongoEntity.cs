@@ -4,11 +4,7 @@ namespace Core.Abstract
 {
     public interface IMongoEntity
     {
+        public string Id { get; }
     }
 
-    public interface IMongoEntity<out TKey> : IMongoEntity where TKey : IEquatable<TKey>
-    {
-        public TKey Id { get; }
-        DateTime CreatedAt { get; set; }
-    }
 }

@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using Core.Abstract;
 using Core.Entity.Concrete;
-using Entity.Concrete;
+using Entity.Concrete.MsSql;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

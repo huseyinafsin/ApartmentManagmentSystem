@@ -1,6 +1,6 @@
 ﻿using Core.Entity.Concrete;
 using DataAccess.Configuration;
-using Entity.Concrete;
+using Entity.Concrete.MsSql;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
