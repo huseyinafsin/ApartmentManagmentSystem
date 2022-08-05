@@ -67,7 +67,7 @@ namespace ApartmentManagmentSystem
             services.AddScoped<ITenantService, TenantService>();
             services.AddScoped<IFlatService, FlatService>();
             services.AddScoped<IOperationClaimService, OperationClaimService>();
-            services.AddScoped(typeof(IRepository<>), typeof(EfGenericRepository<,>));
+            services.AddScoped(typeof(IRepository<>), typeof(EfGenericRepository<>));
             services.AddScoped(typeof(IService<,>), typeof(Service<,>));
             services.AddScoped<TransactionInterceptor>();
 

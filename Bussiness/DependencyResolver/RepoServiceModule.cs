@@ -31,7 +31,7 @@ namespace Bussiness.DependencyResolver
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
             builder.RegisterType<AuthService>().As<IAuthService>();
 
-            builder.RegisterGeneric(typeof(IRepository<>)).As(typeof(EfGenericRepository<,>)).InstancePerLifetimeScope();
+            builder.RegisterGeneric(typeof(IRepository<>)).As(typeof(EfGenericRepository<>)).InstancePerLifetimeScope();
             builder.RegisterGeneric(typeof(Service<,>)).As(typeof(IService<,>)).InstancePerLifetimeScope();
 
             builder.RegisterAssemblyTypes(apiAssembly, repoAssembly, serviceAssembly)

@@ -10,8 +10,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete
 {
-    public class EfGenericRepository<TEntity,TKey> : IRepository<TEntity>
-        where TEntity : class, IEntity<TKey>, new() where TKey : IEquatable<TKey>
+    public class EfGenericRepository<TEntity> : IRepository<TEntity>
+        where TEntity : class, IEntity<int>, new() 
+
     {
         private readonly DbSet<TEntity> _dbSet;
         public readonly ApartmentContext _context;
