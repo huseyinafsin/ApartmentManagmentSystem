@@ -13,6 +13,9 @@
     <PackageReference Include="Autofac" Version="6.4.0" />
     <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.1" />
     <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.2.0" />
+    <PackageReference Include="Serilog" Version="2.11.0" />
+    <PackageReference Include="Serilog.Sinks.MongoDB" Version="5.1.5" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +29,7 @@
     <Folder Include="Abstracts\Payment\" />
     <Folder Include="Concrete\Apartment\" />
     <Folder Include="Concrete\Payment\" />
+    <Folder Include="Configuration\Cahce\" />
   </ItemGroup>
 
 </Project>

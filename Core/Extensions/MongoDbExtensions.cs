@@ -1,7 +1,7 @@
 ﻿
+using Core.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PaymentService.Models;
 
 namespace Core.Extensions
 {

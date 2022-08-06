@@ -1,4 +1,5 @@
 ﻿using Core.Entity.Concrete;
+using Core.Models;
 
 namespace Entity.Mongo
 {

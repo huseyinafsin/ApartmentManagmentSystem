@@ -1,3 +1,4 @@
+using System;
 using Bussiness.Abstracts;
 using Bussiness.Abstracts.Apartment;
 using Bussiness.Concrete;
@@ -12,6 +13,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Bussiness.Configuration.Interceptors;
+using Bussiness.Configuration.Log;
+using Core.Cahce.Redis;
+using Core.Extensions;
 using Core.Utilities.Security.Encryption;
 using DataAccess.Concrete;
 using DataAccess.Contexts;
@@ -19,6 +23,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Core.Service.Abstract;
 using Core.Service.Concretye;
+using Hangfire;
+using Hangfire.SqlServer;
+using StackExchange.Redis;
 
 namespace ApartmentManagmentSystem
 {
@@ -40,6 +47,8 @@ namespace ApartmentManagmentSystem
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApartmentManagmentSystem", Version = "v1" });
             });
+
+            //Authentication
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -57,10 +66,51 @@ namespace ApartmentManagmentSystem
                 });
             services.AddDbContext<ApartmentContext>();
 
+            //Automapper
             services.AddAutoMapper(config =>
             {
                 config.AddProfile(new MappingProfile());
             });
+
+            // Redis
+            var redisConfigInfo = Configuration.GetSection("RedisEndpointInfo").Get<RedisEndpointInfo>();
+            services.AddStackExchangeRedisCache(opt =>
+            {
+                opt.ConfigurationOptions = new ConfigurationOptions()
+                {
+                    EndPoints =
+                    {
+                        { redisConfigInfo.Endpoint, redisConfigInfo.Port }
+                    },
+                    Password = redisConfigInfo.Password,
+                    User = redisConfigInfo.Username
+
+                };
+            });
+            //Hangfire
+
+            var hangFireDb = Configuration.GetConnectionString("HangfireConnection");
+            services.AddHangfire(configuration => configuration
+                .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+                .UseSimpleAssemblyNameTypeSerializer()
+                .UseRecommendedSerializerSettings()
+                .UseSqlServerStorage(hangFireDb, new SqlServerStorageOptions
+                {
+                    CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
+                    SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+                    QueuePollInterval = TimeSpan.Zero,
+                    UseRecommendedIsolationLevel = true,
+                    DisableGlobalLocks = true
+                }));
+
+            services.AddHangfireServer();
+            //Log
+            services.AddSingleton<MongoDbLogger>();
+            services.AddMongoDbSettings(Configuration);
+
+
+
+            //Service Injection
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ITokenHelper, JwtHelper>();
             services.AddScoped<IUserService, UserService>();
@@ -94,6 +144,7 @@ namespace ApartmentManagmentSystem
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }

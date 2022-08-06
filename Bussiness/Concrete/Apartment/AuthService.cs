@@ -57,8 +57,6 @@ namespace Bussiness.Concrete.Apartment
                 Email = managerForRegister.Email,
                 Firstname = managerForRegister.Firstname,
                 Lastname = managerForRegister.Lastname,
-                PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt,
                 Status = true
             };
             var operationClaims = _operationClaimService.Where(w => w.Id == 1).ToList();
@@ -83,8 +81,11 @@ namespace Bussiness.Concrete.Apartment
                 Email = residentForRegister.Email,
                 Firstname = residentForRegister.Firstname,
                 Lastname = residentForRegister.Lastname,
-                PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt,
+                Pasword = new Password()
+                {
+                    PasswordHash = passwordHash,
+                    PasswordSalt = passwordSalt,
+                },
                 Status = true
             };
             var operationClaims = _operationClaimService.Where(w => w.Id == 2).ToList();

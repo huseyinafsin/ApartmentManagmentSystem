@@ -1,5 +1,6 @@
 using System;
 using Core.Entity.Concrete;
+using Core.Models;
 
 namespace PaymmentService
 {

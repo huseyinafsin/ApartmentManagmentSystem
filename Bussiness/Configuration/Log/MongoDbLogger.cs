@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using PaymentService.Models;
 using Serilog;
 
 namespace Bussiness.Configuration.Log
