@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Core.Entity.Concrete;
+﻿using Core.Entity.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Bussiness.Configuration.Auth
+namespace Bussiness.Configuration.Filters.Auth
 {
     public class PermissionAttribute : TypeFilterAttribute
     {

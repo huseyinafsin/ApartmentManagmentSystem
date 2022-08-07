@@ -1,14 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using Bussiness.Configuration.Log;
+﻿using System.Net;
+using Bussiness.Configuration.Filters.Log;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Bussiness.Configuration.Exception
+namespace Bussiness.Configuration.Filters.Exception
 {
     public class ExceptionFilter : ExceptionFilterAttribute
     {
@@ -16,6 +11,7 @@ namespace Bussiness.Configuration.Exception
         {
   
             var mongoLogger = (context.HttpContext.RequestServices.GetService(typeof(MongoDbLogger))) as MongoDbLogger;
+            mongoLogger.LogType = LogType.Error;
 
             var jsonResult = new JsonResult(
                 new
@@ -26,7 +22,6 @@ namespace Bussiness.Configuration.Exception
                 }
 
             );
-
             mongoLogger.LoggerManager.Error(jsonResult.Value.ToString());
 
             context.Result = jsonResult;

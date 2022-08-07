@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using NoContentResult = Core.Utilities.Results.NoContentResult;
 
-namespace Bussiness.Configuration.Validate
+namespace Bussiness.Configuration.Filters.Validate
 {
     public class NotFoundFilter<T> : IAsyncActionFilter where T : BaseEntity
     {

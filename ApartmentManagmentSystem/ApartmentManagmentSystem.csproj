@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BackgroundJobs\BackgroundJobs.csproj" />
     <ProjectReference Include="..\Bussiness\Bussiness.csproj" />
   </ItemGroup>
 

@@ -1,7 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
 using Bussiness.Abstracts;
 using Bussiness.Abstracts.Apartment;
-using Bussiness.Configuration.Log;
+using Bussiness.Configuration.Filters.Log;
 using Core.Service;
 using Dto.Concrete.Dtos.Flat;
 using Entity.Concrete;
@@ -75,6 +76,12 @@ namespace ApartmentManagmentSystem.Controllers
         public async Task<IActionResult> Post(FlatCreateDto createDto)
         {
             return base.BadRequest();
+        }   
+        
+        [HttpGet("[action]")]
+        public void  ThrowError ()
+        {
+            throw new InternalBufferOverflowException();
         }
     }
 }

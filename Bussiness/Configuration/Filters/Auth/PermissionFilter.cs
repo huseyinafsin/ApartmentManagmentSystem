@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Bussiness.Configuration.Auth
+namespace Bussiness.Configuration.Filters.Auth
 {
     public class PermissionFilter : IAuthorizationFilter
     {

@@ -4,7 +4,7 @@ using Core.Utilities.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Bussiness.Configuration.Validate
+namespace Bussiness.Configuration.Filters.Validate
 {
     public class ValidateFilterAttribute : ActionFilterAttribute
     {

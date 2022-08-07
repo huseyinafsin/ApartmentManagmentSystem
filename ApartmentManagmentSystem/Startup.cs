@@ -1,8 +1,13 @@
 using System;
+using BackgroundJobs.Abstract;
+using BackgroundJobs.Concrete;
+using BackgroundJobs.Concrete.HangfireJobs;
 using Bussiness.Abstracts;
 using Bussiness.Abstracts.Apartment;
 using Bussiness.Concrete;
 using Bussiness.Concrete.Apartment;
+using Bussiness.Configuration.Filters.Exception;
+using Bussiness.Configuration.Filters.Log;
 using Bussiness.Configuration.Mapper;
 using Core.Repository;
 using Core.Utilities.Security.JWT;
@@ -13,7 +18,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Bussiness.Configuration.Interceptors;
-using Bussiness.Configuration.Log;
 using Core.Cahce.Redis;
 using Core.Extensions;
 using Core.Utilities.Security.Encryption;
@@ -24,6 +28,7 @@ using Microsoft.IdentityModel.Tokens;
 using Core.Service.Abstract;
 using Core.Service.Concretye;
 using Hangfire;
+using Hangfire.Dashboard;
 using Hangfire.SqlServer;
 using StackExchange.Redis;
 
@@ -42,7 +47,9 @@ namespace ApartmentManagmentSystem
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers(opt=>
+                opt.Filters.Add<ExceptionFilter>()
+            );
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApartmentManagmentSystem", Version = "v1" });
@@ -120,6 +127,8 @@ namespace ApartmentManagmentSystem
             services.AddScoped(typeof(IRepository<>), typeof(EfGenericRepository<>));
             services.AddScoped(typeof(IService<,>), typeof(Service<,>));
             services.AddScoped<TransactionInterceptor>();
+            services.AddScoped<IJobs, HangfireJobs>();
+            services.AddScoped<ISendMessageService, SendMessageService>();
 
 
         }
@@ -134,6 +143,12 @@ namespace ApartmentManagmentSystem
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApartmentManagmentSystem v1"));
             }
 
+            app.UseHangfireDashboard("/hangfire", new DashboardOptions()
+            {
+
+            });
+            RecurringJob.AddOrUpdate<IJobs>(x => x.ReccuringJob(), "10 19 7 * *");
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();

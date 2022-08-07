@@ -25,11 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Abstracts\Apartment\" />
     <Folder Include="Abstracts\Payment\" />
     <Folder Include="Concrete\Apartment\" />
     <Folder Include="Concrete\Payment\" />
-    <Folder Include="Configuration\Cahce\" />
   </ItemGroup>
 
 </Project>
