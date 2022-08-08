@@ -35,10 +35,11 @@
                     <table class="table my-0" id="dataTable">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>IdentityNumber</th>
                                 <th>Phone</th>
                                 <th>Plate</th>
-                                <th>HasACar</th>
+                                <th>Manage</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,17 +51,14 @@
                                     <td>@residentModelDto.IdentityNumber</td>
                                     <td>@residentModelDto.Phone</td>
                                     <td>@residentModelDto.Plate</td>
-                                    <td>@residentModelDto.HasACar<br></td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-primary">Primary</button>
+                                        <button type="button" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen"></i></button>
+                                        <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                                    </td>
                                 </tr>
                             }
                         }
-                  
-                        <tr>
-                        <td><img class="rounded-circle me-2" width="30" height="30" src="/assets/img/avatars/avatar3.jpeg">Caesar Vance</td>
-                        <td>Pre-Sales Support</td>
-                        <td>New York</td>
-                        <td>21</td>
-                        <td>2011/12/12<br></td>
 
                         </tbody>
                         <tfoot>

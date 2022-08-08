@@ -97,7 +97,7 @@ namespace DataAccess.Migrations
                     b.ToTable("UserOperationClaims");
                 });
 
-            modelBuilder.Entity("Entity.Concrete.Bill", b =>
+            modelBuilder.Entity("Entity.Concrete.MsSql.Bill", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -139,7 +139,7 @@ namespace DataAccess.Migrations
                     b.ToTable("Bills");
                 });
 
-            modelBuilder.Entity("Entity.Concrete.BillType", b =>
+            modelBuilder.Entity("Entity.Concrete.MsSql.BillType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -160,7 +160,7 @@ namespace DataAccess.Migrations
                     b.ToTable("BillTypes");
                 });
 
-            modelBuilder.Entity("Entity.Concrete.Flat", b =>
+            modelBuilder.Entity("Entity.Concrete.MsSql.Flat", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -203,7 +203,7 @@ namespace DataAccess.Migrations
                     b.ToTable("Flats");
                 });
 
-            modelBuilder.Entity("Entity.Concrete.FlatType", b =>
+            modelBuilder.Entity("Entity.Concrete.MsSql.FlatType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -224,7 +224,7 @@ namespace DataAccess.Migrations
                     b.ToTable("FlatTypes");
                 });
 
-            modelBuilder.Entity("Entity.Concrete.Manager", b =>
+            modelBuilder.Entity("Entity.Concrete.MsSql.Manager", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -250,7 +250,7 @@ namespace DataAccess.Migrations
                     b.ToTable("Managers");
                 });
 
-            modelBuilder.Entity("Entity.Concrete.Message", b =>
+            modelBuilder.Entity("Entity.Concrete.MsSql.Message", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -274,7 +274,7 @@ namespace DataAccess.Migrations
                     b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("Entity.Concrete.PaymentType", b =>
+            modelBuilder.Entity("Entity.Concrete.MsSql.PaymentType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -295,7 +295,7 @@ namespace DataAccess.Migrations
                     b.ToTable("PaymentTypes");
                 });
 
-            modelBuilder.Entity("Entity.Concrete.Tenant", b =>
+            modelBuilder.Entity("Entity.Concrete.MsSql.Tenant", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -330,7 +330,7 @@ namespace DataAccess.Migrations
                     b.ToTable("Tenants");
                 });
 
-            modelBuilder.Entity("Entity.Concrete.UserMessage", b =>
+            modelBuilder.Entity("Entity.Concrete.MsSql.UserMessage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -339,6 +339,9 @@ namespace DataAccess.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("MessageId")
+                        .HasColumnType("int");
 
                     b.Property<int>("ReceiverId")
                         .HasColumnType("int");
@@ -351,22 +354,24 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("MessageId");
+
                     b.ToTable("UserMessages");
                 });
 
-            modelBuilder.Entity("Entity.Concrete.Bill", b =>
+            modelBuilder.Entity("Entity.Concrete.MsSql.Bill", b =>
                 {
-                    b.HasOne("Entity.Concrete.BillType", "BillType")
+                    b.HasOne("Entity.Concrete.MsSql.BillType", "BillType")
                         .WithMany()
                         .HasForeignKey("BillTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entity.Concrete.PaymentType", "PaymentType")
+                    b.HasOne("Entity.Concrete.MsSql.PaymentType", "PaymentType")
                         .WithMany()
                         .HasForeignKey("PaymentTypeId");
 
-                    b.HasOne("Entity.Concrete.Tenant", "Tenant")
+                    b.HasOne("Entity.Concrete.MsSql.Tenant", "Tenant")
                         .WithMany("Bills")
                         .HasForeignKey("TenantId");
 
@@ -377,15 +382,15 @@ namespace DataAccess.Migrations
                     b.Navigation("Tenant");
                 });
 
-            modelBuilder.Entity("Entity.Concrete.Flat", b =>
+            modelBuilder.Entity("Entity.Concrete.MsSql.Flat", b =>
                 {
-                    b.HasOne("Entity.Concrete.FlatType", "FlatType")
+                    b.HasOne("Entity.Concrete.MsSql.FlatType", "FlatType")
                         .WithMany()
                         .HasForeignKey("FlatTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entity.Concrete.Tenant", "Tenant")
+                    b.HasOne("Entity.Concrete.MsSql.Tenant", "Tenant")
                         .WithMany()
                         .HasForeignKey("TenantId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -396,7 +401,7 @@ namespace DataAccess.Migrations
                     b.Navigation("Tenant");
                 });
 
-            modelBuilder.Entity("Entity.Concrete.Manager", b =>
+            modelBuilder.Entity("Entity.Concrete.MsSql.Manager", b =>
                 {
                     b.HasOne("Core.Entity.Concrete.User", "User")
                         .WithMany()
@@ -407,7 +412,7 @@ namespace DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Entity.Concrete.Tenant", b =>
+            modelBuilder.Entity("Entity.Concrete.MsSql.Tenant", b =>
                 {
                     b.HasOne("Core.Entity.Concrete.User", "User")
                         .WithMany()
@@ -418,7 +423,18 @@ namespace DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Entity.Concrete.Tenant", b =>
+            modelBuilder.Entity("Entity.Concrete.MsSql.UserMessage", b =>
+                {
+                    b.HasOne("Entity.Concrete.MsSql.Message", "Message")
+                        .WithMany()
+                        .HasForeignKey("MessageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Message");
+                });
+
+            modelBuilder.Entity("Entity.Concrete.MsSql.Tenant", b =>
                 {
                     b.Navigation("Bills");
                 });

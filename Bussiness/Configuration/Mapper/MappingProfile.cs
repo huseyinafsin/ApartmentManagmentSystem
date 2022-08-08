@@ -23,6 +23,11 @@ namespace Bussiness.Configuration.Mapper
             CreateMap<Tenant, TenantModelDto>();
 
 
+            CreateMap<User, UserModel>()
+                .ForMember(x => x.Id, cd => cd.MapFrom(map => map.Id))
+                .ForMember(x => x.Firstname, cd => cd.MapFrom(map => map.Firstname))
+                .ForMember(x => x.Lastname, cd => cd.MapFrom(map => map.Lastname));
+
             CreateMap<Flat, FlatDetailModelDto>()
                 .ForMember(x => x.Block, cd => cd.MapFrom(map => map.Block))
                 .ForMember(x => x.FlatType, cd => cd.MapFrom(map => map.FlatType.Type))
@@ -32,6 +37,7 @@ namespace Bussiness.Configuration.Mapper
                 .ForMember(x => x.Number, cd => cd.MapFrom(map => map.Number))
                 .ForMember(x => x.TenantFirstname, cd => cd.MapFrom(map => map.Tenant.User.Firstname))
                 .ForMember(x => x.TenantLastname, cd => cd.MapFrom(map => map.Tenant.User.Lastname));
+
         }
     }
 }

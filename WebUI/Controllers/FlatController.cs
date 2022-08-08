@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Core.Utilities.Results;
 using Dto.Concrete.Dtos.Tenant;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -30,11 +31,11 @@ namespace WebUI.Controllers
 
             if (httpResponseMessage.IsSuccessStatusCode)
             {
-                var result = httpResponseMessage.Content.ReadAsStringAsync().Result;
-                var residents = JsonConvert.DeserializeObject<TenantModelDto>(result);
-                return View(residents);
+                var result =await httpResponseMessage.Content.ReadAsStringAsync();
+                var residents = JsonConvert.DeserializeObject<SuccessDataResult<List<TenantModelDto>>>(result);
+                return residents.Success ? View(residents.Data) : View("404Error");
             }
-            return View();
+            return View("404Error");
         }
 
 

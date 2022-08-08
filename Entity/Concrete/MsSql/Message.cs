@@ -1,4 +1,5 @@
-﻿using Core.Abstract;
+﻿using System.Collections.Generic;
+using Core.Abstract;
 using Core.Entity.Concrete;
 
 namespace Entity.Concrete.MsSql
@@ -7,6 +8,7 @@ namespace Entity.Concrete.MsSql
     {
         public string MessageText { get; set; }
 
-        public bool HasRead { get; set; }
+        public bool HasRead { get; set; } = false;
+
     }
 }

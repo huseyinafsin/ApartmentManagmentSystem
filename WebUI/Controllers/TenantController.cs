@@ -47,7 +47,7 @@ namespace WebUI.Controllers
 
             if (httpResponseMessage.IsSuccessStatusCode)
             {
-                var result = httpResponseMessage.Content.ReadAsStringAsync().Result;
+                var result =await httpResponseMessage.Content.ReadAsStringAsync();
                 var tenants = JsonConvert.DeserializeObject<SuccessDataResult<TenantModelDto>>(result);
                 if (tenants.Success)
                 {

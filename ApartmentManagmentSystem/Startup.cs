@@ -19,6 +19,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Core.Service.Abstract;
 using Core.Service.Concretye;
+using DataAccess.Abstract.Apartment;
+using DataAccess.Concrete.Apartment;
 
 namespace ApartmentManagmentSystem
 {
@@ -65,6 +67,8 @@ namespace ApartmentManagmentSystem
             services.AddScoped<ITokenHelper, JwtHelper>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITenantService, TenantService>();
+            services.AddScoped<IMessageService, MessageService>();
+            services.AddScoped<IMessageRepository, MessageRepository>();
             services.AddScoped<IFlatService, FlatService>();
             services.AddScoped<IOperationClaimService, OperationClaimService>();
             services.AddScoped(typeof(IRepository<>), typeof(EfGenericRepository<>));

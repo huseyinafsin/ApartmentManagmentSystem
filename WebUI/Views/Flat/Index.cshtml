@@ -39,17 +39,21 @@
                             <th>Phone</th>
                             <th>Plate</th>
                             <th>HasACar</th>
+                            <th>Manage</th>
                         </tr>
                     </thead>
                     <tbody>
 
-                        <tr>
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="/assets/img/avatars/avatar2.jpeg">James Nash<br></td>
-                            <td>IdentityNumber</td>
-                            <td>Phone</td>
-                            <td>Plate</td>
-                            <td>HasACar<br></td>
-                        </tr>
+                       @foreach (var flat in Model)
+                       {
+                           <tr>
+                               <td><img class="rounded-circle me-2" width="30" height="30" src="/assets/img/avatars/avatar2.jpeg">James Nash<br></td>
+                               <td>IdentityNumber</td>
+                               <td>Phone</td>
+                               <td>Plate</td>
+                               <td>HasACar<br></td>
+                           </tr>
+                       }
 
                         <tr>
                             <td><img class="rounded-circle me-2" width="30" height="30" src="/assets/img/avatars/avatar3.jpeg">Caesar Vance</td>
