@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Bussiness.Abstracts;
 using Bussiness.Abstracts.Apartment;
-//using Bussiness.Configuration.Filters.Log;
+using Bussiness.Configuration.Filters.Log;
 using Core.Service;
 using Dto.Concrete.Dtos.Flat;
 using Entity.Concrete;
@@ -22,7 +22,7 @@ namespace ApartmentManagmentSystem.Controllers
             _flatService = flatService;
         }
 
-        //[LogFilter]
+        [LogFilter]
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAll()
         {
@@ -72,7 +72,7 @@ namespace ApartmentManagmentSystem.Controllers
         }
 
         [HttpPost]
-        //[LogFilter]
+        [LogFilter]
         public async Task<IActionResult> Post(FlatCreateDto createDto)
         {
             return base.BadRequest();

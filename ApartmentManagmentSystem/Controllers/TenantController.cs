@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using Bussiness.Abstracts;
 using Bussiness.Abstracts.Apartment;
 using Core.Service;
 using Dto.Concrete.Dtos.Tenant;
 using Dto.Concrete.User;
 using Entity.Concrete;
+using Entity.Concrete.MsSql;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,10 +18,12 @@ namespace ApartmentManagmentSystem.Controllers
     public class TenantController : ControllerBase
     {
         private readonly ITenantService _tenantService;
+        private readonly IMapper _mapper;
 
-        public TenantController(ITenantService tenantService)
+        public TenantController(ITenantService tenantService, IMapper mapper)
         {
             _tenantService = tenantService;
+            _mapper = mapper;
         }
 
         public async Task<IActionResult> GetAll()
@@ -60,7 +64,9 @@ namespace ApartmentManagmentSystem.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(TenantUpdateDto updateDto)
         {
-            return base.BadRequest();
+            var tenant = _mapper.Map<Tenant>(updateDto);
+            var result =await _tenantService.UpdateAsync(tenant);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
         [HttpPost]

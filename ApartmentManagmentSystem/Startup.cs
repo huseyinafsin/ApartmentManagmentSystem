@@ -6,8 +6,8 @@ using Bussiness.Abstracts;
 using Bussiness.Abstracts.Apartment;
 using Bussiness.Concrete;
 using Bussiness.Concrete.Apartment;
-//using Bussiness.Configuration.Filters.Exception;
-//using Bussiness.Configuration.Filters.Log;
+using Bussiness.Configuration.Filters.Exception;
+using Bussiness.Configuration.Filters.Log;
 using Bussiness.Configuration.Mapper;
 using Core.Repository;
 using Core.Utilities.Security.JWT;
@@ -50,8 +50,8 @@ namespace ApartmentManagmentSystem
         {
 
             services.AddControllers(
-                //opt=>
-                //opt.Filters.Add<ExceptionFilter>()
+                opt =>
+                opt.Filters.Add<ExceptionFilter>()
             );
             services.AddSwaggerGen(c =>
             {
@@ -115,7 +115,7 @@ namespace ApartmentManagmentSystem
 
             services.AddHangfireServer();
             //Log
-            //services.AddSingleton<MongoDbLogger>();
+            services.AddSingleton<MongoDbLogger>();
             services.AddMongoDbSettings(Configuration);
 
 

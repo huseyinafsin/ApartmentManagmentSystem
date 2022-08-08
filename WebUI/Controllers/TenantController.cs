@@ -81,7 +81,7 @@ namespace WebUI.Controllers
 
 
 
-        [HttpGet("[action]/{id}")]
+        [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
             HttpResponseMessage httpResponseMessage = await _httpClient.GetAsync($"api/Tenant/{id}");
@@ -100,7 +100,7 @@ namespace WebUI.Controllers
             return View("404Error");
         }
 
-        [HttpPut("[action]/{id}")]
+        [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
             HttpResponseMessage httpResponseMessage = await _httpClient.GetAsync($"api/Tenant/{id}");
@@ -117,6 +117,29 @@ namespace WebUI.Controllers
                 return View("404Error");
             }
             return View("404Error");
+        }      
+        
+        [HttpPut]
+        public async Task<IActionResult> Update(TenantUpdateDto tenantUpdateDto)
+        {
+            var strRegister = JsonConvert.SerializeObject(tenantUpdateDto);
+            var data = new StringContent(strRegister, Encoding.UTF8, "application/json");
+            HttpResponseMessage httpResponseMessage = await _httpClient.PutAsync($"api/Tenant/{tenantUpdateDto.Id}",data);
+
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                var result = await httpResponseMessage.Content.ReadAsStringAsync();
+                var accessToken = JsonConvert.DeserializeObject<SuccessResult>(result);
+                if (accessToken.Success)
+                {
+
+                    return View("Index");
+                }
+
+                return View();
+            }
+
+            return View();
         }
     }
 }
