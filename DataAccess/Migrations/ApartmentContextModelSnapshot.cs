@@ -40,6 +40,30 @@ namespace DataAccess.Migrations
                     b.ToTable("OperationClaims");
                 });
 
+            modelBuilder.Entity("Core.Entity.Concrete.Password", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<byte[]>("PasswordHash")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Password");
+                });
+
             modelBuilder.Entity("Core.Entity.Concrete.User", b =>
                 {
                     b.Property<int>("Id")
@@ -59,16 +83,15 @@ namespace DataAccess.Migrations
                     b.Property<string>("Lastname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("PasswordHash")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<byte[]>("PasswordSalt")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<int>("PasswordId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PasswordId");
 
                     b.ToTable("Users");
                 });
@@ -357,6 +380,17 @@ namespace DataAccess.Migrations
                     b.HasIndex("MessageId");
 
                     b.ToTable("UserMessages");
+                });
+
+            modelBuilder.Entity("Core.Entity.Concrete.User", b =>
+                {
+                    b.HasOne("Core.Entity.Concrete.Password", "Pasword")
+                        .WithMany()
+                        .HasForeignKey("PasswordId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pasword");
                 });
 
             modelBuilder.Entity("Entity.Concrete.MsSql.Bill", b =>

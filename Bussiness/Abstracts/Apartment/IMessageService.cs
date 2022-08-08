@@ -12,6 +12,7 @@ namespace Bussiness.Abstracts.Apartment
 {
     public interface IMessageService : IService<Message,int>
     {
+        public Task<IDataResult<Message>> SendMessage(MessageCreateDto messageCreateDto);
         public Task<DataResult<List<Message>>> GetUserMessages(int id);
         public Task<IResult> CreateMessage(MessageCreateDto messageCreateDto);
         public Task<IResult> GetUserMessagesBetween(GetUserMessagesBetween between);
