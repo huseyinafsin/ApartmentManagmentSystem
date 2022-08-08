@@ -14,6 +14,7 @@ namespace Core.Entity.Concrete
         public string Lastname { get; set; }
         public string Email { get; set; }
 
+        public bool Active { get; set; } = false;
         public virtual Password Pasword { get; set; }
     }
 }

@@ -109,48 +109,48 @@ namespace Bussiness.Concrete.Apartment
             return new SuccessDataResult<AccessToken> { Data = accessToken };
         }
 
-        public async Task<IDataResult<AccessToken>> TenantRegister(TenantForRegister residentForRegister)
-        {
-            /// Öncelikle user oluşturulur ve şifresi haşlenderek şifre atanır, oluşturulan kullanıcı yeni oluşturulacak Tenant atanır.
-            /// İşlemler başarılı olursa tenant-user için roller oluşturulur ve (3 numaralı rol atanır) ve token oluşturulur.
-            /// User credentionları redis sunucusunda saklanır.
+        //public async Task<IDataResult<AccessToken>> TenantRegister(TenantForRegister tenantForRegister)
+        //{
+        //    /// Öncelikle user oluşturulur ve şifresi haşlenderek şifre atanır, oluşturulan kullanıcı yeni oluşturulacak Tenant atanır.
+        //    /// İşlemler başarılı olursa tenant-user için roller oluşturulur ve (3 numaralı rol atanır) ve token oluşturulur.
+        //    /// User credentionları redis sunucusunda saklanır.
 
-            #region TenantRegister
+        //    #region TenantRegister
 
-            byte[] passwordHash, passwordSalt;
-            HashingHelper.CreatePasswordHash(residentForRegister.Password, out passwordHash, out passwordSalt);
-            var user = new User
-            {
-                Email = residentForRegister.Email,
-                Firstname = residentForRegister.Firstname,
-                Lastname = residentForRegister.Lastname,
-                Pasword = new Password()
-                {
-                    PasswordHash = passwordHash,
-                    PasswordSalt = passwordSalt,
-                },
-                Status = true
-            };
-            var operationClaims = _operationClaimService.Where(w => w.Id == (int)UserType.Tenant).ToList();
-            _operationClaimService.SetUserClaim(user.Id, operationClaims);
-            var resident = new Tenant()
-            {
-                User = user,
-                IdentityNumber = residentForRegister.IdentityNumber,
-                HasACar = residentForRegister.HasACar,
-                Phone = residentForRegister.Phone,
-                Plate = residentForRegister.Plate,
-            };
-            await _residentService.AddAsync(resident);
-            var accessToken = _tokenHelper.CreateToken(user, operationClaims);
+        //    byte[] passwordHash, passwordSalt;
+        //    HashingHelper.CreatePasswordHash(tenantForRegister.Password, out passwordHash, out passwordSalt);
+        //    var user = new User
+        //    {
+        //        Email = tenantForRegister.Email,
+        //        Firstname = tenantForRegister.Firstname,
+        //        Lastname = tenantForRegister.Lastname,
+        //        Pasword = new Password()
+        //        {
+        //            PasswordHash = passwordHash,
+        //            PasswordSalt = passwordSalt,
+        //        },
+        //        Status = true
+        //    };
+        //    var operationClaims = _operationClaimService.Where(w => w.Id == (int)UserType.Tenant).ToList();
+        //    _operationClaimService.SetUserClaim(user.Id, operationClaims);
+        //    var resident = new Tenant()
+        //    {
+        //        User = user,
+        //        IdentityNumber = tenantForRegister.IdentityNumber,
+        //        HasACar = tenantForRegister.HasACar,
+        //        Phone = tenantForRegister.Phone,
+        //        Plate = tenantForRegister.Plate,
+        //    };
+        //    await _residentService.AddAsync(resident);
+        //    var accessToken = _tokenHelper.CreateToken(user, operationClaims);
 
-            #endregion
+        //    #endregion
 
-            #region RedisCahce
-            _distributedCache.SetString($"USR_{user.Id}",accessToken.ToString());
+        //    #region RedisCahce
+        //    _distributedCache.SetString($"USR_{user.Id}",accessToken.ToString());
 
-            #endregion
-            return new SuccessDataResult<AccessToken> { Data = accessToken };
-        }
+        //    #endregion
+        //    return new SuccessDataResult<AccessToken> { Data = accessToken };
+        //}
     }
 }

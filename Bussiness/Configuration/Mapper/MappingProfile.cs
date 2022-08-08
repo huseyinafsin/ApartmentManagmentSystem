@@ -20,7 +20,17 @@ namespace Bussiness.Configuration.Mapper
             CreateMap<Manager, ManagerForRegister>();
             CreateMap<User, TenantForRegister>();
             CreateMap<Tenant, TenantForRegister>();
-            CreateMap<Tenant, TenantModelDto>();
+
+            CreateMap<Tenant, TenantModelDto>()
+                .ForMember(x => x.Id, cd => cd.MapFrom(map => map.Id))
+                .ForMember(x => x.IdentityNumber, cd => cd.MapFrom(map => map.IdentityNumber))
+                .ForMember(x => x.Firstname, cd => cd.MapFrom(map => map.User.Firstname))
+                .ForMember(x => x.Lastname, cd => cd.MapFrom(map => map.User.Lastname))
+                .ForMember(x => x.Email, cd => cd.MapFrom(map => map.User.Email))
+                .ForMember(x => x.Phone, cd => cd.MapFrom(map => map.Phone))
+                .ForMember(x => x.InitialPassword, cd => cd.MapFrom(map => map.User.Pasword.InitialPassword))
+                .ForMember(x => x.HasACar, cd => cd.MapFrom(map => map.HasACar))
+                .ForMember(x => x.Plate, cd => cd.MapFrom(map => map.Plate));
 
 
             CreateMap<User, UserModel>()

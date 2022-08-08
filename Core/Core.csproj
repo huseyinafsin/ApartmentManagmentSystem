@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Folder Include="Entity\Models\" />
+    <Folder Include="Utilities\NewFolder\" />
   </ItemGroup>
 
 </Project>

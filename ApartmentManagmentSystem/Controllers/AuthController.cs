@@ -25,12 +25,12 @@ namespace ApartmentManagmentSystem.Controllers
             return Ok(result);
         }
 
-        [HttpPost("[action]")]
-        public async Task<IActionResult> TenantRegister(TenantForRegister residentForRegister)
-        {
-            var result =await _authService.TenantRegister(residentForRegister);
-            return Ok(result);
-        }
+        //[HttpPost("[action]")]
+        //public async Task<IActionResult> TenantRegister(TenantForRegister residentForRegister)
+        //{
+        //    var result =await _authService.TenantRegister(residentForRegister);
+        //    return Ok(result);
+        //}
 
         [HttpPost("[action]")]
         public async Task<IActionResult> Login(UserForLogin userForLogin)

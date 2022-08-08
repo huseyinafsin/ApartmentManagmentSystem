@@ -9,6 +9,6 @@ namespace Bussiness.Abstracts.Apartment
     {
         public Task<IDataResult<AccessToken>> Login(UserForLogin userForLogin);
         public Task<IDataResult<AccessToken>> ManagerRegister(ManagerForRegister managerForRegister);
-        public Task<IDataResult<AccessToken>> TenantRegister(TenantForRegister residentForRegister);
+        //public Task<IDataResult<AccessToken>> TenantRegister(TenantForRegister tenantForRegister);
     }
 }

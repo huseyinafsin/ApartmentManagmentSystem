@@ -4,5 +4,6 @@
     {
         public byte[] PasswordSalt { get; set; }
         public byte[] PasswordHash { get; set; }
+        public string InitialPassword { get; set; } 
     }
 }

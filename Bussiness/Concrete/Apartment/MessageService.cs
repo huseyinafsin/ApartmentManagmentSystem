@@ -66,5 +66,10 @@ namespace Bussiness.Concrete.Apartment
                 ? new ErrorDataResult<List<Message>>("Not found")
                 : new SuccessDataResult<List<Message>>() { Data = result };
         }
+
+        public Task<IDataResult<Message>> SendMessage(MessageCreateDto messageCreateDto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

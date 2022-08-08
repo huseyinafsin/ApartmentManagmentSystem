@@ -4,6 +4,7 @@ using Bussiness.Abstracts;
 using Bussiness.Abstracts.Apartment;
 using Core.Service;
 using Dto.Concrete.Dtos.Tenant;
+using Dto.Concrete.User;
 using Entity.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +22,6 @@ namespace ApartmentManagmentSystem.Controllers
             _tenantService = tenantService;
         }
 
-        [HttpGet("[action]")]
         public async Task<IActionResult> GetAll()
         {
             var result = await _tenantService.GetTenants();
@@ -64,9 +64,10 @@ namespace ApartmentManagmentSystem.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(TenantCreateDto createDto)
+        public async Task<IActionResult> Post(TenantForRegister tenantForRegister)
         {
-            return base.BadRequest();
+            var result =await _tenantService.AddTenant(tenantForRegister);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
     }

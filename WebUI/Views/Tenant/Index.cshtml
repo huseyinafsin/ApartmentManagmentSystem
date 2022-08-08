@@ -9,8 +9,10 @@
 
     <div class="container-fluid">
         <div class="card shadow">
-            <div class="card-header py-3">
-                <p class="text-primary m-0 fw-bold">Employee Info</p>
+            <div class="card-header py-3" style="align-items: center; display: flex; justify-content: space-between">
+                <p class="text-primary m-0 fw-bold">Tenants</p>
+                <button type="button" 
+                        asp-action="AddTenant" class="btn btn-sm btn-success">Add Tenant</button>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -37,8 +39,10 @@
                             <tr>
                                 <th></th>
                                 <th>IdentityNumber</th>
+                                <th>Firstname</th>
+                                <th>Lastname</th>
+                                <th>Email</th>
                                 <th>Phone</th>
-                                <th>Plate</th>
                                 <th>Manage</th>
                             </tr>
                         </thead>
@@ -46,17 +50,19 @@
                         @{
                             foreach (var residentModelDto in Model)
                             {
-                                <tr>
-                                    <td><img class="rounded-circle me-2" width="30" height="30" src="/assets/img/avatars/avatar2.jpeg">James Nash<br></td>
-                                    <td>@residentModelDto.IdentityNumber</td>
-                                    <td>@residentModelDto.Phone</td>
-                                    <td>@residentModelDto.Plate</td>
-                                    <td>
-                                        <button type="button" class="btn btn-sm btn-primary">Primary</button>
-                                        <button type="button" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen"></i></button>
-                                        <button type="button" class="btn btn-sm btn-danger">Delete</button>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td><img class="rounded-circle me-2" width="30" height="30" src="/assets/img/avatars/avatar2.jpeg"><br></td>
+                                        <td>@residentModelDto.IdentityNumber</td>
+                                        <td>@residentModelDto.Firstname</td>
+                                        <td>@residentModelDto.Lastname</td>
+                                        <td>@residentModelDto.Email</td>
+                                        <td>@residentModelDto.Phone</td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-warning"> Edit </button>
+                                            <button type="button" class="btn btn-sm btn-danger">Delete</button>
+
+                                        </td>
+                                    </tr>
                             }
                         }
 

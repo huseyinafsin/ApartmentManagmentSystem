@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
+using Core.Extensions;
 using Core.Utilities.Results;
+using Core.Utilities.Security.JWT;
 using Dto.Concrete.Dtos.Tenant;
+using Dto.Concrete.User;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using WebUI.Models;
@@ -22,7 +26,7 @@ namespace WebUI.Controllers
 
         public async Task<IActionResult> Index()
         {
-            HttpResponseMessage httpResponseMessage = await _httpClient.GetAsync($"/api/Tenant/GetAll");
+            HttpResponseMessage httpResponseMessage = await _httpClient.GetAsync($"/api/Tenant/");
 
             if (httpResponseMessage.IsSuccessStatusCode)
             {
@@ -40,7 +44,44 @@ namespace WebUI.Controllers
 
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
+        public async Task<IActionResult> AddTenant( )
+        {
+            var tenant = new TenantForRegister();
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult>  AddTenant(TenantForRegister register)
+        {
+            if (ModelState.IsValid)
+            {
+                var strRegister = JsonConvert.SerializeObject(register);
+                var data = new StringContent(strRegister, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage httpResponseMessage = await _httpClient.PostAsync($"api/Tenant/", data);
+
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    var result = await httpResponseMessage.Content.ReadAsStringAsync();
+                    var accessToken = JsonConvert.DeserializeObject<SuccessDataResult<TenantModelDto>>(result);
+                    if (accessToken.Success)
+                    {
+                        
+                        return RedirectToAction("Index", "Tenant");
+                    }
+
+                    return View("404Error");
+                }
+                return View("404Error");
+
+            }
+            return View();
+        }
+
+
+
+        [HttpGet("[action]/{id}")]
         public async Task<IActionResult> Details(int id)
         {
             HttpResponseMessage httpResponseMessage = await _httpClient.GetAsync($"api/Tenant/{id}");
@@ -48,6 +89,25 @@ namespace WebUI.Controllers
             if (httpResponseMessage.IsSuccessStatusCode)
             {
                 var result =await httpResponseMessage.Content.ReadAsStringAsync();
+                var tenants = JsonConvert.DeserializeObject<SuccessDataResult<TenantModelDto>>(result);
+                if (tenants.Success)
+                {
+                    return View(tenants.Data);
+                }
+
+                return View("404Error");
+            }
+            return View("404Error");
+        }
+
+        [HttpPut("[action]/{id}")]
+        public async Task<IActionResult> Update(int id)
+        {
+            HttpResponseMessage httpResponseMessage = await _httpClient.GetAsync($"api/Tenant/{id}");
+
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                var result = await httpResponseMessage.Content.ReadAsStringAsync();
                 var tenants = JsonConvert.DeserializeObject<SuccessDataResult<TenantModelDto>>(result);
                 if (tenants.Success)
                 {
