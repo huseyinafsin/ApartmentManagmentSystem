@@ -48,7 +48,7 @@ namespace WebUI.Controllers
         public async Task<IActionResult> AddTenant( )
         {
             var tenant = new TenantForRegister();
-            return View();
+            return View("TenantForm");
         }
 
         [HttpPost]
@@ -111,7 +111,7 @@ namespace WebUI.Controllers
                 var tenants = JsonConvert.DeserializeObject<SuccessDataResult<TenantModelDto>>(result);
                 if (tenants.Success)
                 {
-                    return View(tenants.Data);
+                    return View("TenantForm",tenants.Data);
                 }
 
                 return View("404Error");
@@ -120,11 +120,11 @@ namespace WebUI.Controllers
         }      
         
         [HttpPut]
-        public async Task<IActionResult> Update(TenantUpdateDto tenantUpdateDto)
+        public async Task<IActionResult> Update(TenantModelDto tenantModelDto)
         {
-            var strRegister = JsonConvert.SerializeObject(tenantUpdateDto);
+            var strRegister = JsonConvert.SerializeObject(tenantModelDto);
             var data = new StringContent(strRegister, Encoding.UTF8, "application/json");
-            HttpResponseMessage httpResponseMessage = await _httpClient.PutAsync($"api/Tenant/{tenantUpdateDto.Id}",data);
+            HttpResponseMessage httpResponseMessage = await _httpClient.PutAsync($"api/Tenant/{tenantModelDto.Id}",data);
 
             if (httpResponseMessage.IsSuccessStatusCode)
             {
