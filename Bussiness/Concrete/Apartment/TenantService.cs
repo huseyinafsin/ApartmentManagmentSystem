@@ -30,12 +30,20 @@ namespace Bussiness.Concrete.Apartment
             _operationClaimService = operationClaimService;
         }
 
-        public async Task<IDataResult<List<TenantModelDto>>> GetTenants()
+        public async Task<IDataResult<List<TenantModelDto>>> GetAllWithDetails()
         {
             var residents = await _tenantRepository.GetAllWithDetails();
 
             var mappedResidents = _mapper.Map<List<TenantModelDto>>(residents);
             return new SuccessDataResult<List<TenantModelDto>>(){Data = mappedResidents};
+        }
+
+        public async Task<IDataResult<TenantModelDto>> GetWithDetails(int id)
+        {
+            var residents = await _tenantRepository.GetWithDetails(x=>x.Id==id);
+
+            var mappedResidents = _mapper.Map<TenantModelDto>(residents);
+            return new SuccessDataResult<TenantModelDto>() { Data = mappedResidents };
         }
 
         public async Task<IDataResult<TenantModelDto>> AddTenant(TenantForRegister tenantForRegister)

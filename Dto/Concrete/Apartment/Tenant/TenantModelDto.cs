@@ -8,7 +8,7 @@ namespace Dto.Concrete.Dtos.Tenant
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string Email { get; set; }
-        public string InitialPassword { get; set; }
+        public string InitialPassword { get; set; } = "12345";
 
         public string IdentityNumber { get; set; }
         public string Phone { get; set; }

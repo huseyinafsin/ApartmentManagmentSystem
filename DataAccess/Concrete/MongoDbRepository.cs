@@ -61,17 +61,17 @@ namespace DataAccess.Concrete
             throw new NotImplementedException();
         }
 
-        public void Update(TEntity entity)
+        public Task Update(TEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Remove(TEntity entity)
+        public Task Remove(TEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveRange(IEnumerable<TEntity> entities)
+        public Task RemoveRange(IEnumerable<TEntity> entities)
         {
             throw new NotImplementedException();
         }

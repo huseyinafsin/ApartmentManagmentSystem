@@ -10,7 +10,8 @@ namespace Bussiness.Abstracts.Apartment
 {
     public interface ITenantService : IService<Tenant,int>
     {
-        Task<IDataResult<List<TenantModelDto>>> GetTenants();
+        Task<IDataResult<List<TenantModelDto>>> GetAllWithDetails();
+        Task<IDataResult<TenantModelDto>> GetWithDetails(int id);
         Task<IDataResult<TenantModelDto>> AddTenant(TenantForRegister tenantForRegister);
     }
 }

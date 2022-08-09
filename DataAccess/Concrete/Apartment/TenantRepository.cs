@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Abstract.Apartment;
@@ -22,6 +23,13 @@ namespace DataAccess.Concrete.Apartment
             return await _context.Tenants
                 .Include(x => x.User)
                 .ThenInclude(t => t.Pasword).ToListAsync();
+        }
+
+        public async Task<Tenant> GetWithDetails(Expression<Func<Tenant, bool>> expression)
+        {
+            return  _context.Tenants
+                .Include(x => x.User)
+                .ThenInclude(t => t.Pasword).FirstOrDefault(expression);
         }
     }
 }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApartmentContext))]
-    [Migration("20220808120436_init_password_coulmn")]
-    partial class init_password_coulmn
+    [Migration("20220809182211_password-errpr-fixing2")]
+    partial class passworderrprfixing2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

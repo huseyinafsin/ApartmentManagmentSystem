@@ -3,7 +3,7 @@
 *@
 @{
     Layout = "_Layout";
-    @model Dto.Concrete.User.TenantForRegister
+    @model Dto.Concrete.Dtos.Tenant.TenantModelDto
 }
 
 <div id="content">
@@ -17,7 +17,7 @@
                                 @*<p class="text-primary m-0 fw-bold">User Settings</p>*@
                             </div>
                             <div class="card-body">
-                                <form method="post" asp-action="AddTenant">
+                                <form method="post" asp-action="AddTenant" >
                                     <div class="row">
                                         <div class="col">
                                             <div class="mb-3"><label class="form-label"asp-for="Firstname"><strong>Firstname</strong></label><input class="form-control" asp-for="Firstname" type="text" id="username" placeholder="user.name" ></div>
@@ -29,9 +29,6 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="mb-3"><label class="form-label" asp-for="Email"><strong>Email Address</strong></label><input class="form-control" type="email" asp-for="Email" placeholder="user@example.com"></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" asp-for="Username"><strong>Username</strong></label><input class="form-control" type="text" asp-for="Username" placeholder="Doe" ></div>
                                         </div>
                                     </div> 
                                     <div class="row">

@@ -1,4 +1,7 @@
-﻿using Core.Entity.Concrete;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using Core.Abstract;
+using Core.Entity.Concrete;
 using DataAccess.Configuration;
 using Entity.Concrete.MsSql;
 using Microsoft.EntityFrameworkCore;
@@ -17,12 +20,53 @@ namespace DataAccess.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            
             var connectionString = _configuration.GetConnectionString("DefaultConnectionString");
             base.OnConfiguring(optionsBuilder.UseSqlServer(connectionString));
         }
 
+        public override int SaveChanges()
+        {
+            UpdateSoftDeleteStatuses();
+            return base.SaveChanges();
+        }
+
+        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = new CancellationToken())
+        {
+            UpdateSoftDeleteStatuses();
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        }
+
+        private void UpdateSoftDeleteStatuses()
+        {
+            foreach (var entry in ChangeTracker.Entries())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entry.CurrentValues["Status"] = true;
+                        break;
+                    case EntityState.Deleted:
+                        entry.State = EntityState.Modified;
+                        entry.CurrentValues["Status"] = false;
+                        break;
+                }
+            }
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<Tenant>().HasQueryFilter(x => x.Status == true);
+            modelBuilder.Entity<Password>().HasQueryFilter(x => x.Status == true);
+            modelBuilder.Entity<User>().HasQueryFilter(x => x.Status == true);
+            modelBuilder.Entity<Message>().HasQueryFilter(x => x.Status == true);
+            modelBuilder.Entity<UserMessage>().HasQueryFilter(x => x.Status == true);
+            modelBuilder.Entity<Flat>().HasQueryFilter(x => x.Status == true);
+            modelBuilder.Entity<FlatType>().HasQueryFilter(x => x.Status == true);
+            modelBuilder.Entity<Bill>().HasQueryFilter(x => x.Status == true);
+            modelBuilder.Entity<BillType>().HasQueryFilter(x => x.Status == true);
+
             //modelBuilder.SeedBill();
             //modelBuilder.SeedBillType();
             //modelBuilder.SeedFlat();

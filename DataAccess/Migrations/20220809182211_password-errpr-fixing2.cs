@@ -2,7 +2,7 @@
 
 namespace DataAccess.Migrations
 {
-    public partial class init_password_coulmn : Migration
+    public partial class passworderrprfixing2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

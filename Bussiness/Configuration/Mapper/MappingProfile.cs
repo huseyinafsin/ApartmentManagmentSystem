@@ -30,7 +30,9 @@ namespace Bussiness.Configuration.Mapper
                 .ForMember(x => x.Phone, cd => cd.MapFrom(map => map.Phone))
                 .ForMember(x => x.InitialPassword, cd => cd.MapFrom(map => map.User.Pasword.InitialPassword))
                 .ForMember(x => x.HasACar, cd => cd.MapFrom(map => map.HasACar))
-                .ForMember(x => x.Plate, cd => cd.MapFrom(map => map.Plate));
+                .ForMember(x => x.Plate, cd => cd.MapFrom(map => map.Plate))
+                .ReverseMap();
+
 
 
             CreateMap<User, UserModel>()

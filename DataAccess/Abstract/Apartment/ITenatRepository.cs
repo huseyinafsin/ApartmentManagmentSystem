@@ -13,6 +13,7 @@ namespace DataAccess.Abstract.Apartment
     public interface ITenatRepository : IRepository<Tenant>
     {
         Task<List<Tenant>> GetAllWithDetails();
+        Task<Tenant> GetWithDetails(Expression<Func<Tenant, bool>> expression);
 
     }
 }
