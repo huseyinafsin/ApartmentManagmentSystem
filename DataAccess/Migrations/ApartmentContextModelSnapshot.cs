@@ -220,7 +220,7 @@ namespace DataAccess.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<int>("TenantId")
+                    b.Property<int?>("TenantId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -432,9 +432,7 @@ namespace DataAccess.Migrations
 
                     b.HasOne("Entity.Concrete.MsSql.Tenant", "Tenant")
                         .WithMany()
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TenantId");
 
                     b.Navigation("FlatType");
 

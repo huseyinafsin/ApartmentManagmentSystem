@@ -40,7 +40,8 @@ namespace Bussiness.Configuration.Mapper
                 .ForMember(x => x.Firstname, cd => cd.MapFrom(map => map.Firstname))
                 .ForMember(x => x.Lastname, cd => cd.MapFrom(map => map.Lastname));
 
-            CreateMap<Flat, FlatDetailModelDto>()
+            CreateMap<Flat, FlatModelDto>()
+                .ForMember(x => x.Id, cd => cd.MapFrom(map => map.Id))
                 .ForMember(x => x.Block, cd => cd.MapFrom(map => map.Block))
                 .ForMember(x => x.FlatType, cd => cd.MapFrom(map => map.FlatType.Type))
                 .ForMember(x => x.Floor, cd => cd.MapFrom(map => map.Floor))
@@ -48,7 +49,16 @@ namespace Bussiness.Configuration.Mapper
                 .ForMember(x => x.MonthlyPrice, cd => cd.MapFrom(map => map.MonthlyPrice))
                 .ForMember(x => x.Number, cd => cd.MapFrom(map => map.Number))
                 .ForMember(x => x.TenantFirstname, cd => cd.MapFrom(map => map.Tenant.User.Firstname))
-                .ForMember(x => x.TenantLastname, cd => cd.MapFrom(map => map.Tenant.User.Lastname));
+                .ForMember(x => x.TenantLastname, cd => cd.MapFrom(map => map.Tenant.User.Lastname))
+                .ReverseMap();
+
+            CreateMap<FlatCreateDto, Flat>()
+                .ForMember(x => x.Block, cd => cd.MapFrom(map => map.Block))
+                .ForMember(x => x.FlatTypeId, cd => cd.MapFrom(map => map.FlatTypeId))
+                .ForMember(x => x.Floor, cd => cd.MapFrom(map => map.Floor))
+                .ForMember(x => x.MonthlyPrice, cd => cd.MapFrom(map => map.MonthlyPrice))
+                .ForMember(x => x.Number, cd => cd.MapFrom(map => map.Number))
+                .ForMember(x => x.IsInUse, cd => cd.MapFrom(map => false));
 
         }
     }

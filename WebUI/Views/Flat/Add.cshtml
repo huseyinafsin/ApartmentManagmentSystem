@@ -1,0 +1,52 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_Layout";
+    @model Dto.Concrete.Dtos.Flat.FlatCreateDto
+
+}
+
+<div id="content">
+    <div class="container-fluid">
+        <h3 class="text-dark mb-12">Profile</h3>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="card shadow mb-12">
+                        <div class="card-header py-">
+                            @*<p class="text-primary m-0 fw-bold">User Settings</p>*@
+                        </div>
+                        <div class="card-body">
+                            <form method="post" asp-controller="Flat" asp-action="Add">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3"><label class="form-label" asp-for="@Model.Block"><strong>Block</strong></label><input class="form-control" asp-for="@Model.Block" type="text" id="username"></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-3"><label class="form-label" asp-for="@Model.FlatTypeId"><strong>Flat Type</strong></label><input class="form-control" type="number" asp-for="@Model.FlatTypeId" ></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3"><label class="form-label" asp-for="@Model.Floor"><strong>Floor</strong></label><input class="form-control" type="number" asp-for="@Model.Floor"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3"><label class="form-label" asp-for="@Model.MonthlyPrice"><strong>Monthly Price</strong></label><input class="form-control" type="number" asp-for="@Model.MonthlyPrice" placeholder=""></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-3"><label class="form-label" asp-for="@Model.Number"><strong>Number</strong></label><input class="form-control" type="number" asp-for="@Model.Number" placeholder="John"></div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Submit</button></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

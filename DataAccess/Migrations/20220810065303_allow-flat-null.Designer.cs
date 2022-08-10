@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApartmentContext))]
-    [Migration("20220805102612_user-message")]
-    partial class usermessage
+    [Migration("20220810065303_allow-flat-null")]
+    partial class allowflatnull
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,12 +42,42 @@ namespace DataAccess.Migrations
                     b.ToTable("OperationClaims");
                 });
 
+            modelBuilder.Entity("Core.Entity.Concrete.Password", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InitialPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("PasswordHash")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Password");
+                });
+
             modelBuilder.Entity("Core.Entity.Concrete.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -61,16 +91,15 @@ namespace DataAccess.Migrations
                     b.Property<string>("Lastname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("PasswordHash")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<byte[]>("PasswordSalt")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<int>("PasswordId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PasswordId");
 
                     b.ToTable("Users");
                 });
@@ -193,7 +222,7 @@ namespace DataAccess.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<int>("TenantId")
+                    b.Property<int?>("TenantId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -361,6 +390,17 @@ namespace DataAccess.Migrations
                     b.ToTable("UserMessages");
                 });
 
+            modelBuilder.Entity("Core.Entity.Concrete.User", b =>
+                {
+                    b.HasOne("Core.Entity.Concrete.Password", "Pasword")
+                        .WithMany()
+                        .HasForeignKey("PasswordId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pasword");
+                });
+
             modelBuilder.Entity("Entity.Concrete.MsSql.Bill", b =>
                 {
                     b.HasOne("Entity.Concrete.MsSql.BillType", "BillType")
@@ -394,9 +434,7 @@ namespace DataAccess.Migrations
 
                     b.HasOne("Entity.Concrete.MsSql.Tenant", "Tenant")
                         .WithMany()
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TenantId");
 
                     b.Navigation("FlatType");
 

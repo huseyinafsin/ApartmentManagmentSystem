@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Core.Abstract;
 using Core.Entity.Concrete;
@@ -45,6 +46,8 @@ namespace DataAccess.Contexts
                 {
                     case EntityState.Added:
                         entry.CurrentValues["Status"] = true;
+                        break;    
+                    case EntityState.Modified:
                         break;
                     case EntityState.Deleted:
                         entry.State = EntityState.Modified;

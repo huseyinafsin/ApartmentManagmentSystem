@@ -136,10 +136,10 @@ namespace WebUI.Controllers
                     return RedirectToAction("Index");
                 }
 
-                return View();
+                return View("Details");
             }
 
-            return View();
+            return View("Details");
         }
 
         [HttpGet]

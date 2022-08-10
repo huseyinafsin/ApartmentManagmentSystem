@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bussiness.Concrete.Apartment
 {
-    public class FlatService :  Service<Flat, int>, IFlatService
+    public class FlatService : Service<Flat, int>, IFlatService
     {
         private readonly IMapper _mapper;
         public FlatService(IRepository<Flat> repository, IMapper mapper) : base(repository)
@@ -21,7 +21,7 @@ namespace Bussiness.Concrete.Apartment
             _mapper = mapper;
         }
 
-        public async Task<IDataResult<List<FlatDetailModelDto>>> GetAllWithDetails()
+        public async Task<IDataResult<List<FlatModelDto>>> GetAllWithDetails()
         {
             var result = _repository
                 .Where()
@@ -29,9 +29,20 @@ namespace Bussiness.Concrete.Apartment
                 .ThenInclude(x => x.User)
                 .Include(x => x.FlatType)
                 .ToList();
-          var mapperResult = _mapper.Map<List<FlatDetailModelDto>>(result);
+            var mapperResult = _mapper.Map<List<FlatModelDto>>(result);
 
-          return new SuccessDataResult<List<FlatDetailModelDto>>() { Data = mapperResult };
+            return new SuccessDataResult<List<FlatModelDto>>() { Data = mapperResult };
+        }
+
+        public async Task<IDataResult<FlatModelDto>> Create(FlatCreateDto createDto)
+        {
+            var flat = _mapper.Map<Flat>(createDto);
+
+            var result = await _repository.AddAsync(flat);
+
+            var flatModel = _mapper.Map<FlatModelDto>(result);
+
+            return new SuccessDataResult<FlatModelDto>() { Data = flatModel };
         }
     }
 }

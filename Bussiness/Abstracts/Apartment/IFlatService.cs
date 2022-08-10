@@ -9,6 +9,7 @@ namespace Bussiness.Abstracts.Apartment
 {
     public interface IFlatService : IService<Flat,int>
     {
-        public  Task<IDataResult<List<FlatDetailModelDto>>> GetAllWithDetails();
+        public  Task<IDataResult<List<FlatModelDto>>> GetAllWithDetails();
+        public  Task<IDataResult<FlatModelDto>> Create( FlatCreateDto createDto);
     }
 }

@@ -16,7 +16,7 @@ namespace ApartmentManagmentSystem.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(int id)
         {
             return base.BadRequest();
         }
@@ -28,7 +28,7 @@ namespace ApartmentManagmentSystem.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(BillCreateDto updateDto)
+        public async Task<IActionResult> Update(int id, BillCreateDto updateDto)
         {
             return base.BadRequest();
         }

@@ -1,0 +1,78 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_Layout";
+@model Dto.Concrete.Dtos.Flat.FlatModelDto;
+}
+
+
+<div id="content">
+    <div class="container-fluid">
+        <h3 class="text-dark mb-12">Flat</h3>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="card shadow mb-12">
+                        <div class="card-header py-">
+                            @*<p class="text-primary m-0 fw-bold">User Settings</p>*@
+                        </div>
+                        <div class="card-body">
+                            <form method="post" asp-controller="Flat"  asp-action="Update">
+                                <fieldset id="disableForm" disabled="true">
+                                    <input hidden="true" asp-for="Id"/>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-3"><label class="form-label"asp-for="Block"><strong>Block</strong></label><input class="form-control" asp-for="Block" type="text" id="username" ></div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="mb-3"><label class="form-label"asp-for="FlatType"><strong>Flat Type</strong></label>
+                                                <input class="form-control" type="number" asp-for="FlatType">
+                                                </div>
+@*                                            <div class="mb-3"><label class="form-label"asp-for="FlatType"><strong>Flat Type</strong></label><input class="form-control" type="number" asp-for="FlatType"></div>
+*@                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-3"><label class="form-label" asp-for="Floor"><strong>Floor</strong></label><input class="form-control"  asp-for="Floor" ></div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-3"><label class="form-label" asp-for="Number"><strong>Number</strong></label><input class="form-control" type="number" asp-for="Number" placeholder="John"></div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="mb-3"><label class="form-label" asp-for="MonthlyPrice"><strong>Monthly Price</strong></label><input class="form-control" type="text" asp-for="MonthlyPrice" placeholder="John"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-3"><label class="form-label" asp-for="IsInUse"><strong>Is in use </strong> </label><br/><input id="checkbox" class="form-check-input" type="checkbox" asp-for="IsInUse" placeholder="John"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Submit</button></div>
+                                </fieldset>
+
+                            </form>
+                            <div class="mb-3"><button class="btn btn-warning btn-sm" style="float: left" onclick="disableForm()"  >Edit</button></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    function disableForm() {
+        var element =document.getElementById("disableForm");
+        if (element.disabled) {
+            document.getElementById("disableForm").disabled = false;
+        } else {
+            document.getElementById("disableForm").disabled = true;
+        }
+ 
+    }
+</script>

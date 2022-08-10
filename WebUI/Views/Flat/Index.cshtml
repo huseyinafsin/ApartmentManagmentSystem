@@ -5,7 +5,8 @@
     Layout = "_Layout";
 }
 @using Microsoft.AspNetCore.Mvc.TagHelpers
-@model List<Dto.Concrete.Dtos.Flat.FlatDetailModelDto>
+@using Microsoft.AspNetCore.Html
+@model List<Dto.Concrete.Dtos.Flat.FlatModelDto>
 
 <div class="container-fluid">
     <div class="card shadow">
@@ -35,10 +36,12 @@
                 <table class="table my-0" id="dataTable">
                     <thead>
                         <tr>
-                            <th>IdentityNumber</th>
-                            <th>Phone</th>
-                            <th>Plate</th>
-                            <th>HasACar</th>
+                            <th>Block</th>
+                            <th>Flat Type</th>
+                            <th>Flor</th>
+                            <th>Number</th>
+                            <th>MonthlyPrice</th>
+                            <th>Tenant</th>
                             <th>Manage</th>
                         </tr>
                     </thead>
@@ -47,30 +50,33 @@
                        @foreach (var flat in Model)
                        {
                            <tr>
-                               <td><img class="rounded-circle me-2" width="30" height="30" src="/assets/img/avatars/avatar2.jpeg">James Nash<br></td>
-                               <td>IdentityNumber</td>
-                               <td>Phone</td>
-                               <td>Plate</td>
-                               <td>HasACar<br></td>
+                               <td>@flat.Block</td>
+                               <td>@flat.FlatType</td>
+                               <td>@flat.Floor</td>
+                               <td>@flat.Number</td>
+                               <td>@flat.MonthlyPrice</td>
+                               <td>
+                               @(flat.IsInUse == false ? new HtmlString("-") : new HtmlString( flat.TenantFirstname+" "+flat.TenantLastname) )
+                               <td>
+                                   <a asp-action="Details"  asp-route-id="@flat.Id"  class="btn btn-sm btn-warning"> Edit </a>
+                                   <a asp-action="Delete" asp-controller="Flat" asp-route-id="@flat.Id" class="btn btn-sm btn-danger">Delete</a>
+
+                               </td>
                            </tr>
                        }
 
                         <tr>
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="/assets/img/avatars/avatar3.jpeg">Caesar Vance</td>
-                            <td>Pre-Sales Support</td>
-                            <td>New York</td>
-                            <td>21</td>
-                            <td>2011/12/12<br></td>
 
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td><strong>Name</strong></td>
-                            <td><strong>Position</strong></td>
-                            <td><strong>Office</strong></td>
-                            <td><strong>Age</strong></td>
-                            <td><strong>Start date</strong></td>
-                            <td><strong>Salary</strong></td>
+                            <th>Block</th>
+                            <th>Flat Type</th>
+                            <th>Flor</th>
+                            <th>Number</th>
+                            <th>MonthlyPrice</th>
+                            <th>Tenant</th>
+                            <th>Manage</th>
                         </tr>
                     </tfoot>
                 </table>

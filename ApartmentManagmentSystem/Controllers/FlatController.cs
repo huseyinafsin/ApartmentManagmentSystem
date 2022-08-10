@@ -66,7 +66,7 @@ namespace ApartmentManagmentSystem.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(FlatUpdateDto updateDto)
+        public async Task<IActionResult> Update(int id,FlatUpdateDto updateDto)
         {
             return base.BadRequest();
         }
@@ -75,7 +75,9 @@ namespace ApartmentManagmentSystem.Controllers
         [LogFilter]
         public async Task<IActionResult> Post(FlatCreateDto createDto)
         {
-            return base.BadRequest();
+            var result =await _flatService.Create(createDto);
+
+            return result.Success ? Ok(result) : BadRequest(result);
         }   
         
         [HttpGet("[action]")]
