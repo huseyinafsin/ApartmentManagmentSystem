@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Utilities.Results;
+using Dto.Concrete.Apartment.Flat;
 using Dto.Concrete.Dtos.Flat;
 using Dto.Concrete.Dtos.Tenant;
 using Dto.Concrete.User;
@@ -48,6 +49,15 @@ namespace WebUI.Controllers
         public async Task<IActionResult> Add()
         {
             var flat = new FlatCreateDto();
+            HttpResponseMessage flatTypeResponseMessage = await _httpClient.GetAsync($"/api/FlatType/");
+            if (flatTypeResponseMessage.IsSuccessStatusCode)
+            {
+                var flatTyperesult = await flatTypeResponseMessage.Content.ReadAsStringAsync();
+                var flatTypes = JsonConvert.DeserializeObject<SuccessDataResult<List<FlatType>>>(flatTyperesult).Data;
+                ViewBag.flatTypes = flatTypes;
+            }
+
+
             return View(flat);
         }
 
@@ -61,13 +71,15 @@ namespace WebUI.Controllers
 
                 HttpResponseMessage httpResponseMessage = await _httpClient.PostAsync($"api/Flat/", data);
 
+
                 if (httpResponseMessage.IsSuccessStatusCode)
                 {
                     var result = await httpResponseMessage.Content.ReadAsStringAsync();
+
                     var flat = JsonConvert.DeserializeObject<SuccessDataResult<FlatModelDto>>(result);
+
                     if (flat.Success)
                     {
-
                         return RedirectToAction("Index", "Flat");
                     }
 

@@ -7,6 +7,7 @@ using Bussiness.Abstracts.Apartment;
 using Core.Repository;
 using Core.Service.Concretye;
 using Core.Utilities.Results;
+using Dto.Concrete.Apartment.Flat;
 using Dto.Concrete.Dtos.Flat;
 using Entity.Concrete.MsSql;
 using Microsoft.EntityFrameworkCore;
@@ -25,8 +26,6 @@ namespace Bussiness.Concrete.Apartment
         {
             var result = _repository
                 .Where()
-                .Include(x => x.Tenant)
-                .ThenInclude(x => x.User)
                 .Include(x => x.FlatType)
                 .ToList();
             var mapperResult = _mapper.Map<List<FlatModelDto>>(result);

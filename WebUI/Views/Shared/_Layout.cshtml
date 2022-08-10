@@ -27,12 +27,13 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link active" href="index.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user"></i><span>Profile</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="table.html"><i class="fas fa-home"></i><span>Flats</span>
-                        </a><a class="nav-link" href="table.html"><i class="fas fa-house-damage"></i><span>Add Flat</span></a><a class="nav-link"  asp-action="Index"><i class="fas fa-user-friends" style="font-size: 9px;"></i><span>Residents</span></a><a class="nav-link" href="table.html"><i class="fas fa-user-plus" style="font-size: 12px;"></i><span>Add Resident</span></a><a class="nav-link" href="table.html"><i class="fas fa-table"></i><span>Faturalar</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.html"><i class="fas fa-sign-out-alt" style="font-size: 14px;"></i><span>Login</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-circle"></i><span>Register</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" asp-controller="Home" asp-action="Index"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="User" asp-action="Profile"><i class="fas fa-user"></i><span>Profile</span></a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Flat" asp-action="Index"><i class="fas fa-home"></i><span>Flats</span></a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Tenant" asp-action="Index"><i class="fas fa-users"></i><span>Tenants</span></a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Message" asp-action="Index"><i class="fas fa-message"></i><span>Messages</span></a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Bill" asp-action="Index"><i class="fas fa-money-bill"></i><span>Messages</span></a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="User" asp-action="LogOut"><i class="fas fa-sign-out-alt" style="font-size: 14px;"></i><span>Log Out</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>

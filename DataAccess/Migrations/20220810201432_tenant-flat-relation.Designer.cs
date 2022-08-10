@@ -4,14 +4,16 @@ using DataAccess.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApartmentContext))]
-    partial class ApartmentContextModelSnapshot : ModelSnapshot
+    [Migration("20220810201432_tenant-flat-relation")]
+    partial class tenantflatrelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -142,8 +144,11 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("Paid")
-                        .HasColumnType("bit");
+                    b.Property<int?>("PaymentTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PaymetTypeId")
+                        .HasColumnType("int");
 
                     b.Property<int>("ResidentId")
                         .HasColumnType("int");
@@ -157,6 +162,8 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("BillTypeId");
+
+                    b.HasIndex("PaymentTypeId");
 
                     b.HasIndex("TenantId");
 
@@ -402,11 +409,17 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Entity.Concrete.MsSql.PaymentType", "PaymentType")
+                        .WithMany()
+                        .HasForeignKey("PaymentTypeId");
+
                     b.HasOne("Entity.Concrete.MsSql.Tenant", "Tenant")
                         .WithMany("Bills")
                         .HasForeignKey("TenantId");
 
                     b.Navigation("BillType");
+
+                    b.Navigation("PaymentType");
 
                     b.Navigation("Tenant");
                 });

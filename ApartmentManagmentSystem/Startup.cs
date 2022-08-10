@@ -124,6 +124,7 @@ namespace ApartmentManagmentSystem
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ITokenHelper, JwtHelper>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IBillService, BillService>();
             services.AddScoped<ITenantService, TenantService>();
             services.AddScoped<IMessageService, MessageService>();
             services.AddScoped<IMessageRepository, MessageRepository>();

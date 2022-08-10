@@ -21,7 +21,7 @@ namespace ApartmentManagmentSystem.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var result =await _userService.GetAll();
+            var result = await _userService.GetAll();
 
             return result.Success ? Ok(result) : BadRequest(result);
         }

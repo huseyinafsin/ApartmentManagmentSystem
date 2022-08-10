@@ -5,13 +5,13 @@
     Layout = "_Layout";
 }
 
-@model List<Dto.Concrete.Dtos.Tenant.TenantModelDto>
+@model List<Dto.Concrete.Dtos.Bill.BillModelDto>
 
     <div class="container-fluid">
         <div class="card shadow">
             <div class="card-header py-3" style="align-items: center; display: flex; justify-content: space-between">
                 <p class="text-primary m-0 fw-bold">Tenants</p>
-                <a  asp-action="Add" class="btn btn-sm btn-success">Add Tenant</a>
+                <a  asp-action="Add" class="btn btn-sm btn-success">Create Bill</a>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -48,15 +48,15 @@
                         </thead>
                         <tbody>
                         @{
-                            foreach (var residentModelDto in Model)
+                            foreach (var bill in Model)
                             {
                                     <tr>
                                         <td><img class="rounded-circle me-2" width="30" height="30" src="/assets/img/avatars/avatar2.jpeg"><br></td>
-                                        <td>@residentModelDto.IdentityNumber</td>
-                                        <td>@residentModelDto.Firstname</td>
-                                        <td>@residentModelDto.Lastname</td>
-                                        <td>@residentModelDto.Email</td>
-                                        <td>@residentModelDto.Phone</td>
+                                        <td>residentModelDto.IdentityNumber</td>
+                                        <td>residentModelDto.Firstname</td>
+                                        <td>residentModelDto.Lastname</td>
+                                        <td>residentModelDto.Email</td>
+                                        <td>residentModelDto.Phone</td>
                                         <td>
                                             <a asp-action="Details"  asp-route-id="@residentModelDto.Id"  class="btn btn-sm btn-warning"> Edit </a>
                                             <a asp-action="Delete" asp-route-id="@residentModelDto.Id" class="btn btn-sm btn-danger">Delete</a>

@@ -1,5 +1,9 @@
 ﻿using System.Threading.Tasks;
+using AutoMapper;
+using Bussiness.Abstracts.Apartment;
+using Dto.Concrete.Apartment.Bill;
 using Dto.Concrete.Dtos.Bill;
+using Entity.Concrete.MsSql;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +13,16 @@ namespace ApartmentManagmentSystem.Controllers
     [ApiController]
     public class BillController : ControllerBase
     {
+
+        private readonly IBillService _billService;
+        private readonly IMapper _mapper;
+
+        public BillController(IBillService billService, IMapper mapper)
+        {
+            _billService = billService;
+            _mapper = mapper;
+        }
+
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAll()
         {
@@ -30,13 +44,16 @@ namespace ApartmentManagmentSystem.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, BillCreateDto updateDto)
         {
-            return base.BadRequest();
+            return BadRequest();
         }
 
         [HttpPost]
         public async Task<IActionResult> Post(BillCreateDto createDto)
         {
-            return base.BadRequest();
+            var bill = _mapper.Map<Bill>(createDto);
+            var result = await _billService.AddAsync(bill);
+
+           return result.Success ? Ok(result) : BadRequest();
         }
     }
 }

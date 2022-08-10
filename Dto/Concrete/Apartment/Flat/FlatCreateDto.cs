@@ -1,6 +1,6 @@
 ﻿using Core.Abstract;
 
-namespace Dto.Concrete.Dtos.Flat
+namespace Dto.Concrete.Apartment.Flat
 {
     public class FlatCreateDto : IDto
     {

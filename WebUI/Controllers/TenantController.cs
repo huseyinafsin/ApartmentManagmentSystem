@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Core.Extensions;
 using Core.Utilities.Results;
 using Core.Utilities.Security.JWT;
+using Dto.Concrete.Apartment.Bill;
+using Dto.Concrete.Dtos.Bill;
 using Dto.Concrete.Dtos.Tenant;
 using Dto.Concrete.User;
 using Microsoft.AspNetCore.Mvc;
@@ -80,26 +82,6 @@ namespace WebUI.Controllers
         }
 
 
-
-        //[HttpGet]
-        //public async Task<IActionResult> Details(int id)
-        //{
-        //    HttpResponseMessage httpResponseMessage = await _httpClient.GetAsync($"api/Tenant/{id}");
-
-        //    if (httpResponseMessage.IsSuccessStatusCode)
-        //    {
-        //        var result =await httpResponseMessage.Content.ReadAsStringAsync();
-        //        var tenant = JsonConvert.DeserializeObject<SuccessDataResult<TenantModelDto>>(result);
-        //        if (tenant.Success)
-        //        {
-        //            return View(tenant.Data);
-        //        }
-
-        //        return View("404Error");
-        //    }
-        //    return View("404Error");
-        //}
-
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
@@ -118,6 +100,7 @@ namespace WebUI.Controllers
             }
             return View("404Error");
         }
+              
 
         [HttpPost]
         public async Task<IActionResult> Update(TenantModelDto tenantModelDto)

@@ -1,9 +1,11 @@
-﻿@*
+﻿@using System.Collections
+@using Entity.Concrete.MsSql
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
     Layout = "_Layout";
-    @model Dto.Concrete.Dtos.Flat.FlatCreateDto
+    @model Dto.Concrete.Apartment.Flat.FlatCreateDto
 
 }
 
@@ -24,7 +26,21 @@
                                         <div class="mb-3"><label class="form-label" asp-for="@Model.Block"><strong>Block</strong></label><input class="form-control" asp-for="@Model.Block" type="text" id="username"></div>
                                     </div>
                                     <div class="col">
-                                        <div class="mb-3"><label class="form-label" asp-for="@Model.FlatTypeId"><strong>Flat Type</strong></label><input class="form-control" type="number" asp-for="@Model.FlatTypeId" ></div>
+                                        <div class="mb-3">
+                                            <label class="form-label" asp-for="@Model.FlatTypeId"><strong>Flat Type</strong></label>
+                                            <select class="form-control" asp-for="@Model.FlatTypeId" >    
+                                                @{
+
+                                                    var flatTypes = (List<FlatType>) ViewBag.flatTypes;
+                                                    foreach (var item in flatTypes)
+                                                    {
+                                                        <option class="form-control" selected asp-for="@Model.FlatTypeId"  value="@item.Id">@item.Type</option>             
+
+                                                    }
+
+                                                }
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">

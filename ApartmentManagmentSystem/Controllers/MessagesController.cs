@@ -21,24 +21,31 @@ namespace ApartmentManagmentSystem.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserMessages(int id)
         {
-            var result =await _messageService.GetUserMessages(id);
-            
+            var result = await _messageService.GetUserMessages(id);
+
             return result.Success ? Ok(result) : BadRequest(result);
-        }     
-        
+        }
+
         [HttpPost("[action]")]
         public async Task<IActionResult> GetUserMessagesBetween(GetUserMessagesBetween between)
         {
-            var result =await _messageService.GetUserMessagesBetween(between);
-            
+            var result = await _messageService.GetUserMessagesBetween(between);
+
             return result.Success ? Ok(result) : BadRequest(result);
-        }       
-        
+        }
+
         [HttpPost("[action]")]
-        public async Task<IActionResult> Create(MessageCreateDto  createDto)
+        public async Task<IActionResult> Create(MessageCreateDto createDto)
         {
             var result = await _messageService.CreateMessage(createDto);
-            
+
+            return result.Success ? Ok(result) : BadRequest(result);
+        }
+        [HttpPost]
+        public async Task<IActionResult> SendMessage(MessageCreateDto messageCreateDto)
+        {
+            var result = await _messageService.SendMessage(messageCreateDto);
+
             return result.Success ? Ok(result) : BadRequest(result);
         }
     }

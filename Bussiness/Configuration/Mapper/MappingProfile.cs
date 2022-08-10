@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dto.Concrete.Apartment.Flat;
 using Dto.Concrete.Dtos.Flat;
 using Dto.Concrete.Dtos.Tenant;
 using Dto.Concrete.User;
@@ -48,8 +49,8 @@ namespace Bussiness.Configuration.Mapper
                 .ForMember(x => x.IsInUse, cd => cd.MapFrom(map => map.IsInUse))
                 .ForMember(x => x.MonthlyPrice, cd => cd.MapFrom(map => map.MonthlyPrice))
                 .ForMember(x => x.Number, cd => cd.MapFrom(map => map.Number))
-                .ForMember(x => x.TenantFirstname, cd => cd.MapFrom(map => map.Tenant.User.Firstname))
-                .ForMember(x => x.TenantLastname, cd => cd.MapFrom(map => map.Tenant.User.Lastname))
+                //.ForMember(x => x.TenantFirstname, cd => cd.MapFrom(map => map.Tenant.User.Firstname))
+                //.ForMember(x => x.TenantLastname, cd => cd.MapFrom(map => map.Tenant.User.Lastname))
                 .ReverseMap();
 
             CreateMap<FlatCreateDto, Flat>()

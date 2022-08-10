@@ -9,7 +9,7 @@ namespace Bussiness.Configuration.Constants
     public  enum UserType
     {
         System = 1,
-        Manager = 2,
-        Tenant = 3,
+        Manager = 3,
+        Tenant = 4,
     }
 }

@@ -4,6 +4,7 @@ using Bussiness.Abstracts;
 using Bussiness.Abstracts.Apartment;
 using Bussiness.Configuration.Filters.Log;
 using Core.Service;
+using Dto.Concrete.Apartment.Flat;
 using Dto.Concrete.Dtos.Flat;
 using Entity.Concrete;
 using Microsoft.AspNetCore.Http;
@@ -33,8 +34,8 @@ namespace ApartmentManagmentSystem.Controllers
             }
 
             return NotFound();
-        }     
-        
+        }
+
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAllWithDetails()
         {
@@ -66,7 +67,7 @@ namespace ApartmentManagmentSystem.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id,FlatUpdateDto updateDto)
+        public async Task<IActionResult> Update(int id, FlatUpdateDto updateDto)
         {
             return base.BadRequest();
         }
@@ -75,13 +76,13 @@ namespace ApartmentManagmentSystem.Controllers
         [LogFilter]
         public async Task<IActionResult> Post(FlatCreateDto createDto)
         {
-            var result =await _flatService.Create(createDto);
+            var result = await _flatService.Create(createDto);
 
             return result.Success ? Ok(result) : BadRequest(result);
-        }   
-        
+        }
+
         [HttpGet("[action]")]
-        public void  ThrowError ()
+        public void ThrowError()
         {
             throw new InternalBufferOverflowException();
         }

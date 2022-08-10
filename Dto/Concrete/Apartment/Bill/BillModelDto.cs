@@ -1,8 +1,8 @@
 ﻿using Core.Abstract;
 
-namespace Dto.Concrete.Apartment.Bill
+namespace Dto.Concrete.Dtos.Bill
 {
-    public class BillCreateDto : IDto
+    public class BillModelDto : IDto
     {
         public int ResidentId { get; set; }
         public int BillTypeId { get; set; }
