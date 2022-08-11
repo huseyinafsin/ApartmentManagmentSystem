@@ -22,6 +22,11 @@ namespace Core.Extensions
         public static void RemoveCookie(this HttpContext httpContext, string key)
         {
             httpContext.Response.Cookies.Delete(key);
+        }     
+        
+        public static string GetCookie(this HttpContext httpContext, string key)
+        {
+           return httpContext.Request.Cookies[key];
         }
     }
 }
