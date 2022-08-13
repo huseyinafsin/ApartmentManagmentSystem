@@ -22,12 +22,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Theory\" />
+    <ProjectReference Include="..\ApartmentManagmentSystem\ApartmentManagmentSystem.csproj" />
+    <ProjectReference Include="..\Bussiness\Bussiness.csproj" />
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bussiness\Bussiness.csproj" />
-    <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+    <Reference Include="Microsoft.AspNetCore.DataProtection">
+      <HintPath>..\..\..\..\..\..\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\5.0.0\ref\net5.0\Microsoft.AspNetCore.DataProtection.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

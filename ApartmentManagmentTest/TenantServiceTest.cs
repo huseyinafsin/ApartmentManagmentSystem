@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApartmentManagmentTest.Fixture;
 using AutoMapper;
 using Bussiness.Abstracts.Apartment;
 using Bussiness.Concrete.Apartment;
@@ -11,57 +12,73 @@ using Core.Entity.Concrete;
 using Core.Repository;
 using DataAccess.Abstract.Apartment;
 using Dto.Concrete.Dtos.Tenant;
+using Dto.Concrete.User;
 using Entity.Concrete.MsSql;
 using Moq;
 using Xunit;
 
-namespace ApartmentManagmentTest
+namespace ApartmentManagmentTest 
 {
-    public class TenantServiceTest 
+    public class TenantServiceTest :IClassFixture<ServiceFixture>
     {
-        
-
-        public void TenantService_Create_Returns_Success()
+        private TenantService TenantService;
+        public TenantServiceTest(ServiceFixture serviceFixture)
         {
-            #region Arrange
-            var tenantRepositoryMock = new Mock<ITenatRepository>();
-            tenantRepositoryMock.Setup(x => x.AddAsync(It.IsAny<Tenant>()));
+            TenantService = new TenantService(serviceFixture.TenantRepositoryMock.Object, serviceFixture.TenantRepositoryMock.Object,serviceFixture.Mapper,serviceFixture.OperationClaimServiceMock.Object);
+        }
+        
+        [Fact]
+        public void TenantDelete_ReturnsSuccessTest( )
+        {
+            
 
-            var reapositoryMock = new Mock<IRepository<Tenant>>();
-
-            var operationClaimServiceMock = new Mock<IOperationClaimService>();
-
-
-            MapperConfiguration mapperConfig = new MapperConfiguration(
-                cfg =>
-                {
-                    cfg.AddProfile(new MappingProfile());
-                });
-            IMapper mapper = new Mapper(mapperConfig);
-            #endregion
-
-            #region Act
-
-            var tenantService = new TenantService(reapositoryMock.Object,tenantRepositoryMock.Object,mapper,operationClaimServiceMock.Object);
-            var tenant = new TenantCreateDto()
+            var tenant = new TenantForRegister()
             {
-
+                IdentityNumber = "16515525",
+                Email = "huseyinafssin@mail.com",
+                Firstname = "Hüseyin",
+                Lastname = "Afşin",
                 FlatId = 1,
-                UserId = 1,
                 HasACar = true,
                 Phone = "665655356",
-                IdentityNumber = "454545454",
                 Plate = "365456464",
 
             };
-            //var response = tenantService.AddTenant(tenant)
+            var response = TenantService.AddTenant(tenant).Result;
 
-            #endregion
 
             #region Assert
 
+            Assert.Equal(response.Success,true);
+            #endregion
+        }
+              
+        
+        [Fact]
+        public void TenantGetAll_ReturnsSuccessTest( )
+        {
+
+            var response = TenantService.RemoveAsync(1).Result;
 
 
+            #region Assert
+
+            Assert.Equal(response.Success,true);
+            Assert.NotNull(response);
+            #endregion
+        }
+                
+        [Fact]
+        public void TenantCreate_ReturnsSuccessTest( )
+        {
+
+            var response = TenantService.RemoveAsync(1).Result;
+
+
+            #region Assert
+
+            Assert.Equal(response.Success,true);
+            Assert.Equal(response.Success,true);
             #endregion
         }
 
