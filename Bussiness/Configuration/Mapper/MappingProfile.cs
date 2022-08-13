@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dto.Concrete.Apartment.Flat;
+using Dto.Concrete.Apartment.Tenant;
 using Dto.Concrete.Dtos.Flat;
 using Dto.Concrete.Dtos.Tenant;
 using Dto.Concrete.User;
@@ -32,6 +33,8 @@ namespace Bussiness.Configuration.Mapper
                 .ForMember(x => x.InitialPassword, cd => cd.MapFrom(map => map.User.Pasword.InitialPassword))
                 .ForMember(x => x.HasACar, cd => cd.MapFrom(map => map.HasACar))
                 .ForMember(x => x.Plate, cd => cd.MapFrom(map => map.Plate))
+                .ForMember(x => x.UserId, cd => cd.MapFrom(map => map.UserId))
+                .ForMember(x => x.FlatId, cd => cd.MapFrom(map => map.Flat.Id))
                 .ReverseMap();
 
 
@@ -44,7 +47,7 @@ namespace Bussiness.Configuration.Mapper
             CreateMap<Flat, FlatModelDto>()
                 .ForMember(x => x.Id, cd => cd.MapFrom(map => map.Id))
                 .ForMember(x => x.Block, cd => cd.MapFrom(map => map.Block))
-                .ForMember(x => x.FlatType, cd => cd.MapFrom(map => map.FlatType.Type))
+                .ForMember(x => x.FlatType, cd => cd.MapFrom(map => map.FlatType))
                 .ForMember(x => x.Floor, cd => cd.MapFrom(map => map.Floor))
                 .ForMember(x => x.IsInUse, cd => cd.MapFrom(map => map.IsInUse))
                 .ForMember(x => x.MonthlyPrice, cd => cd.MapFrom(map => map.MonthlyPrice))

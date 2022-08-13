@@ -14,7 +14,7 @@ namespace Core.Service.Concretye
 {
     public class Service<TEntity,TKey> : IService<TEntity,TKey> where TEntity : class, IEntity<TKey>, new() where TKey : IEquatable<TKey>
     {
-        public readonly IRepository<TEntity> _repository;
+        protected readonly IRepository<TEntity> _repository;
 
         public Service(IRepository<TEntity> repository)
         {
@@ -70,22 +70,22 @@ namespace Core.Service.Concretye
             return new SuccessDataResult<IEnumerable<TEntity>>(entities, typeof(TEntity).Name + " " + Messages.EntityAdded);
         }
 
-        public async Task<IResult> UpdateAsync(TEntity entity)
+        public IDataResult<TEntity> Update(TEntity entity)
         {
-            _repository.Update(entity);
-            return new SuccessResult(typeof(TEntity).Name + " " + Messages.EntityUpdated);
+           var result = _repository.Update(entity);
+           return new SuccessDataResult<TEntity>(result, typeof(TEntity).Name + " " + Messages.EntityUpdated);
         }
 
         public async Task<IResult> RemoveAsync(int id)
         {
             var entity = await _repository.GetAsync(x => x.Id.Equals(id));
-            _repository.Remove(entity);
+           await _repository.Remove(entity);
             return new SuccessResult(typeof(TEntity).Name + " " + Messages.EntityDeleted);
         }
 
         public async Task<IResult> RemoveRangeAsync(IEnumerable<TEntity> entities)
         {
-            _repository.RemoveRange(entities);
+          await  _repository.RemoveRange(entities);
             return new SuccessResult(typeof(TEntity).Name + " " + Messages.EntityDeleted);
 
         }

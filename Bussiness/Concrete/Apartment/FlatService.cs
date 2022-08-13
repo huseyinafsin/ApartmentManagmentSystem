@@ -43,5 +43,16 @@ namespace Bussiness.Concrete.Apartment
 
             return new SuccessDataResult<FlatModelDto>() { Data = flatModel };
         }
+
+        public async Task<IDataResult<FlatModelDto>> GetWithDetails(int id)
+        {
+            var result = _repository
+                .Where()
+                .Include(x => x.FlatType)
+                .FirstOrDefault(x=>x.Id==id);
+            var mapperResult = _mapper.Map<FlatModelDto>(result);
+
+            return new SuccessDataResult<FlatModelDto>() { Data = mapperResult };
+        }
     }
 }

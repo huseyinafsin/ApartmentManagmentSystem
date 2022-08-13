@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +8,9 @@ using Core.Extensions;
 using Core.Utilities.Results;
 using Core.Utilities.Security.JWT;
 using Dto.Concrete.Apartment.Bill;
+using Dto.Concrete.Apartment.Tenant;
 using Dto.Concrete.Dtos.Bill;
+using Dto.Concrete.Dtos.Flat;
 using Dto.Concrete.Dtos.Tenant;
 using Dto.Concrete.User;
 using Microsoft.AspNetCore.Mvc;
@@ -49,7 +52,16 @@ namespace WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            var tenant = new TenantForRegister();
+
+            #region flats
+
+            HttpResponseMessage flatResponseMessage = await _httpClient.GetAsync($"/api/Flat/GetAllWithDetails");
+            var resultString = flatResponseMessage.Content.ReadAsStringAsync().Result;
+            var flats = JsonConvert.DeserializeObject<SuccessDataResult<List<FlatModelDto>>>(resultString);
+            ViewBag.flats = flats.Data;
+
+            #endregion
+
             return View();
         }
 
@@ -58,10 +70,13 @@ namespace WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+
+
                 var strRegister = JsonConvert.SerializeObject(register);
                 var data = new StringContent(strRegister, Encoding.UTF8, "application/json");
 
                 HttpResponseMessage httpResponseMessage = await _httpClient.PostAsync($"api/Tenant/", data);
+
 
                 if (httpResponseMessage.IsSuccessStatusCode)
                 {
@@ -69,7 +84,6 @@ namespace WebUI.Controllers
                     var accessToken = JsonConvert.DeserializeObject<SuccessDataResult<TenantModelDto>>(result);
                     if (accessToken.Success)
                     {
-
                         return RedirectToAction("Index", "Tenant");
                     }
 
@@ -85,6 +99,14 @@ namespace WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
+            #region flats
+
+            HttpResponseMessage flatResponseMessage = await _httpClient.GetAsync($"/api/Flat/GetAllWithDetails");
+            var resultString =await flatResponseMessage.Content.ReadAsStringAsync();
+            var flats = JsonConvert.DeserializeObject<SuccessDataResult<List<FlatModelDto>>>(resultString);
+            ViewBag.flats = flats.Data;
+
+            #endregion
             HttpResponseMessage httpResponseMessage = await _httpClient.GetAsync($"api/Tenant/{id}");
 
             if (httpResponseMessage.IsSuccessStatusCode)
@@ -93,6 +115,7 @@ namespace WebUI.Controllers
                 var tenants = JsonConvert.DeserializeObject<SuccessDataResult<TenantModelDto>>(result);
                 if (tenants.Success)
                 {
+                    ViewBag.flats = flats.Data;
                     return View(tenants.Data);
                 }
 

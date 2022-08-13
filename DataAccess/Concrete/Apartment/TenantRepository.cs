@@ -28,6 +28,7 @@ namespace DataAccess.Concrete.Apartment
         public async Task<Tenant> GetWithDetails(Expression<Func<Tenant, bool>> expression)
         {
             return  _context.Tenants
+                .Include(x => x.Flat)
                 .Include(x => x.User)
                 .ThenInclude(t => t.Pasword).FirstOrDefault(expression);
         }

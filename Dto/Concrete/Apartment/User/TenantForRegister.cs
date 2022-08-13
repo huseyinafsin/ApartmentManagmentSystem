@@ -4,6 +4,7 @@ namespace Dto.Concrete.User
 {
     public class TenantForRegister : IDto
     {
+        public int FlatId { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string Email { get; set; }

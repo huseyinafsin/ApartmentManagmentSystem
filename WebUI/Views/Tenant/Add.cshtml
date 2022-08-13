@@ -1,9 +1,13 @@
-﻿@*
+﻿@using Entity.Concrete.MsSql
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Dto.Concrete.Dtos.Flat
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
     Layout = "_Layout";
-    @model Dto.Concrete.Dtos.Tenant.TenantModelDto
+    @model Dto.Concrete.Apartment.Tenant.TenantModelDto
+
 }
 
 <div id="content">
@@ -12,44 +16,61 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="row">
-                        <div class="card shadow mb-12">
-                            <div class="card-header py-">
-                                @*<p class="text-primary m-0 fw-bold">User Settings</p>*@
-                            </div>
-                            <div class="card-body">
-                                <form method="post" asp-controller="Tenant" asp-action="Add" >
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label"asp-for="Firstname"><strong>Firstname</strong></label><input class="form-control" asp-for="Firstname" type="text" id="username" placeholder="user.name" ></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label"asp-for="Lastname"><strong>Lastname</strong></label><input class="form-control" type="text" asp-for="Lastname" placeholder="user.name" ></div>
+                    <div class="card shadow mb-12">
+                        <div class="card-header py-">
+                            @*<p class="text-primary m-0 fw-bold">User Settings</p>*@
+                        </div>
+                        <div class="card-body">
+                            <form method="post" asp-controller="Tenant" asp-action="Add">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3"><label class="form-label" asp-for="Firstname"><strong>Firstname</strong></label><input class="form-control" asp-for="Firstname" type="text" id="username" placeholder="user.name"></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-3"><label class="form-label" asp-for="Lastname"><strong>Lastname</strong></label><input class="form-control" type="text" asp-for="Lastname" placeholder="user.name"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3"><label class="form-label" asp-for="Email"><strong>Email Address</strong></label><input class="form-control" type="email" asp-for="Email" placeholder="user@example.com"></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-3">
+                                            <label class="form-label" asp-for="FlatId"><strong>Flat</strong></label>
+                                            <select class="form-control" asp-for="FlatId" >    
+                                                @{
+
+                                                    var flats = (List<FlatModelDto>) ViewBag.flats;
+                                                    foreach (var item in flats)
+                                                    {
+                                                        <option class="form-control" selected asp-for="1"  value="@item.Id">@item.Block+" "+@item.FlatType.Type</option>             
+
+                                                    }
+
+                                                }
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" asp-for="Email"><strong>Email Address</strong></label><input class="form-control" type="email" asp-for="Email" placeholder="user@example.com"></div>
-                                        </div>
-                                    </div> 
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" asp-for="IdentityNumber"><strong>IdentityNumber</strong></label><input class="form-control" type="text" asp-for="IdentityNumber" placeholder="John" ></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" asp-for="Phone"><strong>Phone</strong></label><input class="form-control" type="text" asp-for="Phone" placeholder="John" ></div>
-                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3"><label class="form-label" asp-for="IdentityNumber"><strong>IdentityNumber</strong></label><input class="form-control" type="text" asp-for="IdentityNumber" placeholder="John"></div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" asp-for="HasACar"><strong>Has a car </strong> </label><br/><input id="checkbox" class="form-check-input" type="checkbox" asp-for="HasACar" placeholder="John"></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" asp-for="Plate"><strong>Plate</strong></label><input  class="form-control" type="text" asp-for="Plate" placeholder="John" ></div>
-                                        </div>
+                                    <div class="col">
+                                        <div class="mb-3"><label class="form-label" asp-for="Phone"><strong>Phone</strong></label><input class="form-control" type="text" asp-for="Phone" placeholder="John"></div>
                                     </div>
-                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Submit</button></div>
-                                </form>
-                            </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3"><label class="form-label" asp-for="HasACar"><strong>Has a car </strong> </label><br /><input id="checkbox" class="form-check-input" type="checkbox" asp-for="HasACar" placeholder="John"></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-3"><label class="form-label" asp-for="Plate"><strong>Plate</strong></label><input class="form-control" type="text" asp-for="Plate" placeholder="John"></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Submit</button></div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

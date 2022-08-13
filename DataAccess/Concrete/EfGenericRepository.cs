@@ -15,7 +15,7 @@ namespace DataAccess.Concrete
 
     {
         private readonly DbSet<TEntity> _dbSet;
-        public readonly ApartmentContext _context;
+        protected readonly ApartmentContext _context;
         public EfGenericRepository( ApartmentContext context)
         {
             _context = context;
@@ -72,11 +72,11 @@ namespace DataAccess.Concrete
 
         }
 
-        public async Task Update(TEntity entity)
+        public TEntity Update(TEntity entity)
         {
             _dbSet.Update(entity);
-            await _context.SaveChangesAsync();
-
+             _context.SaveChanges();
+             return entity;
         }
 
         public IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> expression = null)

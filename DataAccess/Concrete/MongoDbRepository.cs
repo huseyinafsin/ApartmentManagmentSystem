@@ -61,10 +61,11 @@ namespace DataAccess.Concrete
             throw new NotImplementedException();
         }
 
-        public Task Update(TEntity entity)
+        public TEntity Update(TEntity entity)
         {
             throw new NotImplementedException();
         }
+
 
         public Task Remove(TEntity entity)
         {

@@ -12,6 +12,7 @@ using Core.Utilities.Helpers;
 using Core.Utilities.Results;
 using Core.Utilities.Security.Hashing;
 using DataAccess.Abstract.Apartment;
+using Dto.Concrete.Apartment.Tenant;
 using Dto.Concrete.Dtos.Tenant;
 using Dto.Concrete.User;
 using Entity.Concrete.MsSql;
@@ -75,6 +76,7 @@ namespace Bussiness.Concrete.Apartment
                 HasACar = tenantForRegister.HasACar,
                 Phone = tenantForRegister.Phone,
                 Plate = tenantForRegister.Plate,
+                FlatId = tenantForRegister.FlatId
             };
 
             var tenant = await _tenantRepository.AddAsync(newTenant);

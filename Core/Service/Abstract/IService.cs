@@ -17,7 +17,7 @@ namespace Core.Service.Abstract
         Task<IResult> AnyAsync(Expression<Func<TEntity, bool>> expression);
         Task<IDataResult<TEntity>> AddAsync(TEntity entity);
         Task<IDataResult<IEnumerable<TEntity>>> AddRangeAsync(IEnumerable<TEntity> entities);
-        Task<IResult> UpdateAsync(TEntity entity);
+        IDataResult<TEntity> Update(TEntity entity);
         Task<IResult> RemoveAsync(int id);
         Task<IResult> RemoveRangeAsync(IEnumerable<TEntity> entities);
     }

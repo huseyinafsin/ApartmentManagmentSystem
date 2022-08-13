@@ -16,7 +16,7 @@ namespace Core.Repository
         Task<bool> AnyAsync(Expression<Func<TEntity, bool>> expression);
         Task<TEntity> AddAsync(TEntity entity);
         Task<IEnumerable<TEntity>> AddRangeAsync(IEnumerable<TEntity> entities);
-        Task Update(TEntity entity);
+        TEntity Update(TEntity entity);
         Task Remove(TEntity entity);
         Task RemoveRange(IEnumerable<TEntity> entities);
     }

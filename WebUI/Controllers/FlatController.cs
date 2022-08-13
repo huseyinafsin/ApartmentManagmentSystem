@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace WebUI.Controllers
     {
         private readonly HttpClient _httpClient;
 
-        public FlatController( )
+        public FlatController()
         {
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri(Constants.Constans.ApiUrl);
@@ -41,6 +42,7 @@ namespace WebUI.Controllers
 
                 return View("404Error");
             }
+
             return View("404Error");
 
         }
@@ -60,6 +62,7 @@ namespace WebUI.Controllers
 
             return View(flat);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Add(FlatCreateDto createDto)
@@ -85,9 +88,11 @@ namespace WebUI.Controllers
 
                     return View("404Error");
                 }
+
                 return View("404Error");
 
             }
+
             return View();
         }
 
@@ -95,15 +100,15 @@ namespace WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            HttpResponseMessage httpResponseMessage = await _httpClient.GetAsync($"api/Flat/{id}");
+            HttpResponseMessage httpResponseMessage = await _httpClient.GetAsync($"/api/Flat/GetWithDetails/{id}");
             HttpResponseMessage flatTypeResponseMessage = await _httpClient.GetAsync($"/api/FlatType/");
 
             if (httpResponseMessage.IsSuccessStatusCode)
             {
                 var result = await httpResponseMessage.Content.ReadAsStringAsync();
-                var flatTyperesult = await httpResponseMessage.Content.ReadAsStringAsync();
+                var flatTyperesult = await flatTypeResponseMessage.Content.ReadAsStringAsync();
                 var flat = JsonConvert.DeserializeObject<SuccessDataResult<FlatModelDto>>(result);
-                var flatTypes  = JsonConvert.DeserializeObject<SuccessDataResult<List<FlatType>>>(flatTyperesult).Data;
+                var flatTypes = JsonConvert.DeserializeObject<SuccessDataResult<List<FlatType>>>(flatTyperesult).Data;
                 if (flat.Success)
                 {
                     ViewData["flatTypes"] = flatTypes;
@@ -112,15 +117,30 @@ namespace WebUI.Controllers
 
                 return View("404Error");
             }
+
             return View("404Error");
         }
+
+
+
+
 
         [HttpPost]
         public async Task<IActionResult> Update(FlatModelDto flatModelDto)
         {
+       
+            #region flatTypes
+            HttpResponseMessage flatTypeResponseMessage = await _httpClient.GetAsync($"/api/FlatType/");
+            var flatTyperesult = await flatTypeResponseMessage.Content.ReadAsStringAsync();
+            var flatTypes = JsonConvert.DeserializeObject<SuccessDataResult<List<FlatType>>>(flatTyperesult).Data;
+            #endregion
+
+            flatModelDto.FlatType = flatTypes.FirstOrDefault(x=>x.Id== flatModelDto.Id);
             var strRegister = JsonConvert.SerializeObject(flatModelDto);
             var data = new StringContent(strRegister, Encoding.UTF8, "application/json");
-            HttpResponseMessage httpResponseMessage = await _httpClient.PutAsync($"api/Tenant/{flatModelDto.Id}", data);
+            HttpResponseMessage httpResponseMessage = await _httpClient.PutAsync($"api/Flat/{flatModelDto.Id}", data);
+
+
 
             if (httpResponseMessage.IsSuccessStatusCode)
             {
@@ -141,7 +161,7 @@ namespace WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            HttpResponseMessage httpResponseMessage = await _httpClient.DeleteAsync($"api/Tenant/{id}");
+            HttpResponseMessage httpResponseMessage = await _httpClient.DeleteAsync($"api/Flat/{id}");
             if (httpResponseMessage.IsSuccessStatusCode)
             {
                 var result = await httpResponseMessage.Content.ReadAsStringAsync();

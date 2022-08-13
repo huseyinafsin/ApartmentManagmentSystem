@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Core.Service.Abstract;
 using Core.Utilities.Results;
+using Dto.Concrete.Apartment.Tenant;
 using Dto.Concrete.Dtos.Tenant;
 using Dto.Concrete.User;
 using Entity.Concrete.MsSql;

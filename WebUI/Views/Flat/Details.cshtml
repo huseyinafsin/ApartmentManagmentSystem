@@ -1,4 +1,6 @@
-﻿@*
+﻿@using Entity.Concrete.MsSql
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -26,9 +28,24 @@
                                             <div class="mb-3"><label class="form-label"asp-for="Block"><strong>Block</strong></label><input class="form-control" asp-for="Block" type="text" id="username" ></div>
                                         </div>
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label"asp-for="FlatType"><strong>Flat Type</strong></label>
-                                                <input class="form-control" type="number" asp-for="FlatType">
-                                                </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" asp-for="@Model.FlatType"><strong>Flat Type</strong></label>
+                                      @*          <select class="form-control" asp-for="@Model.FlatType">
+                                                    @{
+                                                            
+                                                        var flatTypes = (List<FlatType>) ViewBag.flatTypes;
+                                                        foreach (var item in flatTypes)
+                                                        {
+                                                            <option class="form-control" selected asp-for="@Model.FlatType.Id" value="@item.Id">@item.Type</option>
+
+                                                        }
+
+                                                    }
+                                                </select>*@
+            
+                                      @Html.DropDownListFor(m => m.FlatType.Id, 
+                                          new SelectList(ViewBag.flatTypes, "Id", "Type", @Model.FlatType.Id), new {@class="form-label"})
+                                            </div>
 @*                                            <div class="mb-3"><label class="form-label"asp-for="FlatType"><strong>Flat Type</strong></label><input class="form-control" type="number" asp-for="FlatType"></div>
 *@                                        </div>
                                     </div>

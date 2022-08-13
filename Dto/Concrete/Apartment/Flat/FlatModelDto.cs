@@ -1,4 +1,5 @@
 ﻿using Core.Abstract;
+using Entity.Concrete.MsSql;
 
 namespace Dto.Concrete.Dtos.Flat
 {
@@ -13,7 +14,7 @@ namespace Dto.Concrete.Dtos.Flat
         public bool IsInUse { get; set; }
         public string TenantFirstname { get; set; }
         public string TenantLastname { get; set; }
-        public string FlatType{ get; set; }
+        public FlatType FlatType{ get; set; }
 
     }
 }

@@ -1,9 +1,10 @@
-﻿@*
+﻿@using Dto.Concrete.Dtos.Flat
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
     Layout = "_Layout";
-@model Dto.Concrete.Dtos.Tenant.TenantModelDto;
+@model Dto.Concrete.Apartment.Tenant.TenantModelDto;
 }
 
 
@@ -20,7 +21,8 @@
                         <div class="card-body">
                             <form method="post"  asp-action="Update">
                                 <fieldset id="disableForm" disabled="true">
-                                    <input hidden="true" asp-for="Id"/>
+                                    <input hidden="true" asp-for="Id" value="@Model.Id"/>
+                                    <input hidden="true" asp-for="UserId" value="@Model.UserId"/>
                                     <div class="row">
                                         <div class="col">
                                             <div class="mb-3"><label class="form-label"asp-for="Firstname"><strong>Firstname</strong></label><input class="form-control" asp-for="Firstname" type="text" id="username" placeholder="user.name"></div>
@@ -33,7 +35,23 @@
                                         <div class="col">
                                             <div class="mb-3"><label class="form-label" asp-for="Email"><strong>Email Address</strong></label><input class="form-control" type="email" asp-for="Email" placeholder="user@example.com"></div>
                                         </div>
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label class="form-label" asp-for="FlatId"><strong>Flat</strong></label>
+                                                <select class="form-control" asp-for="FlatId" >    
+                                                    @{
 
+                                                        var flats = (List<FlatModelDto>) ViewBag.flats;
+                                                        foreach (var item in flats)
+                                                        {
+                                                            <option class="form-control" selected asp-for="1"  value="@item.Id">@item.Block+" "+@item.FlatType.Type</option>             
+
+                                                        }
+
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">

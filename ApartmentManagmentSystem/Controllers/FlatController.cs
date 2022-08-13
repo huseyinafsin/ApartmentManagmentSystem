@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
+using AutoMapper;
 using Bussiness.Abstracts;
 using Bussiness.Abstracts.Apartment;
 using Bussiness.Configuration.Filters.Log;
@@ -7,6 +8,7 @@ using Core.Service;
 using Dto.Concrete.Apartment.Flat;
 using Dto.Concrete.Dtos.Flat;
 using Entity.Concrete;
+using Entity.Concrete.MsSql;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,11 +18,13 @@ namespace ApartmentManagmentSystem.Controllers
     [ApiController]
     public class FlatController : ControllerBase
     {
-        IFlatService _flatService;
+       private readonly IFlatService _flatService;
+       private readonly IMapper _mapper;
 
-        public FlatController(IFlatService flatService)
+        public FlatController(IFlatService flatService, IMapper mapper)
         {
             _flatService = flatService;
+            _mapper = mapper;
         }
 
         [LogFilter]
@@ -46,6 +50,18 @@ namespace ApartmentManagmentSystem.Controllers
             }
 
             return NotFound();
+        }     
+        
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetWithDetails(int id)
+        {
+            var result = await _flatService.GetWithDetails(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return NotFound();
         }
 
         [HttpGet("{id}")]
@@ -63,13 +79,16 @@ namespace ApartmentManagmentSystem.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            return base.BadRequest();
+            var result =await _flatService.RemoveAsync(id);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, FlatUpdateDto updateDto)
+        public async Task<IActionResult> Update(int id, FlatModelDto flatModelDto)
         {
-            return base.BadRequest();
+            var flat = _mapper.Map<Flat>(flatModelDto);
+            var result = _flatService.Update(flat);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
         [HttpPost]
@@ -81,10 +100,5 @@ namespace ApartmentManagmentSystem.Controllers
             return result.Success ? Ok(result) : BadRequest(result);
         }
 
-        [HttpGet("[action]")]
-        public void ThrowError()
-        {
-            throw new InternalBufferOverflowException();
-        }
     }
 }
