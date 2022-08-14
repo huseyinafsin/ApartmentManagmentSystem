@@ -13,6 +13,7 @@ namespace Core.Entity.Concrete
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string Email { get; set; }
+        public string CardIdList { get; set; }
 
         public bool Active { get; set; } = false;
         public virtual Password Pasword { get; set; }

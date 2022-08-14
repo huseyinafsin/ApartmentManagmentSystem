@@ -28,13 +28,22 @@ namespace Bussiness.Concrete.Apartment
 
         public async Task<IDataResult<User>> GetByEmail(string email)
         {
-            var user = this._userRepository.GetByEmail(email);
+            var user = this._userRepository.GetWithDetails(x=>x.Email==email);
             if (user == null)
                 return new ErrorDataResult<User>("User not found");
 
             return new SuccessDataResult<User>(data: user);
         }
-    
+
+        public async Task<IDataResult<User>> GetById(int id)
+        {
+            var user = this._userRepository.GetWithDetails(x => x.Id == id);
+            if (user == null)
+                return new ErrorDataResult<User>("User not found");
+
+            return new SuccessDataResult<User>(data: user);
+        }
+
 
         public async Task<IDataResult<List<UserModel>>> GetAll()
         {

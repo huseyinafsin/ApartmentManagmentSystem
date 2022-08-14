@@ -10,6 +10,7 @@ namespace Bussiness.Abstracts.Apartment
     public interface IUserService :IService<User, int>
     {
         public Task<IDataResult<User>> GetByEmail(string email);
+        public Task<IDataResult<User>> GetById(int id);
         public Task<IDataResult<List<UserModel>>> GetAll();
     }
 }

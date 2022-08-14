@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Core.Constants;
 using Core.Utilities.Results;
 using Dto.Concrete.Apartment.Message;
 using Dto.Concrete.Dtos.Tenant;
@@ -19,7 +20,8 @@ namespace WebUI.Controllers
         public MessageController( )
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri(Constants.Constans.ApiUrl);
+            _httpClient.BaseAddress = new Uri(Config.BaseApiUrl);
+
         }
 
         public async Task<IActionResult> Index()

@@ -46,6 +46,7 @@ namespace Bussiness.Concrete.Apartment
             /// 
             var user = await _userService.GetByEmail(userForLogin.Email);
 
+            //Şİfreleri hashleri kontrol edilir eğer doğru ise işleme devam edilir.
             var isVerified =HashingHelper.VerifyPasswordHash(userForLogin.Password, user.Data.Pasword.PasswordHash,
                 user.Data.Pasword.PasswordSalt);
 
@@ -114,19 +115,34 @@ namespace Bussiness.Concrete.Apartment
             return new SuccessDataResult<AccessToken> { Data = accessToken };
         }
 
+        
         public async Task<IDataResult<AccessToken>> ChangePassword(int id, string password)
         {
+            //Tokenden doğrulamasından geçen user elindeki yeni şifre ile haşlendir ve atanır.
+            //Ayrıca kullanıcı ilk defa login olmuşsa hesabı aktifleşir ve guid olarak atanan ilk şifre etkisiz hale gelir.
+            //Daha sonra kullanıcı bilgileri güncellenerek yeni token üretilir ve redis cache sunucusuna gönderilir.
+     
+
+            var user = await _userService.GetById(id);
+
             byte[] passwordHash, passwordSalt;
             HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
 
-            var user = await _userService.GetByIdAsync(id);
             user.Data.Pasword.PasswordHash = passwordHash;
             user.Data.Pasword.PasswordSalt = passwordSalt;
-            user.Data.Active = true;
+
+            if (!user.Data.Active)
+                user.Data.Active = true;
+            
             _userService.Update(user.Data);
 
             var operationClaims = _operationClaimService.Where(w => w.Id == (int)UserType.Tenant).ToList();
             var accessToken = _tokenHelper.CreateToken(user.Data, operationClaims);
+
+            #region RedisCahce
+            _distributedCache.SetString($"USR_{user.Data.Id}", accessToken.ToString());
+
+            #endregion
             return new SuccessDataResult<AccessToken>() {Data = accessToken};
         }
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Constants;
 using Core.Utilities.Results;
 using Dto.Concrete.Apartment.Flat;
 using Dto.Concrete.Dtos.Flat;
@@ -22,7 +23,7 @@ namespace WebUI.Controllers
         public FlatController()
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri(Constants.Constans.ApiUrl);
+            _httpClient.BaseAddress = new Uri(Config.BaseApiUrl);
         }
 
 
@@ -165,7 +166,7 @@ namespace WebUI.Controllers
             if (httpResponseMessage.IsSuccessStatusCode)
             {
                 var result = await httpResponseMessage.Content.ReadAsStringAsync();
-                var tenants = JsonConvert.DeserializeObject<SuccessDataResult<SuccessResult>>(result);
+                var tenants = JsonConvert.DeserializeObject<SuccessDataResult<FlatModelDto>>(result);
                 if (tenants.Success)
                 {
                     return RedirectToAction("Index");

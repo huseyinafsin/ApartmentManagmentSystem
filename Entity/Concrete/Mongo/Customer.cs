@@ -7,8 +7,7 @@ namespace Entity.Mongo
     {
         public string Firstname { get; set; }
         public string Lastname { get; set; }
-        public int AccountId { get; set; }
-        public virtual Account Account { get; set; }
+        public string AccountId { get; set; }
 
     }
 }

@@ -7,10 +7,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
+using Bussiness.Abstracts.Payment;
+using Bussiness.Concrete.Payment;
+using Bussiness.Configuration.Mapper;
 using Core.Extensions;
 using Core.Repository;
 using Core.Service.Abstract;
@@ -40,7 +40,18 @@ namespace PaymmentService
             services.AddMongoDbSettings(Configuration);
             services.AddScoped(typeof(IRepository<>), typeof(MongoDbRepository<>));
             services.AddScoped(typeof(IService<,>), typeof(Service<,>));
+            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<ICreditCardService, CreditCardService>();
+            services.AddScoped<IAccountService, AccountService>();
+
+            //Automapper
+            services.AddAutoMapper(config =>
+            {
+                config.AddProfile(new MappingProfile());
+            });
+
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

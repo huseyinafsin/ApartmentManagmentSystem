@@ -8,8 +8,8 @@ using Core.Entity.Concrete;
 using Core.Models;
 using Core.Repository;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using ServiceStack;
 
 namespace DataAccess.Concrete
 {
@@ -19,7 +19,7 @@ namespace DataAccess.Concrete
         protected readonly IMongoCollection<TEntity> Collection;
         private readonly MongoDbSettings settings;
 
-        public MongoDbRepository(IOptions<MongoDbSettings> options)
+        public MongoDbRepository(Microsoft.Extensions.Options.IOptions<MongoDbSettings> options)
         {
             this.settings = options.Value;
             var client = new MongoClient(this.settings.ConnectionString);
@@ -30,7 +30,8 @@ namespace DataAccess.Concrete
        
         public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> expression)
         {
-            return await Collection.AsQueryable().FirstOrDefaultAsync(expression);
+            //return await Collection.AsQueryable().FirstOrDefaultAsync(expression);
+            return await Collection.Find(expression).FirstOrDefaultAsync();
         }
 
         public IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> expression = null)
@@ -63,7 +64,8 @@ namespace DataAccess.Concrete
 
         public TEntity Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            var result = Collection.ReplaceOneAsync(x => x.Id == entity.Id, entity).Result;
+            return null;
         }
 
 

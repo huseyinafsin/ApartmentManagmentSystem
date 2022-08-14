@@ -8,7 +8,6 @@ namespace Entity.Mongo
     {
         public int Balance { get; set; }
 
-        public IEnumerable<CreditCards> CreditCards { get; set; }
       
     }
 }

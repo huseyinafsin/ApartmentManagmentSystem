@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Constants;
 using Core.Extensions;
 using Core.Utilities.Results;
 using Core.Utilities.Security.JWT;
@@ -22,7 +23,8 @@ namespace WebUI.Controllers
         public AuthController()
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri(Constants.Constans.ApiUrl);
+            _httpClient.BaseAddress = new Uri(Config.BaseApiUrl);
+
         }
 
         public IActionResult Index()

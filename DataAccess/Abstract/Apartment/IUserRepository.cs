@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Entity.Concrete;
@@ -10,6 +11,6 @@ namespace DataAccess.Abstract.Apartment
 {
     public interface IUserRepository : IRepository<User>
     {
-        User GetByEmail(string email);
+        User GetWithDetails(Expression<Func<User, bool>> expression);
     }
 }

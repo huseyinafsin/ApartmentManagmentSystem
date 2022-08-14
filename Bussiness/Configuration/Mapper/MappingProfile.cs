@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 using Dto.Concrete.Apartment.Bill;
 using Dto.Concrete.Apartment.Flat;
 using Dto.Concrete.Apartment.Tenant;
+using Dto.Concrete.CreditCard;
 using Dto.Concrete.Dtos.Bill;
 using Dto.Concrete.Dtos.Flat;
 using Dto.Concrete.Dtos.Tenant;
 using Dto.Concrete.User;
 using Entity.Concrete.MsSql;
+using Entity.Mongo;
 
 namespace Bussiness.Configuration.Mapper
 {
@@ -77,7 +79,9 @@ namespace Bussiness.Configuration.Mapper
                 .ReverseMap();
 
             CreateMap<BillCreateDto, Bill>();
-     
+            CreateMap<CreditCardDto, CreditCard>()
+                .ReverseMap();
+        
 
 
         }

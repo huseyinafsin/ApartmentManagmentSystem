@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Core.Constants;
 using Core.Utilities.Results;
 using Dto.Concrete.Apartment.Bill;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,8 @@ namespace WebUI.Controllers
         public BillController()
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri(Constants.Constans.ApiUrl);
+            _httpClient.BaseAddress = new Uri(Config.BaseApiUrl);
+
         }
 
         public IActionResult Index()
