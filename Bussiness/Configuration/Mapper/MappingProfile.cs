@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dto.Concrete.Apartment.Bill;
 using Dto.Concrete.Apartment.Flat;
 using Dto.Concrete.Apartment.Tenant;
+using Dto.Concrete.Dtos.Bill;
 using Dto.Concrete.Dtos.Flat;
 using Dto.Concrete.Dtos.Tenant;
 using Dto.Concrete.User;
@@ -34,7 +36,7 @@ namespace Bussiness.Configuration.Mapper
                 .ForMember(x => x.HasACar, cd => cd.MapFrom(map => map.HasACar))
                 .ForMember(x => x.Plate, cd => cd.MapFrom(map => map.Plate))
                 .ForMember(x => x.UserId, cd => cd.MapFrom(map => map.UserId))
-                .ForMember(x => x.FlatId, cd => cd.MapFrom(map => map.Flat.Id))
+                .ForMember(x => x.FlatId, cd => cd.MapFrom(map => map.FlatId))
                 .ReverseMap();
 
 
@@ -52,8 +54,6 @@ namespace Bussiness.Configuration.Mapper
                 .ForMember(x => x.IsInUse, cd => cd.MapFrom(map => map.IsInUse))
                 .ForMember(x => x.MonthlyPrice, cd => cd.MapFrom(map => map.MonthlyPrice))
                 .ForMember(x => x.Number, cd => cd.MapFrom(map => map.Number))
-                //.ForMember(x => x.TenantFirstname, cd => cd.MapFrom(map => map.Tenant.User.Firstname))
-                //.ForMember(x => x.TenantLastname, cd => cd.MapFrom(map => map.Tenant.User.Lastname))
                 .ReverseMap();
 
             CreateMap<FlatCreateDto, Flat>()
@@ -63,6 +63,22 @@ namespace Bussiness.Configuration.Mapper
                 .ForMember(x => x.MonthlyPrice, cd => cd.MapFrom(map => map.MonthlyPrice))
                 .ForMember(x => x.Number, cd => cd.MapFrom(map => map.Number))
                 .ForMember(x => x.IsInUse, cd => cd.MapFrom(map => false));
+
+            CreateMap<Bill, BillModelDto>()
+                .ForMember(x => x.Firstname, cd => cd.MapFrom(map => map.Tenant.User.Firstname))
+                .ForMember(x => x.Lastname, cd => cd.MapFrom(map => map.Tenant.User.Lastname))
+                .ForMember(x => x.Email, cd => cd.MapFrom(map => map.Tenant.User.Email))
+                .ForMember(x => x.Phone, cd => cd.MapFrom(map => map.Tenant.Phone))
+                .ForMember(x => x.IdentityNumber, cd => cd.MapFrom(map => map.Tenant.IdentityNumber))
+                .ForMember(x => x.Amount, cd => cd.MapFrom(map => map.Amount))
+                .ForMember(x => x.BillType, cd => cd.MapFrom(map => map.BillType.Name))
+                .ForMember(x => x.Paid, cd => cd.MapFrom(map => map.Paid))
+                .ForMember(x => x.Paid, cd => cd.MapFrom(map => map.Paid))
+                .ReverseMap();
+
+            CreateMap<BillCreateDto, Bill>();
+     
+
 
         }
     }

@@ -8,7 +8,9 @@ using Core.Entity.Concrete;
 using Core.Repository;
 using Core.Service.Concretye;
 using Core.Utilities.Results;
+using DataAccess.Abstract.Apartment;
 using Dto.Concrete.User;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bussiness.Concrete.Apartment
 {
@@ -16,20 +18,23 @@ namespace Bussiness.Concrete.Apartment
     {
 
         private readonly IMapper _mapper;
-        public UserService(IRepository<User> repository, IMapper mapper) : base(repository)
+        private readonly IUserRepository _userRepository;
+        public UserService(IRepository<User> repository, IMapper mapper, IUserRepository userRepository) : base(repository)
         {
             _mapper = mapper;
+            _userRepository = userRepository;
         }
 
 
-        public async Task<IDataResult<User>> GetByEmailAndPassword(string email, string password)
+        public async Task<IDataResult<User>> GetByEmail(string email)
         {
-            var user = this._repository.Where(w => w.Email.Equals(email) && password.Equals(password)).SingleOrDefault();
+            var user = this._userRepository.GetByEmail(email);
             if (user == null)
                 return new ErrorDataResult<User>("User not found");
 
-            return new SuccessDataResult<User>(data:user);
+            return new SuccessDataResult<User>(data: user);
         }
+    
 
         public async Task<IDataResult<List<UserModel>>> GetAll()
         {

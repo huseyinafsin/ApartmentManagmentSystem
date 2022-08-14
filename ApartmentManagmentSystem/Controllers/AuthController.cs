@@ -1,9 +1,12 @@
-﻿using Bussiness.Abstracts;
+﻿using System;
+using System.Security.Claims;
+using Bussiness.Abstracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Bussiness.Abstracts.Apartment;
 using Dto.Concrete.User;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApartmentManagmentSystem.Controllers
 {
@@ -25,12 +28,15 @@ namespace ApartmentManagmentSystem.Controllers
             return Ok(result);
         }
 
-        //[HttpPost("[action]")]
-        //public async Task<IActionResult> TenantRegister(TenantForRegister residentForRegister)
-        //{
-        //    var result =await _authService.TenantRegister(residentForRegister);
-        //    return Ok(result);
-        //}
+        [HttpPost("[action]")]
+        [Authorize(Roles = "Tenant")]
+        public async Task<IActionResult> ChangePassword(string password)
+        {
+            var userId = Convert.ToInt16(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            
+            var result = await _authService.ChangePassword(userId, password);
+            return Ok(result);
+        }
 
         [HttpPost("[action]")]
         public async Task<IActionResult> Login(UserForLogin userForLogin)

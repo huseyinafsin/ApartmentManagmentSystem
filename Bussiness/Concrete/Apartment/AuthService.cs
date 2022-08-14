@@ -43,22 +43,27 @@ namespace Bussiness.Concrete.Apartment
         {
             /// Eğer kullanıcının daha önce giriş yapmış ve token oluşturmuşsa cachedeki bilgiler kullanılarak db de işlem yapılması engellendir
             /// eğer token rediste yok veya expire süresi bitmiş ise yenişi sqlden alınarak redis bilgileri tazelenir.
-            var user = await _userService.GetByEmailAndPassword(userForLogin.Email, userForLogin.Password);
-            if (user.Success)
+            /// 
+            var user = await _userService.GetByEmail(userForLogin.Email);
+
+            var isVerified =HashingHelper.VerifyPasswordHash(userForLogin.Password, user.Data.Pasword.PasswordHash,
+                user.Data.Pasword.PasswordSalt);
+
+            if (isVerified)
             {
-                AccessToken accessToken=null;
+                AccessToken accessToken = null;
                 var accesTokenJson = _distributedCache.GetString($"USR_{user.Data.Id}");
                 if (!string.IsNullOrWhiteSpace(accesTokenJson))
                     accessToken = JsonConvert.DeserializeObject<AccessToken>(accesTokenJson);
 
-                if (accessToken==null || accessToken.Expiration<= DateTime.Now)
+                if (accessToken == null || accessToken.Expiration <= DateTime.Now)
                 {
                     var userOpertaitonClaims = await _operationClaimService.GetUserClaims(user.Data.Id);
                     accessToken = _tokenHelper.CreateToken(user.Data, userOpertaitonClaims.Data);
                     var accessTokenJson = JsonConvert.SerializeObject(accessToken);
-                    _distributedCache.SetString($"USR_{user.Data.Id}",accessTokenJson);
+                    _distributedCache.SetString($"USR_{user.Data.Id}", accessTokenJson);
                 }
-                
+
                 return new SuccessDataResult<AccessToken>(accessToken);
             }
 
@@ -107,6 +112,22 @@ namespace Bussiness.Concrete.Apartment
             #endregion
 
             return new SuccessDataResult<AccessToken> { Data = accessToken };
+        }
+
+        public async Task<IDataResult<AccessToken>> ChangePassword(int id, string password)
+        {
+            byte[] passwordHash, passwordSalt;
+            HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
+
+            var user = await _userService.GetByIdAsync(id);
+            user.Data.Pasword.PasswordHash = passwordHash;
+            user.Data.Pasword.PasswordSalt = passwordSalt;
+            user.Data.Active = true;
+            _userService.Update(user.Data);
+
+            var operationClaims = _operationClaimService.Where(w => w.Id == (int)UserType.Tenant).ToList();
+            var accessToken = _tokenHelper.CreateToken(user.Data, operationClaims);
+            return new SuccessDataResult<AccessToken>() {Data = accessToken};
         }
 
         //public async Task<IDataResult<AccessToken>> TenantRegister(TenantForRegister tenantForRegister)

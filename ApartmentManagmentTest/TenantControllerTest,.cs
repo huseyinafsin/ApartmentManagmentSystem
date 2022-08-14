@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ApartmentManagmentTest.Fixture;
-using ApartmentManagmentSystem
 using ApartmentManagmentSystem.Controllers;
 using Bussiness.Concrete.Apartment;
 using Dto.Concrete.User;

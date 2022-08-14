@@ -129,6 +129,8 @@ namespace ApartmentManagmentSystem
             services.AddScoped<IMessageService, MessageService>();
             services.AddScoped<IMessageRepository, MessageRepository>();
             services.AddScoped<IFlatService, FlatService>();
+            services.AddScoped<IBillRepository, BillRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IOperationClaimService, OperationClaimService>();
             services.AddScoped(typeof(IRepository<>), typeof(EfGenericRepository<>));
             services.AddScoped(typeof(IService<,>), typeof(Service<,>));

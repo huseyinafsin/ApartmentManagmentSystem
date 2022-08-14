@@ -9,7 +9,7 @@ namespace Bussiness.Abstracts.Apartment
 {
     public interface IUserService :IService<User, int>
     {
-        public Task<IDataResult<User>> GetByEmailAndPassword(string ermail, string password);
+        public Task<IDataResult<User>> GetByEmail(string email);
         public Task<IDataResult<List<UserModel>>> GetAll();
     }
 }

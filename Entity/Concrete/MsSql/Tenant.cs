@@ -7,7 +7,7 @@ namespace Entity.Concrete.MsSql
     public class Tenant : BaseEntity
     {
         public int UserId { get; set; }
-        public int FlatId { get; set; }
+        public int? FlatId { get; set; }
 
         public string IdentityNumber { get; set; }
         public string Phone { get; set; }
@@ -15,7 +15,7 @@ namespace Entity.Concrete.MsSql
         public string Plate { get; set; }
 
         public virtual User User { get; set; }
-        public virtual Flat Flat { get; set; }
+        public virtual Flat? Flat { get; set; }
         public virtual IEnumerable<Bill> Bills { get; set; }
 
     }

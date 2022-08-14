@@ -24,35 +24,44 @@ namespace ApartmentManagmentSystem.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAllWithDetails()
         {
-            var result =await _billService.GetAllAsync();
+            var result =await _billService.GetAllWithDetails();
+            return result.Success ? Ok(result) : BadRequest();
+        }    
+        
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetTenantBills(int id)
+        {
+            var result =await _billService.GetTenantBills(id);
             return result.Success ? Ok(result) : BadRequest();
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> GetWithDetails(int id)
         {
-            return base.BadRequest();
+            var result =await _billService.GetWithDetails(id);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            return base.BadRequest();
+            var result = await _billService.RemoveAsync(id);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, BillCreateDto updateDto)
+        public async Task<IActionResult> Update(int id, Bill bill)
         {
-            return BadRequest();
+            var result =  _billService.Update(bill);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(BillCreateDto createDto)
+        public async Task<IActionResult> Post( MultiBillCreateDto multiBillCreateDto )
         {
-            var bill = _mapper.Map<Bill>(createDto);
-            var result = await _billService.AddAsync(bill);
+            var result = await _billService.CreateBill(multiBillCreateDto);
 
            return result.Success ? Ok(result) : BadRequest();
         }

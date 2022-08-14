@@ -21,6 +21,7 @@ namespace DataAccess.Concrete.Apartment
         public async Task<List<Tenant>> GetAllWithDetails()
         {
             return await _context.Tenants
+                .Include(x => x.Flat)
                 .Include(x => x.User)
                 .ThenInclude(t => t.Pasword).ToListAsync();
         }

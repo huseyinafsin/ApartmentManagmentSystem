@@ -24,6 +24,22 @@ namespace ApartmentManagmentSystem.Controllers
             var result =await _flatService.GetAllAsync();
 
             return result.Success ? Ok(result) : BadRequest(result);
+        }      
+        
+        [HttpPost]
+        public async Task<IActionResult> Post(FlatType flatType)
+        {
+            var result =await _flatService.AddAsync(flatType);
+
+            return result.Success ? Ok(result) : BadRequest(result);
+        }    
+        
+        [HttpPut]
+        public async Task<IActionResult> Update(int id,FlatType flatType)
+        {
+            var result = _flatService.Update(flatType);
+
+            return result.Success ? Ok(result) : BadRequest(result);
         }
      }
 }
