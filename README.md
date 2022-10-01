@@ -30,7 +30,24 @@ The apartment management system is a multi-layered system with a microservice ar
    Main API | 43394, 44365
    Payment micro service |60524, 44324
    UI| 52759, 44349
-
+## Installation
+  To make this project work, go to `ApartmentManagmentSystem/ApartmentManagmentSystem/appsettings.json` file and replace it with your configuration information as below
+  
+  ```json
+  {
+  "MongoDbSettings": {
+    "ConnectionString": "<Put your mongodb instance here>",
+    "Database": "TodebPay"
+  },
+  "RedisEndpointInfo": {
+    "Endpoint": "<Put your redis endpoint informations here>",
+    "Port": 16764, // 16764 is default port
+    "Username": "< User name>",
+    "Password": "<Password >",
+    "DatabaseName": "<Database name>"
+  }
+  ```
+ ###
 
 ## Libraries
 
