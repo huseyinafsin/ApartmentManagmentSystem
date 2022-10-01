@@ -19,19 +19,19 @@ The apartment management system is a multi-layered system with a microservice ar
 [Table of Contents](#table_of_contents)  
 [Structure](#structure)  
 [Ports](#ports)  
-[Installation](#installation)  
+[Installation](#electric_plug-installation)  
 [Endpoints](#endpoints)  
-[Libraries](#libraries)  
-[Technologies](#technologies)  
+[Libraries](#-libraries)  
+[Features](#-features)  
 
 <a name="about"/>
 <a name="table_of_contents"/>
 <a name="structure"/>
 <a name="ports"/>
-<a name="installation"/>
+<a name="electric_plug-installation"/>
 <a name="endpoints"/>
-<a name="libraries"/>
-<a name="technologies"/>
+<a name="-libraries"/>
+<a name="-features"/>
 
 
 ## Structure
