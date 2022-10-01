@@ -1,6 +1,5 @@
 ## ApartmentManagmentSystem
 
-# Proje hakkıda
 
 ##### Table of Contents  
 [Headers](#headers)  
