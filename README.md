@@ -88,6 +88,11 @@ Get free redis account from [Redis Labs ](https://redis.com/try-free/))
    MongoDb.Driver | 2.17.0
    Serilog | 2.11.0
    FluentValidation | 11.2.2
+   Coverlet.Collector | 3.0.2
+   Moq | 4.18.2
+   xunit | 2.4.1
+
+
 
    
 ## Technologies
