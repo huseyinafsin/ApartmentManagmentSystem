@@ -1,5 +1,7 @@
 
 # Apartment Managment System
+[![Documentation](https://img.shields.io/badge/Documentation-complete-green.svg?style=flat)](https://github.com/huseyinafsin/ApartmentManagmentSystem)
+
 ## Description
 The apartment management system is a multi-layered system with a microservice architecture that allows the user in the role of a site manager to perform operations such as adding, deleting, editing, adding tenants, assigning tenants to the apartment, adding invoices, assigning invoices; and the user in the role of tenant to log in to the system and view invoices, edit profile and change password.
 
