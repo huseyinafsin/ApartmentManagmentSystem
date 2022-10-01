@@ -64,7 +64,10 @@ Get free redis account from [Redis Labs ](https://redis.com/try-free/))
   
   
 ## Routes
-  To see the in go to [Swagger Editor](https://editor.swagger.io/) and import the [Swagger file](/routes.md)
+  To see the in go to [Swagger Editor](https://editor.swagger.io/) and import the swagger files.
+ -  [API Swagger File](/api-routes.md)
+ -  [Payment Service Swagger File](/payment-routes.md)
+
 ## Libraries
 
   Library  | Versiyon
