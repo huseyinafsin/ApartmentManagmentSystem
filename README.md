@@ -1,3 +1,9 @@
+<details>
+  <summary>
+    summary
+  </summary>
+  details
+</details>
 
 # Apartment Managment System
 ## Description
