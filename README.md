@@ -16,7 +16,7 @@ The apartment management system is a multi-layered system with a microservice ar
 
 ## Table of Contents  
 [About](#about)  
-[Table of Contents](#table_of_contents)  
+[Table of Contents](#-table-of-contents)  
 [Structure](#structure)  
 [Ports](#ports)  
 [Installation](#electric_plug-installation)  
@@ -25,7 +25,7 @@ The apartment management system is a multi-layered system with a microservice ar
 [Features](#-features)  
 
 <a name="about"/>
-<a name="table_of_contents"/>
+<a name="-table-of-contents"/>
 <a name="structure"/>
 <a name="ports"/>
 <a name="electric_plug-installation"/>
@@ -87,6 +87,20 @@ Get free redis account from [Redis Labs ](https://redis.com/try-free/))
   
   
 ## :earth_americas: Endpoints
+ ### Payment service
+
+ | Method | URL | Description |
+ | --- | --- | --- |
+ | `GET` | `/api/Account/GetCustomerCards/{customerId}` | `Lists cards for a specific customer` |
+ | `POST` | `/api/Account/GetCustomerCard` | `Returns detailed information about posted card informations` |
+ | `GET` | `/api/Account/GetCardWithDetails/{cardId}` | `Returns detailed informations of card id` |
+ | `POST` | `/api/Account/CreateCreditCard` | `Adds new Credit card` |
+ | `GET` | `/api/Customer` | `Lists all customers` |
+ | `POST` | `/api/Customer` | `Creates new customer` |
+ | `POST` | `/api/Transaction/Pay` | `Pays the given bill` |
+ | `GET` | `/api/Transaction` | `List all the transactions` |
+
+
   To see the in go to [Swagger Editor](https://editor.swagger.io/) and import the swagger files.
  -  [API Swagger File](/api-routes.md)
  -  [Payment Service Swagger File](/payment-routes.md)
