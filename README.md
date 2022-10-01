@@ -94,18 +94,15 @@ Get free redis account from [Redis Labs ](https://redis.com/try-free/))
  | `POST` | `/api/Auth/ManagerRegister` | `Registers user` |
  | `POST` | `/api/Auth/ChangePassword` | `Changes password` |
  | `POST` | `/api/Auth/Login` | `For login` |
- 
  | `GET` | `/api/Bill/GetAllWithDetails` | `Lists all bills with details` |
  | `GET` | `/api/Bill/GetTenantBills/{id}` | `Lists tenant bills` |
  | `GET` | `/api/Bill/{id}` | `Lists tenant bill by id` |
  | `DELETE` | `/api/Bill/{id}` | `Deletes tenant bill by id` |
  | `PUT` | `/api/Bill/{id}` | `Updates tenant bill by id` |
  | `POST` | `/api/Bill/` | `Creates new bill` |
-
  | `GET` | `/api/BillType` | `Lists bill types` |
  | `POST` | `/api/BillType` | `Creates new bill type` |
  | `PUT` | `/api/BillType` | `Update bill type` |
-
  | `GET` | `/api/Flat/GetAll` | `List all flats` |
  | `GET` | `/api/Flat/GetAllWithDetails` | `List all flats with details` |
  | `GET` | `/api/Flat/GetWithDetails/{id}` | `List flat details` |
@@ -113,25 +110,20 @@ Get free redis account from [Redis Labs ](https://redis.com/try-free/))
  | `DELETE` | `/api/Flat/{id}` | `Deletes a flat` |
  | `PUT` | `/api/Flat/{id}` | `Updates a flat` |
  | `POST` | `/api/Flat/` | `Creates a new flat` |
-
  | `GET` | `/api/FlatType` | `Lists flat types` |
  | `POST` | `/api/FlatType` | `Creates new flat type` |
  | `PUT` | `/api/FlatType` | `Update flat type` |
-
  | `GET` | `/api/Messages/{id}` | `Fetches a message` |
  | `POST` | `/api/Messages/GetUserMessagesBetween` | `Lists all messages between two users` |
  | `POST` | `/api/Messages` | `Creates a new message` |
-
  | `POST` | `/api/Payment` | `Makes a payment request` |
-
  | `GET` | `/api/Tenant` | `List all the tenats` |
  | `POST` | `/api/Tenant` | `Creates a new tenart` |
  | `GET` | `/api/Tenant` | `Fetches a tenant` |
  | `DELETE` | `/api/Tenant` | `Deletes a tenant` |
  | `PUT` | `/api/Tenant` | `Updates a tenant` |
-
  | `GET` | `/api/Users` | `List all the users` |
-
+ 
  ### Payment service
 
  | Method | URL | Description |
