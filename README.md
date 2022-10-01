@@ -67,7 +67,7 @@ Get free redis account from [Redis Labs ](https://redis.com/try-free/))
 
 <details>
 <summary>
-```json
+```
     {
     "MongoDbSettings": {
       "ConnectionString": "<Put your mongodb instance here>",
