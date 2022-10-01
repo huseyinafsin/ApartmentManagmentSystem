@@ -64,8 +64,7 @@ Get free redis account from [Redis Labs ](https://redis.com/try-free/))
   
   
 ## Routes
-
-[Duck Duck Go](https://duckduckgo.com "The best search engine for privacy")
+  To see the in go to [Swagger Editor](https://editor.swagger.io/) and import the [Swagger file](/routes.md)
 ## Libraries
 
   Library  | Versiyon
