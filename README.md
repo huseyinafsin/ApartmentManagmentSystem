@@ -16,6 +16,7 @@ The apartment management system is a multi-layered system with a microservice ar
 <a name="table_of_contents"/>
 <a name="description"/>
 <a name="structure"/>
+<a name="ports"/>
 <a name="libraries"/>
 <a name="technologies"/>
 
