@@ -64,7 +64,7 @@ Get free redis account from [Redis Labs ](https://redis.com/try-free/))
   
   
 ## Routes
-  ```
+  ```json
   {
   "openapi": "3.0.1",
   "info": {
