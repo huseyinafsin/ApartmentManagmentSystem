@@ -67,17 +67,36 @@ Get free redis account from [Redis Labs ](https://redis.com/try-free/))
 
 <details>
 <summary>
-
-```
-Code in summary
+```json
+    {
+    "MongoDbSettings": {
+      "ConnectionString": "<Put your mongodb instance here>",
+      "Database": "TodebPay"
+    },
+    "RedisEndpointInfo": {
+      "Endpoint": "<Put your redis endpoint informations here>",
+      "Port": 16764, // 16764 is default port
+      "Username": "< User name>",
+      "Password": "<Password >",
+      "DatabaseName": "<Database name>"
+    }
 ```
 
 </summary>
-
+```json
+    {
+    "MongoDbSettings": {
+      "ConnectionString": "<Put your mongodb instance here>",
+      "Database": "TodebPay"
+    },
+    "RedisEndpointInfo": {
+      "Endpoint": "<Put your redis endpoint informations here>",
+      "Port": 16764, // 16764 is default port
+      "Username": "< User name>",
+      "Password": "<Password >",
+      "DatabaseName": "<Database name>"
+    }
 ```
-Code in details
-```
-
 </details>
   
 ## Libraries
