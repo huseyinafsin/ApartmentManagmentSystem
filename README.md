@@ -7,16 +7,18 @@ The apartment management system is a multi-layered system with a microservice ar
 [Description](#description)  
 [Table of Contents](#table_of_contents)  
 [Structure](#structure)  
-[Ports](#structure)  
-[Installation](#technologies)  
-[Routes](#technologies)  
+[Ports](#ports)  
+[Installation](#installation)  
+[Routes](#routes)  
 [Libraries](#libraries)  
 [Technologies](#technologies)  
 
-<a name="table_of_contents"/>
 <a name="description"/>
+<a name="table_of_contents"/>
 <a name="structure"/>
 <a name="ports"/>
+<a name="installation"/>
+<a name="routes"/>
 <a name="libraries"/>
 <a name="technologies"/>
 
@@ -30,31 +32,33 @@ The apartment management system is a multi-layered system with a microservice ar
    Main API | 43394, 44365
    Payment micro service |60524, 44324
    UI| 52759, 44349
+   
 ## Installation
-  To make this project work, go to `ApartmentManagmentSystem/ApartmentManagmentSystem/appsettings.json` file and replace it with your configuration information as below.
-  
-  ```json
-  {
-  "MongoDbSettings": {
-    "ConnectionString": "<Put your mongodb instance here>",
-    "Database": "TodebPay"
-  },
-  "RedisEndpointInfo": {
-    "Endpoint": "<Put your redis endpoint informations here>",
-    "Port": 16764, // 16764 is default port
-    "Username": "< User name>",
-    "Password": "<Password >",
-    "DatabaseName": "<Database name>"
-  }
-  ```
-  Get free mongodb account from [Mongo Atlas ](https://www.mongodb.com/cloud/atlas/lp/try4?utm_source=google&utm_campaign=search_gs_pl_evergreen_atlas_core_prosp-brand_gic-null_emea-tr_ps-all_desktop_eng_lead&utm_term=mongodb%20atlas&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=12212624572&adgroup=115749712023&gclid=Cj0KCQjwyt-ZBhCNARIsAKH11755BhHUAguv-dd6o3hmosGD0igKkJyXBY8HXXj-S1PJgLvMpwGHzX4aAvRJEALw_wcB)
-  
- Get free redis account from [Redis Labs ](https://redis.com/try-free/))
+  ### Configurations
+    To make this project work, go to `ApartmentManagmentSystem/ApartmentManagmentSystem/appsettings.json` file and replace it with your configuration information as below.
+
+    ```json
+    {
+    "MongoDbSettings": {
+      "ConnectionString": "<Put your mongodb instance here>",
+      "Database": "TodebPay"
+    },
+    "RedisEndpointInfo": {
+      "Endpoint": "<Put your redis endpoint informations here>",
+      "Port": 16764, // 16764 is default port
+      "Username": "< User name>",
+      "Password": "<Password >",
+      "DatabaseName": "<Database name>"
+    }
+    ```
+    Get free mongodb account from [Mongo Atlas ](https://www.mongodb.com/cloud/atlas/lp/try4?utm_source=google&utm_campaign=search_gs_pl_evergreen_atlas_core_prosp-brand_gic-null_emea-tr_ps-all_desktop_eng_lead&utm_term=mongodb%20atlas&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=12212624572&adgroup=115749712023&gclid=Cj0KCQjwyt-ZBhCNARIsAKH11755BhHUAguv-dd6o3hmosGD0igKkJyXBY8HXXj-S1PJgLvMpwGHzX4aAvRJEALw_wcB)
+
+   Get free redis account from [Redis Labs ](https://redis.com/try-free/))
 
 
 ## Libraries
 
-  Kütüphane  | Versiyon
+  Library  | Versiyon
   ---------  | -----------
    IIS | 39758,44359
    Project |5000, 5001
@@ -62,8 +66,6 @@ The apartment management system is a multi-layered system with a microservice ar
    
 ## Technologies
 
-  Ortam  | Port Numarası (Http,Https)
-  ---------  | -----------
-   IIS | 39758,44359
-   Project |5000, 5001
-   Docker| 49153
+- George Washington
+- John Adams
+- Thomas Jefferson
