@@ -2,7 +2,7 @@
 # Apartment Managment System
 
 <div align="center">
- [![Documentation](https://img.shields.io/badge/Documentation-complete-green.svg?style=flat)](https://github.com/huseyinafsin/ApartmentManagmentSystem)
+[![Documentation](https://img.shields.io/badge/Documentation-complete-green.svg?style=flat)](https://github.com/huseyinafsin/ApartmentManagmentSystem)
  
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 </div>
