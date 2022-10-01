@@ -7,6 +7,9 @@ The apartment management system is a multi-layered system with a microservice ar
 [Description](#description)  
 [Table of Contents](#table_of_contents)  
 [Structure](#structure)  
+[Ports](#structure)  
+[Installation](#technologies)  
+[Routes](#technologies)  
 [Libraries](#libraries)  
 [Technologies](#technologies)  
 
@@ -19,6 +22,13 @@ The apartment management system is a multi-layered system with a microservice ar
 
 ## Structure
 <img width="1680" alt="Adsız tasarım" src="https://user-images.githubusercontent.com/42337444/183386752-f68c7734-efd1-485c-a601-77d0469cb076.png">
+
+## Ports
+  Project  | Port Number (Http,Https)
+  ---------  | -----------
+   Main API | 43394, 44365
+   Payment micro service |60524, 44324
+   UI| 52759, 44349
 
 
 ## Libraries
