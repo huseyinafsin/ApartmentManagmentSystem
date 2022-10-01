@@ -1,9 +1,3 @@
-<details>
-  <summary>
-    summary
-  </summary>
-  details
-</details>
 
 # Apartment Managment System
 ## Description
@@ -70,6 +64,11 @@ Get free redis account from [Redis Labs ](https://redis.com/try-free/))
   
   
 ## Routes
+
+<details>
+  <summary>
+    summary
+  </summary>
   ```json
   {
   "openapi": "3.0.1",
@@ -1439,7 +1438,9 @@ Get free redis account from [Redis Labs ](https://redis.com/try-free/))
     }
   }
 }
-```
+  ```
+</details>
+  
 ## Libraries
 
   Library  | Versiyon
