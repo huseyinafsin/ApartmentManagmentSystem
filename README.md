@@ -69,7 +69,6 @@ Get free redis account from [Redis Labs ](https://redis.com/try-free/))
   <summary>
     summary
   </summary>
-  ```json
   {
   "openapi": "3.0.1",
   "info": {
@@ -1438,7 +1437,6 @@ Get free redis account from [Redis Labs ](https://redis.com/try-free/))
     }
   }
 }
-  ```
 </details>
   
 ## Libraries
