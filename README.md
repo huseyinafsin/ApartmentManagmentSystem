@@ -7,11 +7,15 @@ The apartment management system is a multi-layered system with a microservice ar
 [Description](#description)  
 [Libraries](#libraries)  
 [Technologies](#technologies)  
+[Structure](#structure)  
 
 <a name="description"/>
 <a name="libraries"/>
 <a name="technologies"/>
+<a name="structure"/>
 
+
+## Structure
 <img width="1680" alt="Adsız tasarım" src="https://user-images.githubusercontent.com/42337444/183386752-f68c7734-efd1-485c-a601-77d0469cb076.png">
 
 
