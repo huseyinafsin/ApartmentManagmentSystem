@@ -9,26 +9,27 @@
  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 </div>
 
-## Description
+## About
 <p>
 The apartment management system is a multi-layered system with a microservice architecture that allows the user in the role of a site manager to perform operations such as adding, deleting, editing, adding tenants, assigning tenants to the apartment, adding invoices, assigning invoices; and the user in the role of tenant to log in to the system and view invoices, edit profile and change password.
 </p>
+
 ## Table of Contents  
-[Description](#description)  
+[About](#about)  
 [Table of Contents](#table_of_contents)  
 [Structure](#structure)  
 [Ports](#ports)  
 [Installation](#installation)  
-[Routes](#routes)  
+[Endpoints](#endpoints)  
 [Libraries](#libraries)  
 [Technologies](#technologies)  
 
-<a name="description"/>
+<a name="about"/>
 <a name="table_of_contents"/>
 <a name="structure"/>
 <a name="ports"/>
 <a name="installation"/>
-<a name="routes"/>
+<a name="endpoints"/>
 <a name="libraries"/>
 <a name="technologies"/>
 
@@ -43,7 +44,19 @@ The apartment management system is a multi-layered system with a microservice ar
    Payment micro service |60524, 44324
    UI| 52759, 44349
    
-## Installation
+## :electric_plug: Installation
+
+
+Follow the steps below to run the project in your local
+
+  1. Clone the repo
+     ```sh
+     git clone https://github.com/huseyinafsin/ApartmentManagmentSystem.git
+     ```
+  2. Go to project folder
+     ```sh
+     cd ApartmentManagmentSystem
+     ```
   ### Configurations
    
    To make this project work, go to `ApartmentManagmentSystem/ApartmentManagmentSystem/appsettings.json` file and replace it with your configuration information as below.
@@ -73,12 +86,12 @@ Get free redis account from [Redis Labs ](https://redis.com/try-free/))
    Open Package manager console ```dotnet ef database update ``` or ```Update-Database```
   
   
-## Routes
+## :earth_americas: Endpoints
   To see the in go to [Swagger Editor](https://editor.swagger.io/) and import the swagger files.
  -  [API Swagger File](/api-routes.md)
  -  [Payment Service Swagger File](/payment-routes.md)
 
-## Libraries
+## 📚 Libraries
 
   Library  | Versiyon
   ---------  | -----------
@@ -105,7 +118,7 @@ Get free redis account from [Redis Labs ](https://redis.com/try-free/))
 
 
    
-## Technologies
+## 🚀 Features
 
 -  N-Layered Architecture
 -  Generic Repository Pattern
