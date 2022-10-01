@@ -69,12 +69,34 @@ Get free redis account from [Redis Labs ](https://redis.com/try-free/))
 
   Library  | Versiyon
   ---------  | -----------
-   IIS | 39758,44359
-   Project |5000, 5001
-   Docker| 49153
+   Automapper | 11.0.1  
+   Hangfire | 11.0.0
+   JwtBearer | 5.0.17
+   EntityFrameworkCore | 5.0.17
+   StackExcangeRedis | 6.0.7
+   Redis | 2.6.48
+   Swashbuckle | 5.6.3
+   Automapper | 11.0.1
+   Mirosoft.IdentityModel.Tokens | 6.21.0
+   MongoDb.Bson | 2.17.1
+   MongoDb.Driver | 2.17.0
+   Bogus | 34.0.2
+   Autofac | 2.17.0
+   MongoDb.Driver | 2.17.0
+   Serilog | 2.11.0
+   FluentValidation | 11.2.2
+
    
 ## Technologies
 
-- George Washington
-- John Adams
-- Thomas Jefferson
+-  N-Layered Architecture
+-  Generic Repository Pattern
+-  Dependency Injection
+-  IOC
+-  Caching
+-  Logging
+-  Microservice
+-  Rest
+-  Backgound Jobs
+-  Unit Testing
+-  UI
