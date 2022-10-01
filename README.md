@@ -5,12 +5,12 @@ The apartment management system is a multi-layered system with a microservice ar
 
 ## Table of Contents  
 [Description](#description)  
-[Table of Contents](#tableofcontents)  
+[Table of Contents](#table_of_contents)  
 [Structure](#structure)  
 [Libraries](#libraries)  
 [Technologies](#technologies)  
 
-<a name="tableofcontents"/>
+<a name="table_of_contents"/>
 <a name="description"/>
 <a name="structure"/>
 <a name="libraries"/>
