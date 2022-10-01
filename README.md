@@ -31,7 +31,7 @@ The apartment management system is a multi-layered system with a microservice ar
    Payment micro service |60524, 44324
    UI| 52759, 44349
 ## Installation
-  To make this project work, go to `ApartmentManagmentSystem/ApartmentManagmentSystem/appsettings.json` file and replace it with your configuration information as below
+  To make this project work, go to `ApartmentManagmentSystem/ApartmentManagmentSystem/appsettings.json` file and replace it with your configuration information as below.
   
   ```json
   {
@@ -47,7 +47,8 @@ The apartment management system is a multi-layered system with a microservice ar
     "DatabaseName": "<Database name>"
   }
   ```
- ###
+  Get free mongodb account from [Mongo Atlas ](https://www.mongodb.com/cloud/atlas/lp/try4?utm_source=google&utm_campaign=search_gs_pl_evergreen_atlas_core_prosp-brand_gic-null_emea-tr_ps-all_desktop_eng_lead&utm_term=mongodb%20atlas&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=12212624572&adgroup=115749712023&gclid=Cj0KCQjwyt-ZBhCNARIsAKH11755BhHUAguv-dd6o3hmosGD0igKkJyXBY8HXXj-S1PJgLvMpwGHzX4aAvRJEALw_wcB)
+
 
 ## Libraries
 
